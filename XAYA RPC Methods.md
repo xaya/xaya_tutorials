@@ -21,6 +21,16 @@ During the development of your game, the most commonly used RPC methods will lik
 
 Several other methods are described below, though their usefulness to you may be limited during the development of your game.
 
+## Sending RPC Commands
+
+The XAYA daemon communicates through plain text and JSON. You can use the XAYA QT wallet's console, the xaya-cli command line program that comes with the QT wallet, or any RPC library in any language that you prefer. 
+
+The examples below use xaya-cli and a XAYA game wallet. 
+
+Most likely, you will wish to use an RPC library inside of your game for RPC calls. 
+
+See [Interacting with the XAYA Wallet Through RPC in C#](https://github.com/xaya/xaya_tutorials/blob/master/RPC%20Windows%20C%23%20Tutorial/XAYA%20RPC%20Tutorial.md) for a sample application and tutorial of using the RPC methods through a 3rd party library. 
+
 ## Names
 
 Names are unique entries in the XAYA blockchain. They can be used for game accounts or to create games. 
@@ -45,7 +55,7 @@ Names have data associated with them on the XAYA blockchain:
 
 - **name**: The name itself, including the namespace
 - **name_encoding**: This is the character encoding for the name, and is usually UTF-8
-- **value**: All names can have a value associated with them. The maximum length of a value is 2048 bytes. Developers should try to minimize the length of values
+- **value**: All names can have a value associated with them. Values are contained in JSON. The maximum length of a value is 2048 bytes. Developers should try to minimize the length of values
 - **value_encoding**: This is the character encoding for the value
 - **txid**: This is the transaction ID for the last transaction involving the name
 - **vout**: This is something that Daniel should explain
