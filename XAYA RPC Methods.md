@@ -11,6 +11,16 @@ XAYA has many RPC methods over and above those available in Bitcoin. These are s
 - name_update "name" "value" ("options")
 - sendtoname "name" amount ( "comment" "comment_to" subtractfeefromamount replaceable conf_target "estimate_mode")
 
+## Most Commonly Used
+
+During the development of your game, the most commonly used RPC methods will likely be (in no particular order):
+
+- [name_list](#name_list)
+- [name_register](#name_register)
+- [name_update](#name_update)
+
+Several other methods are described below, though their usefulness to you may be limited during the development of your game.
+
 ## Names
 
 Names are unique entries in the XAYA blockchain. They can be used for game accounts or to create games. 
