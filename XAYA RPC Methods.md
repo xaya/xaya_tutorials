@@ -227,19 +227,19 @@ At block height 508,544, the following examples returned the same result.
 
 Their result was:
 
-[
-  {
-    "name": "p/Name pending test 1",
-    "name_encoding": "utf8",
-    "value": "{}",
-    "value_encoding": "ascii",
-    "txid": "6d8335340447690d3e37ce3c32ffdc3ef1071aaa21dd2bdb7143de49cf034921",
-    "vout": 1,
-    "address": "CaSGURq6BS3FQsqj1zQUrRj9iwbw4Rgg1k",
-    "ismine": true,
-    "op": "name_register"
-  }
-]
+	[
+	  {
+	    "name": "p/Name pending test 1",
+	    "name_encoding": "utf8",
+	    "value": "{}",
+	    "value_encoding": "ascii",
+	    "txid": "6d8335340447690d3e37ce3c32ffdc3ef1071aaa21dd2bdb7143de49cf034921",
+	    "vout": 1,
+	    "address": "CaSGURq6BS3FQsqj1zQUrRj9iwbw4Rgg1k",
+	    "ismine": true,
+	    "op": "name_register"
+	  }
+	]
 
 Had another name been pending at the time, it would have appeared in that list.
 
