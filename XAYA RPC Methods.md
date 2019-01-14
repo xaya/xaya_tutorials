@@ -33,9 +33,7 @@ See [Interacting with the XAYA Wallet Through RPC in C#](https://github.com/xaya
 
 ## Names
 
-Names are unique entries in the XAYA blockchain. They can be used for game accounts or to create games. 
-
-The maximum length of a name is 256 bytes.
+Names are unique entries in the XAYA blockchain. They can be used for game accounts or to create games. See [Name and Value Restrictions](https://github.com/xaya/xaya_docs/blob/master/blockchain.md#name-and-value-restrictions-) for information on restrictions and limitations. 
 
 All names exists in a namespace, e.g. "p/" is for player accounts and "g/" is for games. A namespace ends with the "/" character, and everything following that is the name. The following are examples of valid names:
 
