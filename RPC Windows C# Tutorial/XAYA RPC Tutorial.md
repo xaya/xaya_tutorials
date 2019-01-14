@@ -1,4 +1,4 @@
-## Interacting with the XAYA Wallet Through RPC
+## Interacting with the XAYA Wallet Through RPC in C#
 
 Sending and getting information to and from a XAYA wallet is relatively straight forward, but can involve a lot of coding. However, why reinvent the wheel? The following tutorial uses an extended fork of George Kimionis&#39; BitcoinLib library to include XAYA. You can download the code at the XAYA github repository.
 
@@ -73,11 +73,11 @@ With that, we have our bright and shiny new XAYAService object ready to use. For
 
 When you run the project, you&#39;ll then see the title bar text like this:
 
-![](https://github.com/RenegadeMinds/XAYA-RPC-Tutorial/blob/master/XAYABitcoinLib%20title%20bar%20text.png)
+![](XAYABitcoinLib%20title%20bar%20text.png)
 
 The XAYAService object, xayaCoinService, contains many methods common to Bitcoin and other coins. It also contains several methods that are unique to XAYA. You can type &quot;xayaCoinService.&quot; to display the Visual Studio Intellisense:
 
-![](https://github.com/RenegadeMinds/XAYA-RPC-Tutorial/blob/master/XAYAService%20intellisense.png)
+![](XAYAService%20intellisense.png)
 
 Some of the methods you&#39;ll need include:
 
