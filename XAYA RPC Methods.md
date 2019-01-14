@@ -123,8 +123,8 @@ The txid returned for that command is "c87eb7b9c71146a18f8ebaea93b74bfeb4795b265
 
 This method updates the value associated with a name. It takes 2 mandatory parameters and 1 optional parameter. The mandatory parameters are:
 
-- name: The name to update
-- value: Valid JSON containing data
+- **name**: The name to update
+- **value**: Valid JSON containing data
 
 In order to make the best use of XAYA, developers should follow the format for name updates outlined in [Name and Value Restrictions](https://github.com/xaya/xaya_docs/blob/master/blockchain.md#name-and-value-restrictions-), [Moves](https://github.com/xaya/xaya_docs/blob/master/games.md#moves-), and [Sending Moves](https://github.com/xaya/xaya_docs/blob/master/interface.md#sending-moves).
 
