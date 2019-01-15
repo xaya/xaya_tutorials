@@ -2,7 +2,15 @@
 
 XAYA provides a convenient solution for developers to put their games up to 100% on the blockchain. The following materials can help get you started quickly.
 
-# Some title
+# Getting Started
+
+For game developers, this is the first place you should look to get started with XAYA game development. The sections below are arranged in order. You should read them from top to bottom, but feel free to skip to any section if you're already familiar with the basics. 
+
+- **[XAYA Specifications](#XAYA%20Specifications)**
+- **[XAYA RPC](#XAYA%20RPC)**
+- **[libxayagame](#libxayagame)**
+
+Additional resources will be added on an ongoing basis. 
 
 # XAYA Specifications
 
@@ -22,19 +30,23 @@ The specifications are required reading. Other documents will refer to specific 
 
 # XAYA RPC 
 
-RPC (Remote Procedure Calls) 
+XAYA uses RPC (Remote Procedure Calls) to communicate with the XAYA daemon (xayad). The daemon contains many of the same methods that you may already know from Bitcoin. It also contains methods unique to XAYA. The documents here will help you with those unique methods and provide some additional guidance on their purpose. 
 
-The [XAYA RPC Methods](XAYA%20RPC%20Methods.md) document describes several of the most useful RPC methods and provides examples. 
+XAYA is language agnostic, so you can use any language you wish so long as it is capable of making RPC calls. 
+
+The [XAYA RPC Methods](XAYA%20RPC%20Methods.md) document describes several of the most useful RPC methods and provides examples. It is language agnostic and you should read this first. 
 
 The [RPC Windows C# Tutorial](RPC%20Windows%20C%23%20Tutorial/XAYA%20RPC%20Tutorial.md) uses a 3rd party library to demonstrate using several XAYA RPC methods. A sample Windows Forms application is provided with comments to assist you.
 
 # libxayagame
 
-The [libxayagame](https://github.com/xaya/libxayagame) library lets developers focus on building blockchain games without worrying about any of the inner workings of the blockchain, such as reorgs. 
+The [libxayagame](https://github.com/xaya/libxayagame) library lets developers focus on building blockchain games without worrying about any of the inner workings of the blockchain, such as reorgs. That is, libxayagame does some very, heavy, heavy lifting for you. 
 
 Instead, it provides a simple framework for you to code your games on top of the XAYA platform. 
 
 Once you have libxayagame wired up, you only need to implement 3 callback methods. The Mover example shows you how to do this. 
+
+Code ninjas and rock stars may enjoy browsing through the code or [code documentation available here](https://xaya.io/#The-doxygen-documentation-still-needs-to-be-uploaded).
 
 ## Mover Sample Game
 
