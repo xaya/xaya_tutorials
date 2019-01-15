@@ -64,7 +64,7 @@ Names have data associated with them on the XAYA blockchain:
 
 The order and appearance of those properties may vary slightly in how/if they are returned in different methods. 
 
-The value is where game moves are. See `[name_update](#name_update)` below for how to submit moves into the XAYA blockchain.
+The value is where game moves are. See [`name_update`](#name_update) below for how to submit moves into the XAYA blockchain.
 
 ## name_list
 
