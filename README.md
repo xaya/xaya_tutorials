@@ -46,6 +46,10 @@ Both libxayagame and Mover are written in C++. The Mover sample includes a game 
 
 For C# developers, the Mover example has been ported to C# along with code to wrap the libxayagame C++ library. 
 
+The Unity project provides a front-end GUI for Mover. The wrapper and additional code implement the Mover game itself.
+
+
+
 
 
 
