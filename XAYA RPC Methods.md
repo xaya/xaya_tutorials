@@ -19,7 +19,7 @@ During the development of your game, the most commonly used RPC methods will lik
 - [name_register](#name_register)
 - [name_update](#name_update)
 
-Several other methods are described below, though their usefulness to you may be limited during the development of your game.
+Several other methods are also described below, though their usefulness to you may be limited during the development of your game.
 
 ## Sending RPC Commands
 
@@ -35,7 +35,7 @@ See [Interacting with the XAYA Wallet Through RPC in C#](https://github.com/xaya
 
 Names are unique entries in the XAYA blockchain. They can be used for game accounts or to create games. See [Name and Value Restrictions](https://github.com/xaya/xaya_docs/blob/master/blockchain.md#name-and-value-restrictions-) for information on restrictions and limitations. 
 
-All names exists in a namespace, e.g. "p/" is for player accounts and "g/" is for games. A namespace ends with the "/" character, and everything following that is the name. The following are examples of valid names:
+All names exists in a [namespace](https://github.com/xaya/xaya_docs/blob/master/blockchain.md#name-and-value-restrictions-), e.g. "p/" is for player accounts and "g/" is for games. A namespace ends with the "/" character, and everything following that is the name. The following are examples of valid names:
 
 - p/John Doe
 - p/Larry
@@ -51,23 +51,26 @@ The following are examples of invalid names:
 
 Names have data associated with them on the XAYA blockchain:
 
-- **name**: The name itself, including the namespace
+- **name**: The name itself, including the [namespace](https://github.com/xaya/xaya_docs/blob/master/blockchain.md#name-and-value-restrictions-)
 - **name_encoding**: This is the character encoding for the name, and is usually UTF-8
 - **value**: All names can have a value associated with them. Values are contained in JSON. The maximum length of a value is 2048 bytes. Developers should try to minimize the length of values
 - **value_encoding**: This is the character encoding for the value
 - **txid**: This is the transaction ID for the last transaction involving the name
 - **vout**: This is something that Daniel should explain
+- **address**: This is the CHI address that owns/contains the name
 - **height**: This is the block height of the last transaction for this name
 - **ismine**: This indicates whether or not the name is owned by the current wallet
 - **op**: Not in all name data. Indicates an operation for the transaction, e.g. "name_register"
 
-The value is where game moves are. See name_update below for how to submit moves into the XAYA blockchain.
+The order and appearance of those properties may vary slightly in how/if they are returned in different methods. 
+
+The value is where game moves are. See [name_update](#name_update) below for how to submit moves into the XAYA blockchain.
 
 ## name_list
 
 This returns a list of names in a wallet if no name is passed to it. It takes one optional parameter.
 
-- **name**: A name including a namespace.
+- **name**: A name including a [namespace](https://github.com/xaya/xaya_docs/blob/master/blockchain.md#name-and-value-restrictions-).
 
 If a name is passed, it returns an empty set if the name doesn't exist on the XAYA blockchain, and if it exists, the method returns the name with additional data about the name, including whether it is owned by the wallet (ismine). 
 
@@ -75,36 +78,32 @@ The following command tests to see if "p/xaya" exists in the current wallet.
 
 	xaya-cli -rpcwallet=game.dat name_list "p/xaya"
 
-As it isn't owned by the current wallet, the following result is returned:
+If it isn't owned by the current wallet, the following result is returned:
 
 	[
 	]
 
 That result will be the same for any wallet with no names in it if the method is called without a name as a parameter.
 
-The following command tests to see if "p/Name pending test 1" exists in the current wallet.
-
-	xaya-cli -rpcwallet=game.dat name_list "p/Name pending test 1"
-
-As it does exist in the author's current wallet, the following result is returned:
+If "p/xaya" exists in the current wallet, the following result is returned:
 
 	[
-	  {
-	    "name": "p/Name pending test 1",
-	    "name_encoding": "utf8",
-	    "value": "{}",
-	    "value_encoding": "ascii",
-	    "txid": "6d8335340447690d3e37ce3c32ffdc3ef1071aaa21dd2bdb7143de49cf034921",
-	    "vout": 1,
-	    "address": "CaSGURq6BS3FQsqj1zQUrRj9iwbw4Rgg1k",
-	    "ismine": true,
-	    "height": 508545
-	  }
+		{
+		  "name": "p/xaya",
+		  "name_encoding": "utf8",
+		  "value": "{}",
+		  "value_encoding": "ascii",
+		  "txid": "c87eb7b9c71146a18f8ebaea93b74bfeb4795b265f151ba5a1e62ef32017bc34",
+		  "vout": 1,
+		  "address": "CWP23M9HUAjt917x97DY4X9WnhkL7gJqEH",
+		  "ismine": true
+		  "height": 15,
+		}
 	]
 
 Running that command will return zero results for you. Create 1 or more names first in order to get a non-empty result set.
 
-Without a name as a parameter, the complete list of names in a wallet is returned.
+Without a name as a parameter, the complete list of names in a wallet is returned. For some people this can be a large number.
 
 ### For Your Game
 
@@ -118,7 +117,7 @@ If they have no names, you can prompt them to create a name to use in your game.
 
 This method registers a name on the XAYA blockchain. That name can then be used in games. It takes 2 mandatory parameters and 1 optional parameter. The mandatory parameters are:
 
-- **name**: The name to create. It must include a namespace, e.g. "p/" for player account names
+- **name**: The name to create. It must include a [namespace](https://github.com/xaya/xaya_docs/blob/master/blockchain.md#name-and-value-restrictions-), e.g. "p/" for player account names
 - **value**: Valid JSON. This can simply be "{}" or "[]"
 
 It returns a txid if the transaction is successful or an error if it fails.
@@ -176,6 +175,8 @@ Similar to name data above, the following is 1 example name from the complete re
 	    "ismine": false
 	  }
 
+While name_scan may be of little interest to game developers, it may be of greater interest to XAYA enthusiasts. 
+
 ## name_show
 
 This returns the name and associated data if the name exists. It takes a name as its single parameter.
@@ -200,10 +201,7 @@ The returned data is:
 	  "ismine": false
 	}
 
-Should the owner of "p/xaya" run the command, the only differences would be that:
-
-- "ismine" would be "true"
-- the address may be different if the name were sent to another address
+Should the owner of "p/xaya" run the command, the only difference would be that "ismine" would be "true".
 
 ## sendtoname
 
@@ -255,7 +253,7 @@ To test this method and not return an empty set, you may wish to quickly create 
 
 ## name_history
 
-This is generally not needed, and requires the blockchain to be specifically organised to use this method. As such, further description is omitted. 
+This method returns a complete history of a name. It is generally not needed, and requires the blockchain to be specifically organised to use this method (you cannot run this method in a default XAYA wallet installation). As such, further description is omitted. 
 
 
 
