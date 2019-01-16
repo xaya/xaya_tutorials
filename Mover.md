@@ -64,6 +64,11 @@ However, do take note of the includes. The includes for libxayagame are:
 	#include "xayagame/gamelogic.hpp"
 	#include "xayagame/storage.hpp"
 
+In your project, you will likely need to include these headers similar to the following:
+
+	#include <xayagame/gamelogic.hpp>
+	#include <xayagame/storage.hpp>
+
 ## logic.cpp
 
 There's quite a bit in the logic.cpp file, but of most interest to us are the callbacks that implement the game logic.
@@ -74,7 +79,7 @@ There's quite a bit in the logic.cpp file, but of most interest to us are the ca
 
 ### GetInitialState
 
-The game logic in `GetInitialState` sets the chain that the game runs on as well as the block height where the game begins. In your game, you'll likely want to start on testnet. Remember to include the proper hash for the block it begins on. 
+The game logic in `GetInitialState` sets the chain that the game runs on as well as the block height where the game begins. In your game, you'll likely want to start on testnet or regtestnet where you can instantly mine new blocks. Regtestnet is perfect for testing. Remember to include the proper hash for the block it begins on. 
 
 ### ProcessForward
 
@@ -84,7 +89,7 @@ The game logic in `ProcessForward` is the main game logic. This is where you get
 - The block data with new moves in it 
 - Undo information that you need to update
 
-For your game, with that information, you need to take the current game state and update it with the new moves you've received through the blockchain, and process that data to come up with a new game state.
+For your game, with that information, you need to take the current game state and update it with the new moves you've received through the blockchain, and process that data to come up with a new game state, i.e. you process the game forward by 1 move.
 
 At the same time, you must create some undo data.
 
@@ -97,6 +102,10 @@ Time and order on a blockchain differs from our every day conception of time and
 Events such as reorgs are extremely difficult to deal with. Luckily, libxayagame takes care of all the heavy lifting here. However, in order to do that heavy lifting, game developers must keep an inventory of undo data. How you manage this is largely up to you, e.g. database or flat files, but it must be done. 
 
 Take note how the undo data is created in the Mover example as you'll need to implement something similar. Mover keeps this in memory, but you will likely wish to commit it to a database, such as SQLite, or other storage system. 
+
+With undo data, you must be able to compute the *inverse* of the state transition, i.e. given a *new state* and undo data, compute the corresponding *old state*. 
+
+A cheap hack is to return the old state as the undo data. However, this won't be very efficient. Still, it should be sufficient for simple games or for getting started quickly. For an example of this, see [here](https://github.com/xaya/libxayagame/blob/6d14d5331c000a156eaefbc1bf1f2eaddafd181a/xayagame/gamelogic.cpp#L52). 
 
 #### Returning Data
 
