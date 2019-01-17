@@ -1,6 +1,6 @@
 # Getting Started
 
-The following is a guide to documents for regular XAYA users and for devleopers to help them get started putting games on the XAYA blockchain gaming platform. 
+The following is a guide to documents primarily for developers to help them get started putting games on the XAYA blockchain gaming platform, but also for for regular XAYA users. 
 
 # Blockchain Basics
 
