@@ -95,7 +95,7 @@ At the same time, you must create some undo data.
 
 Undo data is a set of data that allows you to rewind a game to a previous state. But, why is this needed? 
 
-Time and order on a blockchain differs from our every day conception of time and order. Consequently, on any blockchain inevitably there are some events that need to be dealt with, e.g. reorgs. 
+Time and order on a blockchain differs from our every day conception of time and order. Consequently, on most blockchains inevitably there are some events that need to be dealt with, e.g. reorgs. 
 
 Events such as reorgs are extremely difficult to deal with. Luckily, libxayagame takes care of all the heavy lifting here. However, in order to do that heavy lifting, game developers must keep an inventory of undo data. How you manage this is largely up to you, e.g. database or flat files, but it must be done. 
 
