@@ -113,7 +113,7 @@ Note the `ProcessForward` signature and how arguments are passed in, and the las
 
 ## ProcessBackwards
 
-The `ProcessBackwards` callback is similar to the `ProcessForward` callback in some ways. However, its purpose is to rewind the game state by 1 move, i.e. 1 block.
+The `ProcessBackwards` callback is similar to the `ProcessForward` callback in some ways. However, its purpose is to rewind the game state by 1 block.
 
 In `ProcessForward`, we produced undo data. Here we consume that undo data. 
 
