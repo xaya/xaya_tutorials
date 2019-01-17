@@ -103,7 +103,7 @@ Take note how the undo data is created in the Mover example as you'll need to im
 
 With undo data, you must be able to compute the *inverse* of the state transition, i.e. given a *new state* and undo data, compute the corresponding *old state*. 
 
-A cheap hack is to return the old state as the undo data. However, this won't be very efficient. Still, it should be sufficient for simple games or for getting started quickly. For an example of this, see [here](https://github.com/xaya/libxayagame/blob/6d14d5331c000a156eaefbc1bf1f2eaddafd181a/xayagame/gamelogic.cpp#L52). 
+A cheap hack is to return the old state as the undo data. However, this won't be very efficient as you'll need to store orders of magnitude more data. That is, processing undo data lets you use far less drive storage space. Still, it should be sufficient for simple games or for getting started quickly. For an example of this, see [here](https://github.com/xaya/libxayagame/blob/6d14d5331c000a156eaefbc1bf1f2eaddafd181a/xayagame/gamelogic.cpp#L52). 
 
 #### Returning Data
 
