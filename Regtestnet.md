@@ -8,7 +8,17 @@ Regtestnet is a better solution for developers looking to put their games and ap
 
 Regtestnet is a private blockchain with no peers. It is entirely separate from mainnet and testnet, and you can mine blocks whenever you wish.
 
-This puts you fully in control
+Regtestnet is also called:
+
+- Regression test mode
+- regtest
+- regtest mode
+
+Note that the RPC port numbers differ for the various networks:
+
+- Mainnet = 8396
+- Testnet = 18396
+- Regtestnet = 18443
 
 ## Back Up  Your Wallets
 
@@ -20,7 +30,7 @@ To use regtestnet, you'll most likely want to work with the XAYA QT wallet and x
 
 Open a command prompt or terminal and navigate to the folder where you extracted the QT files.
 
-Next, run the QT wallet with the `-regtest` and `server=1` flags as shown below.
+Next, run the QT wallet with the `-regtest` and `server=1` flags as shown below. You must use the `-server=1` flag in order to use xaya-cli, otherwise you'll get errors from xaya-cli because it cannot connect.
 
 	xaya-qt -regtest -server=1
 
