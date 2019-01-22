@@ -66,17 +66,21 @@ You'll need to know your local area network IP addresses, e.g. 192.168.0.123 and
 
 On the "123" machine, run the following command:
 
-	xaya-cli -regtest addnode "192.168.0.135:18443" "add"
+	xaya-cli -regtest addnode "192.168.0.135" "add"
 
 This will add the "135" machine as a node to the "123" machine.
 
 On the "135" machine, run the following command:
 
-	xaya-cli -regtest addnode "192.168.0.123:18443" "add"
+	xaya-cli -regtest addnode "192.168.0.123" "add"
 
 This will add the "123" machine as a node to the "135" machine.
 
-**NOTE:** The return value for `addnode` is `null` and `getnodeaddresses` will return an empty set. This is normal. 
+**NOTE:** The return value for `addnode` is `null` and `getnodeaddresses` will return an empty set. This is normal. Instead, run `getpeerinfo`.
+
+	xaya-cli -regtest getpeerinfo
+
+That will return a set of information about peers. Check the `addr` field to see the IP address of the connected node.
 
 They should sync very quickly, however, you may wish to mine a few blocks. See below for how to do that.
 
