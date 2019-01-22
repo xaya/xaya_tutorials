@@ -26,7 +26,7 @@ Next, run the QT wallet with the `-regtest` and `server=1` flags as shown below.
 
 The XAYA QT wallet program will open up and you'll have a zero CHI balance. You can ignore the first screen; click the Hide button.
 
-![xaya-qt -regtest -server=1](XAYA QT wallet%20-regtest%20-server=1.png)
+![fire up regtestnet](XAYA QT wallet%20-regtest%20-server=1.png)
 
 You're now running on regtestnet. 
 
