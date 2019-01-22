@@ -54,7 +54,7 @@ The XAYA QT wallet program will open up and you'll have a zero CHI balance. You 
 
 ![Fire up regtestnet](XAYA%20QT%20wallet%20-regtest%20-server=1.png)
 
-You're now running on regtestnet. 
+You're now running your own regtestnet. 
 
 ## Multiple Peers in Your Regtestnet Network
 
