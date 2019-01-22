@@ -88,7 +88,7 @@ Back in your command prompt or terminal, check your balance with the `-regtest` 
 
 You should see your zero balance as "0.00000000", i.e. to 8 decimal places.
 
-## Create a CHI Address
+### Create a CHI Address
 
 Next, you'll need to create address so that you can mine regtestnet CHI into. The `getnewaddress` command takes 2 optional arguments. In this example, we only set the first one for the label. Enter the following command into your command line:
 
@@ -141,9 +141,7 @@ Depending upon your requirements, you may wish to create a small program that le
 
 There are times when a blockchain undergoes a reorg. These situations are difficult to deal with, but that hard work is all done for you through the [libxayagame](https://github.com/xaya/libxayagame/) library. 
 
-During the development of your game, you'll need to test your undo data, but this can't realistically be done on mainnet or testnet as you cannot predict when a reorg event will happen. Consequently, you must use regtestnet.
-
-You'll need the `invalidateblock` and `reconsiderblock` methods to do this.
+During the development of your game, you'll need to test your undo data, but this can't realistically be done on mainnet or testnet as you cannot predict when a reorg event will happen. Consequently, you must use regtestnet. You'll need the `invalidateblock` and `reconsiderblock` methods to do this.
 
 Your testing workflow will typically follow this pattern:
 
@@ -155,7 +153,7 @@ Your testing workflow will typically follow this pattern:
 
 You can then see how your code handles that situation and react accordingly. 
 
-The the `invalidateblock` and `reconsiderblock` methods take a blockhash as parameters. You can call them as shown below:
+The `invalidateblock` and `reconsiderblock` methods take a blockhash as their parameters. You can call them as shown below:
 
 	xaya-cli -regtest invalidateblock "12d102d12ddbe8fe0dabc03e9488efad481d87c0b084398307a7fb54592fb26c"
 	xaya-cli -regtest reconsiderblock "12d102d12ddbe8fe0dabc03e9488efad481d87c0b084398307a7fb54592fb26c"
