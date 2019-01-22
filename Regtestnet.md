@@ -167,9 +167,11 @@ To reset regtestnet, simply rename or delete the regtest folder in the data dire
 In this tutorial we looked at:
 
 - How to start regtestnet
+	+ How to add nodes (other machines) to regtestnet
 - How to get a balance in the wallet
 - How to create a CHI address
 - How to mine new blocks and get regtestnet CHI
+- How to force reorgs to test undo data
 
 ## Where to Go from Here?
 
