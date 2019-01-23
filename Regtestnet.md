@@ -18,7 +18,13 @@ Note that the RPC port numbers differ for the various networks:
 
 - Mainnet = 8396
 - Testnet = 18396
-- Regtestnet = 18443
+- Regtestnet = 18493
+
+As do the P2P ports:
+
+- Mainnet = 8394
+- Testnet = 18394
+- Regtestnet = 18495
 
 ## Back Up  Your Wallets
 
@@ -62,7 +68,7 @@ You're now running your own regtestnet.
 
 You may wish to have more than a single instance of your game running on regtestnet. To accomplish this, use the `addnode` command. 
 
-You'll need to know your local area network IP addresses, e.g. 192.168.0.123 and 192.168.0.135. 
+You'll need to know your local area network IP addresses, e.g. 192.168.0.123 and 192.168.0.135. If you need to use ports when specifying the IP address, use the P2P port, e.g. 192.168.0.123:18495. If you're running the daemon with a custom xaya.conf file and you've changed ports in there, then you'll need to specify them as per your xaya.conf file entries.
 
 On the "123" machine, run the following command:
 
