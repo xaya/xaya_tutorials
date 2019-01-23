@@ -133,7 +133,7 @@ You can also check the Transactions tab and scroll to see that only 1 is fully c
 
 ![XAYA QT Transactions](XAYA%20QT%20Transactions.png)
 
-You can repeat the above `generatetoaddress` command. You'll see that your balance increases, and that your number of immature coins remains the same, i.e. immature coins will always be 5,000 when 100 or more blocks are mined because they require 100 confirmations to mature. 
+You can repeat the above `generatetoaddress` command and you'll see that your balance increases. However, as you mine more blocks, the number of immature coins will slowly decline because immature coins require 100 confirmations to mature and the block reward declines very rapidly compared to mainnet, e.g. by block 1200 the reward will be 0.19531250 CHI.
 
 ### Mining at Will
 
