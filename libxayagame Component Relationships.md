@@ -21,21 +21,21 @@ The relationships between the various components can be visualised as shown belo
 
 ![XAYA game component relationships](libxayagame-mover.png)
 
-## Front End <--> XAYA Daemon <--> libxayagame
+## Front End <––> XAYA Daemon <––> libxayagame
 
 The daemon receives requests from the front end and returns responses. These are typically `name_list` (to find the names in the user's wallet) and `name_update` (to submit moves onto the blockchain) operations. 
 
 The daemon also receives requests from libxayagame and returns responses. These are "black box" operations that game developers do not need to worry about.
 
-## libxayagame --> GSP
+## libxayagame ––> GSP
 
 In addition to the above, libxayagame sends information, such as new game moves, to the GSP. 
 
-## GSP --> Front End
+## GSP ––> Front End
 
 The GSP implements the game logic. Part of that involves connecting to and subscribing to libxayagame. The GSP processes the information and creates a new game state that it sends to the front end.
 
-## GSP --> Front End <--> XAYA Daemon
+## GSP ––> Front End <––> XAYA Daemon
 
 The front end subscribes to updates from the GSP. When a new game state arrives, it updates the GUI for the end users. Those end users can then make new moves that the front end submits to the daemon, which enters those moves into the mempool where XAYA miners can mine them as transactions onto the XAYA blockchain.
 
