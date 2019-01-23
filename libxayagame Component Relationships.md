@@ -39,7 +39,7 @@ The GSP implements the game logic. Part of that involves connecting to and subsc
 
 The front end subscribes to updates from the GSP. When a new game state arrives, it updates the GUI for the end users. Those end users can then make new moves that the front end submits to the daemon, which enters those moves into the mempool where XAYA miners can mine them as transactions onto the XAYA blockchain.
 
-
+Once those moves have been mined into a block, the black box magic of the XAYA daemon and libxayagame sort out what the game logic needs to know and sends it. 
 
 
 
