@@ -1,4 +1,4 @@
-# libxayagame Component Relationships v2
+# libxayagame Component Relationships v3
 
 Games built on the XAYA platform have several major components.
 
@@ -22,27 +22,25 @@ The front end is the GUI where end users interact with the game.
 
 The relationships between the various components can be visualised as shown below. The red components are parts of the XAYA platform. The green components are written by game developers.
 
-![XAYA game component relationships](libxayagame-mover-v2.png)
+![XAYA game component relationships](libxayagame-mover-v3.png)
 
-## Front End <––> XAYA Daemon <––> libxayagame
+## libxayagame ––> Front End <––> XAYA Daemon <––> libxayagame
 
 The daemon receives requests from the front end and returns responses. These are typically `name_list` (to find the names in the user's wallet) and `name_update` (to submit moves onto the blockchain) operations. 
 
 The daemon also receives requests from libxayagame and returns responses. These are "black box" operations that game developers do not need to worry about.
 
+Further, the front end subscribes to libxayagame for game state updates. 
+
 ## libxayagame <––> Game Logic
 
-In addition to the above, libxayagame sends information, such as new game moves, to the game logic. 
+libxayagame sends information, such as new game moves, to the game logic which processes that data and returns the game state to libxayagame. 
 
-## Game Logic ––> Front End
+## Game Logic ––> libxayagame <––> Front End <––> XAYA Daemon
 
-The GSP implements the game logic. Part of that involves connecting to and subscribing to libxayagame. The game logic processes information from libxayagame and creates a new game state that it sends to the front end.
+The front end subscribes to updates from libxayagame. When a new game state arrives, it updates the GUI for the end users. Those end users can then make new moves that the front end submits to the daemon, which enters those moves into the mempool where XAYA miners can mine them as transactions onto the XAYA blockchain.
 
-## Game Logic ––> Front End <––> XAYA Daemon
-
-The front end subscribes to updates from the game logic. When a new game state arrives, it updates the GUI for the end users. Those end users can then make new moves that the front end submits to the daemon, which enters those moves into the mempool where XAYA miners can mine them as transactions onto the XAYA blockchain.
-
-Once those moves have been mined into a block, the black box magic of the XAYA daemon and libxayagame sort out what the game logic needs to know and sends it. 
+Once those moves have been mined into a block, the black box magic of the XAYA daemon and libxayagame sort out what the game logic needs to know, get a response from the game logic, and then libxayagame sends that final game state to the front end. 
 
 
 
