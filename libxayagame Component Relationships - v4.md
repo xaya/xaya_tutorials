@@ -30,13 +30,13 @@ In this diagram, libxayagame is running as an RPC server, i.e. it is a "default"
 
 ### Using Custom RPCs
 
-As Mover is very simple, this model is sufficient. Complex games can benefit from using custom RPCs. Whether the information flow is between libxayagame and the front end or between the game logic and the front end doesn't particularly matter; it's merely a design choice. Running custom RPCs would then follow this pattern:
+As Mover is very simple, the above model is sufficient. However, complex games can benefit from using custom RPCs. Whether the information flow is between libxayagame and the front end or between the game logic and the front end doesn't particularly matter; it's merely a design choice. Running custom RPCs would then follow this pattern:
 
 ![Alternate XAYA game component relationships](libxayagame-game-logic-to-front-end.png)
 
 ### The General Case
 
-The general case of the how information flows can be viewed as interaction between the GSP and other components:
+The general case of how the information flows can be viewed as interaction between the GSP and other components:
 
 ![General case for game component relationships](libxayagame-gsp-general-case.png)
 
