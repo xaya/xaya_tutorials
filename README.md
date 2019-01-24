@@ -1,10 +1,10 @@
 # Overview
 
-XAYA provides a convenient solution for developers to put their games up to 100% on the blockchain. The following materials can help get you started quickly.
+XAYA provides a convenient solution for developers to put their games up to 100% on the blockchain. The following materials can help get you started quickly. 
 
 # Getting Started
 
-For game developers, this is the first place you should look to get started with XAYA game development. The sections below are arranged in order. You should read them from top to bottom, but feel free to skip to any section if you're already familiar with the basics. 
+For game developers, this is the first place you should look to get started with XAYA game development. The sections below are loosely arranged in order. You can read them from top to bottom, but feel free to skip around. 
 
 - **[Blockchain Basics](#Blockchain-Basics)**
 - **[XAYA Specifications](#XAYA-Specifications)**
