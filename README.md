@@ -6,13 +6,13 @@ XAYA provides a convenient solution for developers to put their games up to 100%
 
 For game developers, this is the first place you should look to get started with XAYA game development. The sections below are arranged in order. You should read them from top to bottom, but feel free to skip to any section if you're already familiar with the basics. 
 
-- **[XAYA Specifications](#XAYA%20Specifications)**
-- **[XAYA RPC](#XAYA%20RPC)**
-	+ [XAYA RPC Methods](#XAYA%20RPC%20Methods)
-	+ [RPC Windows C# Tutorial](#RPC%20Windows%20C#%20Tutorial)
+- **[XAYA Specifications](#XAYA-Specifications)**
+- **[XAYA RPC](#XAYA-RPC)**
+	+ [XAYA RPC Methods](#XAYA-RPC-Methods)
+	+ [RPC Windows C# Tutorial](#RPC-Windows-C#-Tutorial)
 - **[libxayagame](#libxayagame)**
-	+ [Mover Sample Game](#Mover%20Sample%20Game)
-	+ [Mover in Unity](#Mover%20in%20Unity)
+	+ [Mover Sample Game](#Mover-Sample-Game)
+	+ [Mover in Unity](#Mover-in-Unity)
 - **[Regtestnet](#Regtestnet)**
 
 Additional resources will be added on an ongoing basis. 
