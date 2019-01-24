@@ -22,7 +22,7 @@ Additional resources will be added on an ongoing basis.
 
 # Blockchain Basics
 
-If you're unfamiliar with blockchain technology, [Blockchain Basics]() will give you a quick overview and highlight some important aspects. This is a quick, high-level overview and far from exhaustive. If you are already familiar, you should skip this.
+If you're unfamiliar with blockchain technology, [Blockchain Basics](Blockchain%20General.md) will give you a quick overview and highlight some important aspects. This is a quick, high-level overview and far from exhaustive. If you are already familiar, you should skip this.
 
 > [GOTO Blockchain Basics](Blockchain%20General.md)
 
