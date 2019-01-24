@@ -9,7 +9,7 @@ For game developers, this is the first place you should look to get started with
 - **[XAYA Specifications](#XAYA-Specifications)**
 - **[XAYA RPC](#XAYA-RPC)**
 	+ [XAYA RPC Methods](#XAYA-RPC-Methods)
-	+ [RPC Windows C# Tutorial](#RPC-Windows-C#-Tutorial)
+	+ [RPC Windows C# Tutorial](#RPC-Windows-C-Tutorial)
 - **[libxayagame](#libxayagame)**
 	+ [Mover Sample Game](#Mover-Sample-Game)
 	+ [Mover in Unity](#Mover-in-Unity)
