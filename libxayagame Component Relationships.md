@@ -42,7 +42,7 @@ The general case of how the information flows can be viewed as interaction betwe
 
 The information below is for the first diagram above in order to align with the Mover sample game.
 
-## libxayagame ––> Front End <––> XAYA Daemon <––> libxayagame
+## libxayagame ––> Front End <––> XAYA Daemon ––> libxayagame
 
 The daemon receives requests from the front end and returns responses. These are typically `name_list` (to find the names in the user's wallet) and `name_update` (to submit moves onto the blockchain) operations. 
 
@@ -54,7 +54,7 @@ Further, the front end subscribes to libxayagame for game state updates.
 
 libxayagame sends information, such as new game moves, to the game logic which processes that data and returns the game state to libxayagame. 
 
-## Game Logic ––> libxayagame <––> Front End <––> XAYA Daemon
+## Game Logic <––> libxayagame ––> Front End <––> XAYA Daemon
 
 The front end subscribes to updates from libxayagame. When a new game state arrives, it updates the GUI for the end users. Those end users can then make new moves that the front end submits to the daemon, which enters those moves into the mempool where XAYA miners can mine them as transactions onto the XAYA blockchain.
 

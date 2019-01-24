@@ -70,7 +70,7 @@ Instead, it provides a simple framework for you to code your games on top of the
 
 Once you have libxayagame wired up, you only need to implement 3 callback methods. The Mover example shows you how to do this. 
 
-Code ninjas and rock stars may enjoy browsing through the code or [code documentation available here](https://xaya.io/#The-doxygen-documentation-still-needs-to-be-uploaded).
+Code ninjas and rock stars may enjoy browsing through the code or [code documentation available here](https://xaya.io/docs/libxayagame/).
 
 > [GOTO libxayagame](https://github.com/xaya/libxayagame) 
 
@@ -111,9 +111,9 @@ See the "[Getting Started with Regtestnet](Regtestnet.md)" tutorial for more inf
 
 # XAYA Electron Wallet Help
 
-This is end user documentation for the [XAYA Electron wallet]().
+This is end user documentation for the [XAYA Electron wallet](https://xaya.io/docs/electron_wallet/).
 
-> [GOTO XAYA Electron wallet help]()
+> [GOTO XAYA Electron wallet help](https://xaya.io/docs/electron_wallet/)
 
 
 
