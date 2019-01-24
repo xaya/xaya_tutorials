@@ -13,7 +13,7 @@ For game developers, this is the first place you should look to get started with
 	+ [RPC Windows C# Tutorial](#RPC-Windows-C-Tutorial)
 - **[libxayagame](#libxayagame)**
 	+ [Component Relationships](#Component-Relationships)
-	+ [Mover Sample Game](#Mover-Sample-Game)
+	+ [Mover Sample Game Overview](#Mover-Sample-Game-Overview)
 	+ [Mover in Unity](#Mover-in-Unity)
 - **[Regtestnet](#Regtestnet)**
 - **[XAYA Electron Wallet Help](#XAYA-Electron-Wallet-Help)**
@@ -80,13 +80,13 @@ This tutorial provides a high-level overview of the component relationships and 
 
 > [GOTO libxayagame Component Relationships](libxayagame%20Component%20Relationships.md)
 
-## Mover Sample Game
+## Mover Sample Game Overview
 
-Mover is an extremely simple game that uses the [libxayagame](https://github.com/xaya/libxayagame) library. The goal of Mover is to help you easily build your game.
+[Mover](https://github.com/xaya/libxayagame/tree/master/mover) is an extremely simple game that uses the [libxayagame](https://github.com/xaya/libxayagame) library. The goal of Mover is to help you easily build your game.
 
-Both libxayagame and Mover are written in C++. The Mover sample includes a game test written in Python. For more information, see the [Mover](Mover.md) tutorial.
+Both libxayagame and Mover are written in C++. The Mover sample includes a game test written in Python. For more information, see the [Mover Sample Game Overview](Mover.md) tutorial.
 
-> [GOTO Mover](https://github.com/xaya/libxayagame/tree/master/mover) 
+> [GOTO Mover Sample Game Overview](Mover.md) 
 
 ## Mover in Unity
 

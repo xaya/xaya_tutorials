@@ -1,4 +1,4 @@
-# Mover Sample Game
+# Mover Sample Game Overview
 
 If you haven't already, make certain to [download or clone the libxayagame repository](https://github.com/xaya/libxayagame). You will need to build libxayagame from source. See the [libxayagame README here](https://github.com/xaya/libxayagame) for how to build it. 
 
