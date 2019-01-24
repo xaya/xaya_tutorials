@@ -24,7 +24,7 @@ Additional resources will be added on an ongoing basis.
 
 If you're unfamiliar with blockchain technology, [Blockchain Basics]() will give you a quick overview and highlight some important aspects. This is a quick, high-level overview and far from exhaustive. If you are already familiar, you should skip this.
 
-> [Blockchain Basics](Blockchain%20General.md)
+> [GOTO Blockchain Basics](Blockchain%20General.md)
 
 # XAYA Specifications
 
@@ -42,7 +42,7 @@ In particular, important topics are:
 
 The specifications are required reading. Other documents will refer to specific sections of the specifications. 
 
-> [Specifications](https://github.com/xaya/xaya_docs)
+> [GOTO Specifications](https://github.com/xaya/xaya_docs)
 
 # XAYA RPC 
 
@@ -54,13 +54,13 @@ XAYA is language agnostic, so you can use any language you wish so long as it is
 
 The [XAYA RPC Methods](XAYA%20RPC%20Methods.md) document describes several of the most useful RPC methods and provides examples. It is language agnostic and you should read this first.
 
-> [XAYA RPC Methods](XAYA%20RPC%20Methods.md)
+> [GOTO XAYA RPC Methods](XAYA%20RPC%20Methods.md)
 
 ## RPC Windows C# Tutorial
 
 The [RPC Windows C# Tutorial](RPC%20Windows%20C%23%20Tutorial/XAYA%20RPC%20Tutorial.md) uses a 3rd party library to demonstrate using several XAYA RPC methods. A sample Windows Forms application is provided with comments to assist you.
 
-> [RPC Windows C# Tutorial](RPC%20Windows%20C%23%20Tutorial/XAYA%20RPC%20Tutorial.md)
+> [GOTO RPC Windows C# Tutorial](RPC%20Windows%20C%23%20Tutorial/XAYA%20RPC%20Tutorial.md)
 
 # libxayagame
 
@@ -72,13 +72,13 @@ Once you have libxayagame wired up, you only need to implement 3 callback method
 
 Code ninjas and rock stars may enjoy browsing through the code or [code documentation available here](https://xaya.io/#The-doxygen-documentation-still-needs-to-be-uploaded).
 
-> [libxayagame](https://github.com/xaya/libxayagame) 
+> [GOTO libxayagame](https://github.com/xaya/libxayagame) 
 
 ## Component Relationships
 
 This tutorial provides a high-level overview of the component relationships and information flows when using libxayagame. While it aims to explain the Mover sample game, other scenarios are briefly outlined.
 
-> [libxayagame Component Relationships](libxayagame%20Component%20Relationships.md)
+> [GOTO libxayagame Component Relationships](libxayagame%20Component%20Relationships.md)
 
 ## Mover Sample Game
 
@@ -86,7 +86,7 @@ Mover is an extremely simple game that uses the [libxayagame](https://github.com
 
 Both libxayagame and Mover are written in C++. The Mover sample includes a game test written in Python. For more information, see the [Mover](Mover.md) tutorial.
 
-> [Mover](https://github.com/xaya/libxayagame/tree/master/mover) 
+> [GOTO Mover](https://github.com/xaya/libxayagame/tree/master/mover) 
 
 ## Mover in Unity
 
@@ -94,7 +94,7 @@ For C# developers, the Mover example has been ported to C# along with code to wr
 
 The Unity project provides a front-end GUI for Mover. The wrapper and additional code implement the Mover game itself.
 
-> [Unity Mover.md](Unity%20Mover.md)
+> [GOTO Unity Mover.md](Unity%20Mover.md)
 
 # Regtestnet
 
@@ -106,14 +106,14 @@ You can instamine CHI at will and control exactly when and how blocks are mined.
 
 See the "[Getting Started with Regtestnet](Regtestnet.md)" tutorial for more information.
 
-> [Regtestnet.md](Regtestnet.md)
+> [GOTO Getting Started with Regtestnet](Regtestnet.md)
 
 
 # XAYA Electron Wallet Help
 
 This is end user documentation for the [XAYA Electron wallet]().
 
-> [XAYA Electron wallet help]()
+> [GOTO XAYA Electron wallet help]()
 
 
 
