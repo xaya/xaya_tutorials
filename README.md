@@ -113,6 +113,8 @@ See the "[Getting Started with Regtestnet](Regtestnet.md)" tutorial for more inf
 
 The XAYA Command Line Interface (xaya-cli) lets you easily interact with the XAYA daemon and XAYA wallets. It's used extensively in various tutorials. This tutorial introduces xaya-cli and gives examples that you can practice with to learn it very quickly. 
 
+[GOTO Getting Started with xaya-cli](xaya-cli.md)
+
 # XAYA Electron Wallet Help
 
 This is end user documentation for the [XAYA Electron wallet](https://xaya.io/docs/electron_wallet/).
