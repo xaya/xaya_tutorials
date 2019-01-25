@@ -40,7 +40,7 @@ Run that now and have a quick glance.
 
 At the top of the help you'll see some usage cases. Here we'll only examine the first one:
 
-> xaya-cli [options] <command> [params]
+> xaya-cli [options] &lt;command&gt; [params]
 
 The `[options]` are from the help that you just viewed. For many operations we don't need to specify any options and can simply send a command with parameters. Here are some examples. They are all are perfectly safe to use, so feel free to try them right now.
 
@@ -66,9 +66,9 @@ The options are for xaya-cli. It passes those options on to the XAYA daemon. Som
 
 - -testnet
 - -regtest
-- -rpcwallet=<walletname>
-- -rpcuser=<user>
-- -rpcpassword=<pw>
+- -rpcwallet=&lt;walletname&gt;
+- -rpcuser=&lt;user&gt;
+- -rpcpassword=&lt;pw&gt;
 
 Commands are the meat and potatoes. You can get a complete list of commands in the QT console by typing "help", or you can get them via xaya-cli into a text file for easy reference as shown below:
 
@@ -80,9 +80,9 @@ Commands "do things". Where options "tell us where to go" to get things done, th
 
 Commands can put data onto the blockchain, get data from the blockchain, manage wallets, and much more. Skim through the command-help.txt file to get a feel for the kinds of commands that are available to you. 
 
-For more in-depth information, run the following where "<command name>" is the name of the command that you want more information on:
+For more in-depth information, run the following where "&lt;command name&gt;" is the name of the command that you want more information on:
 
-	xaya-cli help <command name>
+	xaya-cli help &lt;command name&gt;
 
 So, for example, if you want information about creating new addresses, use this:
 
@@ -100,7 +100,7 @@ Whether or not you need options will in part depend upon the wallet software tha
 
 ## Dealing with Wallets
 
-When working with real wallets, such as the Electron game wallet, we must specify which wallet to use with the `-rpcwallet=<walletname>` flag. The following command gets the balance from the game wallet and vault wallet, respectively.
+When working with real wallets, such as the Electron game wallet, we must specify which wallet to use with the `-rpcwallet=&lt;walletname&gt;` flag. The following command gets the balance from the game wallet and vault wallet, respectively.
 
 	xaya-cli -rpcwallet=game.dat getbalance
 	xaya-cli -rpcwallet=vault.dat getbalance
