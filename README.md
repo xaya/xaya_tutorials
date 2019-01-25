@@ -108,6 +108,9 @@ See the "[Getting Started with Regtestnet](Regtestnet.md)" tutorial for more inf
 
 > [GOTO Getting Started with Regtestnet](Regtestnet.md)
 
+# Getting Started with xaya-cli
+
+The XAYA Command Line Interface (xaya-cli) lets you easily interact with the XAYA daemon and XAYA wallets. It's used extensively in various tutorials. This tutorial introduces xaya-cli and gives examples that you can practice with to learn it very quickly. 
 
 # XAYA Electron Wallet Help
 

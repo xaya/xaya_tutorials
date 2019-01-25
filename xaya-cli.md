@@ -1,6 +1,6 @@
 # Getting Started with xaya-cli
 
-The xaya-cli program is a command line interface for interacting with the XAYA daemon and XAYA wallets. Much of what can be done in xaya-cli can also be done in the XAYA QT wallet's console. However, there are advantages to using xaya-cli instead of the QT console. As such, much of the XAYA documentation uses xaya-cli.
+The XAYA Command Line Interface (xaya-cli) program is a command line interface for interacting with the XAYA daemon and XAYA wallets. Much of what can be done in xaya-cli can also be done in the XAYA QT wallet's console. However, there are advantages to using xaya-cli instead of the QT console. As such, much of the XAYA documentation uses xaya-cli.
 
 The following is to help you get up to speed on how to use xaya-cli. If you are already comfortable with CLIs, then you can simply run it with the `-?` and `help` parameters to get the information you need and skip this tutorial. 
 
