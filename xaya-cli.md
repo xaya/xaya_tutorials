@@ -82,7 +82,7 @@ Commands can put data onto the blockchain, get data from the blockchain, manage 
 
 For more in-depth information, run the following where "&lt;command name&gt;" is the name of the command that you want more information on:
 
-	xaya-cli help &lt;command name&gt;
+	xaya-cli help <command name>
 
 So, for example, if you want information about creating new addresses, use this:
 
