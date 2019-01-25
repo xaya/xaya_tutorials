@@ -16,6 +16,7 @@ For game developers, this is the first place you should look to get started with
 	+ [Mover Sample Game Overview](#Mover-Sample-Game-Overview)
 	+ [Mover in Unity](#Mover-in-Unity)
 - **[Regtestnet](#Regtestnet)**
+- **[Getting Started with xaya-cli](#Getting-Started-with-xaya-cli)**
 - **[XAYA Electron Wallet Help](#XAYA-Electron-Wallet-Help)**
 
 Additional resources will be added on an ongoing basis. 
