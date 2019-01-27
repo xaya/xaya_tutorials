@@ -908,7 +908,7 @@ We looked at how to wire up Mover to process moves.
 
 In JSONClasses.cs, we looked at the data structures for the game.
 
-For HelperFunctions, we briefly explained the methods, but didn't look at any code as they're all very simple. 
+For HelperFunctions.cs, we briefly explained the methods, but didn't look at any code as they're all very simple. 
 
 In the Program.cs file, we wired up and connected to libxayawrap.dll. We edited `FLAGS_xaya_rpc_url` specifically for our own machines by changing the password so that the program would properly connect.  
 
