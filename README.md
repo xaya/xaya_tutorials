@@ -13,6 +13,7 @@ For game developers, this is the first place you should look to get started with
 	+ [RPC Windows C# Tutorial](#RPC-Windows-C-Tutorial)
 - **[libxayagame](#libxayagame)**
 	+ [Component Relationships](#Component-Relationships)
+	+ [Mover Sharp - A C# Implementation](#)
 	+ [Mover Sample Game Overview](#Mover-Sample-Game-Overview)
 	+ [Mover in Unity](#Mover-in-Unity)
 - **[Regtestnet](#Regtestnet)**
@@ -88,6 +89,14 @@ This tutorial provides a high-level overview of the component relationships and 
 Both libxayagame and Mover are written in C++. The Mover sample includes a game test written in Python. For more information, see the [Mover Sample Game Overview](Mover.md) tutorial.
 
 > [GOTO Mover Sample Game Overview](Mover.md) 
+
+## Mover Sharp - A C# Implementation
+
+MoverSharp is a truncated C# implementation that does not allow user input. It merely displays moves. 
+
+This tutorial illustrates how libxayagame is wired up for Mover and then explores game logic on the XAYA platform. 
+
+[GOTO Mover Sharp - A C# Implementation](MoverSharp.md)
 
 ## Mover in Unity
 

@@ -1,6 +1,6 @@
-# Getting Started on XAYA with libxayagame
+# Mover Sharp - A C# Implementation
 
-This tutorial walks through example code for &quot;Mover&quot;, a simple MMO game where a player can walk in any direction. The aim of this tutorial is to explain a &quot;bare bones&quot; game so that developers have a simple reference to help them get started. If you haven&#39;t already, you may wish to read the high-level overview of [Mover here](https://github.com/xaya/xaya_tutorials/blob/master/Mover.md).
+This tutorial walks through example code in C# for &quot;Mover&quot;, a simple MMO game where a player can walk in any direction. The aim of this tutorial is to explain a &quot;bare bones&quot; game so that developers have a simple reference to help them get started. If you haven&#39;t already, you may wish to read the high-level overview of [Mover here](https://github.com/xaya/xaya_tutorials/blob/master/Mover.md).
 
 XAYA enabled games consist of 3 main parts:
 
