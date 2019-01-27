@@ -12,7 +12,7 @@ The XAYA daemon processes transactions and notifies libxayagame when new blocks 
 
 The GSP is where libxayagame and the game logic resides. It calculates game states and notifies the front end so that it can redraw the screen or otherwise update the GUI. In this Mover example, the GSP, and specifically libxayagame using glog, sends output to the console (front end).
 
-Normally the front end subscribes and listens to the GSP using the RPC &#39;waitforchange&#39; command. It also sends RPC commands for player moves to the daemon so that they can be entered into the blockchain. However, this particular Mover example doesn&#39;t allow sending moves. See the Unity Mover example for a more interactive version.
+Normally the front end subscribes and listens to the GSP using the RPC `waitforchange` command. It also sends RPC commands for player moves to the daemon so that they can be entered into the blockchain. However, this particular Mover example doesn&#39;t allow sending moves. See the [Unity Mover](Unity%20Mover.md) example for a more interactive version where you can move your player.
 
 Note: The front end and GSP run in separate processes on different threads.
 
@@ -20,21 +20,21 @@ The front end and GSP each use a TCP port for RPC commands. The GSP communicates
 
 	GSP <–port 1–> Front end <–port 2–> Daemon
 
-So the GSP and daemon use 1 port while the front end uses 2 ports.
+So the GSP and daemon use 1 port while the front end uses 2 ports. See [libxayagame Component Relationships](libxayagame%20Component%20Relationships.md) for diagrams and information on different ways that games can wire up libxayagame.
 
-In order to focus on coding for XAYA, the example here for &quot;Mover&quot; has no GUI. Instead, we will write a console application and libxayagame will display output there. Also, we will set the TCP port to 0 in libxayagame.
+In order to focus on coding for XAYA, the example here for &quot;Mover&quot; has no GUI. Instead, we will write a console application and libxayagame will display output there. Also, the TCP port is set to 0 in libxayagame.
 
 To get started, download the example code here:
 
-\&lt;link to example code\&gt;
+< link to example code >
 
-You must make sure that you leave the project build configuration set to x64 as the libxayagame\_wrapper.dll is 64-bit. If you have a 32-bit system, you won&#39;t be able to run this.
+You must make sure that you leave the project build configuration set to `x64` as the libxayagame\_wrapper.dll is 64-bit. If you have a 32-bit system, you won&#39;t be able to run this.
 
 Also download libxayagame here:
 
-\&lt;link to libxayagame binaries\&gt;
+< link to libxayagame binaries >
 
-In this example game, Mover, users control a player on a square-grid map and move the player around. There are no borders, so a player can move infinitely in any direction. That&#39;s all there is to it.
+In this example game, Mover, users control a player on a square-grid map and move their player around. There are no borders, so a player can move infinitely in any direction. That&#39;s all there is to it.
 
 ## JSONClasses.cs
 
@@ -50,7 +50,7 @@ These are very basic and your game will absolutely be much more complex. However
 
 The game map is a grid of squares with Cartesian coordinates. Players start at the origin, (0, 0).
 
-Direction is a simple enum of 9 directions (including NONE) that a player can move in.
+`Direction` is a simple enum of 9 directions (including NONE) that a player can move in.
 
 	// A possible direction of movement. 
 	public enum Direction
@@ -68,8 +68,7 @@ Direction is a simple enum of 9 directions (including NONE) that a player can mo
 	    LEFT_DOWN = 8
 	}
 
-
-PlayerState contains all the information we need to know about a player, i.e. its position on the map as x and y coordinates, the direction the player is moving in (the Direction enum above), and the number of steps left for it to take as an integer.
+`PlayerState` contains all the information we need to know about a player, i.e. its position on the map as x and y coordinates, the direction the player is moving in (the `Direction` enum above), and the number of steps left for it to take as an integer.
 
 	/// The state of a particular player in Mover.  
 	public class PlayerState
@@ -85,10 +84,9 @@ PlayerState contains all the information we need to know about a player, i.e. it
 	    public Int32 steps_left;
 	}
 
-
 You can think of this as, &quot;I&#39;m here (our x and y Cartesian coordinates on the map) and I&#39;m going to walk 5 m (steps) north (a direction).&quot; It&#39;s that simple.
 
-GameState is a very simple class. It contains a dictionary of all the players and their states, i.e. PlayerStates. It&#39;s easy to access any given player by name, e.g. GameState.players[name].
+`GameState` is a very simple class. It contains a dictionary of all the players and their states, i.e. `PlayerState`s. It&#39;s easy to access any given player by name, e.g. `GameState.players[name]`.
 
 	// The full game state. 
 	public class GameState
@@ -97,11 +95,11 @@ GameState is a very simple class. It contains a dictionary of all the players an
 	    public Dictionary<string, PlayerState> players;
 	}
 
-If we were to draw the map, we could iterate over the game state to find each player, then place them on the map with the PlayerState x and y values.
+If we were to draw the map, we could iterate over the game state to find each player, then place them on the map with the `PlayerState` x and y values.
 
-The UndoData class is very similar to the GameState class. Again, it contains a dictionary, but instead of tracking PlayerState data, it tracks PlayerUndo data.
+The `UndoData` class is very similar to the `GameState` class. Again, it contains a dictionary, but instead of tracking `PlayerState` data, it tracks `PlayerUndo` data.
 
-It&#39;s possible that we may need to &quot;rewind&quot;, so the UndoData class keeps the undo information that we need for every player on the map.
+It&#39;s possible that we may need to &quot;rewind&quot;, so the `UndoData` class keeps the undo information that we need for every player on the map.
 
 	// The full undo data for a block.  
 	public class UndoData
@@ -110,16 +108,16 @@ It&#39;s possible that we may need to &quot;rewind&quot;, so the UndoData class 
 	    public Dictionary<string, PlayerUndo> players;
 	}
 
-For the &quot;rewind&quot; scenario, we must know how to do that for each individual player. Individual player undo information is contained in the PlayerUndo class. It tells us:
+For the &quot;rewind&quot; scenario, we must know how to do that for each individual player. Individual player undo information is contained in the `PlayerUndo` class. It tells us:
 
-- is\_new: Whether a player is new or not (new players start at the origin (0, 0))
-- previous\_dir: The previous direction a player was moving in
-- previous\_steps\_left: The previous number of steps left for it to take
-- finished\_dir: The direction that a player finished moving in
+- `is_new`: Whether a player is new or not (new players start at the origin (0, 0))
+- `previous_dir`: The previous direction a player was moving in
+- `previous_steps_left`: The previous number of steps left for it to take
+- `finished_dir`: The direction that a player finished moving in
 
-The direction that a player finished moving in is for the case where they have finished moving and their direction has been set to Direction.NONE while their steps left has been set to zero.
+The direction that a player finished moving in is for the case where they have finished moving and their direction has been set to `Direction.NONE` while their steps left has been set to zero.
 
-As seen above, PlayerUndo is used in the UndoData class.
+As seen above, `PlayerUndo` is used in the `UndoData` class.
 
 	// The undo data for a single player. 
 	public class PlayerUndo
@@ -144,42 +142,41 @@ As seen above, PlayerUndo is used in the UndoData class.
 	    public Direction finished_dir = Direction.NONE;
 	}
 
-From those data structures, it&#39;s easier to understand the game flow.
+With those data structures, it&#39;s easier to understand the game flow.
 
 1. For each new block we get new player moves
 2. We then compute the new game state (position of players on the map, and their individual states)
 3. We update the game with the game state
-4. If we encounter a fork and need to revert (reorg), our &quot;backward&quot; callback lets us use all the PlayerUndo data in UndoData to revert moves backwards
+4. If we encounter a fork and need to revert (reorg), our &quot;backward&quot; callback lets us use all the `PlayerUndo` data in `UndoData` to revert backwards by 1 block
 
 ## HelperFunctions.cs
 
-Our HelperFunctions class contains static methods that we&#39;ll use in the game logic. Note that for some we have return values from parameters that we pass in by reference, i.e. ref type var.
+Our `HelperFunctions` class contains static methods that we&#39;ll use in the game logic. Note that for some we have return values from parameters that we pass in by reference, i.e. ref type var.
 
-- ParseMove: Takes a JSON object, sets some parameters, and returns true if the move is valid
-- ParseDirection: Takes a string and returns a Direction enum
-- GetDirectionOffset: Takes a Direction enum then sets an x and y offset for that direction
-- DirectionToString: Takes a Direction enum and returns plain English for a valid direction or an empty string
+- `ParseMove`: Takes a JSON object, sets some parameters, and returns `true` if the move is valid
+- `ParseDirection`: Takes a string and returns a `Direction` enum
+- `GetDirectionOffset`: Takes a `Direction` enum then sets an x and y offset for that direction
+- `DirectionToString`: Takes a `Direction` enum and returns plain English for a valid direction or an empty string
 
-As there&#39;s nothing particularly special in this class, further examination of it is left to the reader to pursue on their own. The only remaining point that should be made is that there should be thorough error checking, and particularly for data received through the blockchain, which in this case would be the JObject passed to ParseMove. See the error checking in that method for an example.
+As there&#39;s nothing particularly special in this class, further examination of it is left to the reader to pursue on their own. The only remaining point that should be made is that there should be thorough error checking, and particularly for data received through the blockchain, which in this case would be the `JObject` passed to `ParseMove`. See the error checking in that method for an example. 
 
-To make the case for extreme error checking, consider that anyone could issue a &quot;name\_update&quot; operation through the daemon or XAYA QT wallet console. That data would be entirely arbitrary. Each and every bit of data from the blockchain **MUST** be checked. While normal people just want to play the game, there are some people that just want to see if they can break things. You must guard against them.
+To make the case for extreme error checking, consider that anyone could issue a `name_update` operation through the daemon or XAYA QT wallet console. That data would be entirely arbitrary. Each and every bit of data from the blockchain **MUST** be checked. While normal people just want to play the game, there are some people that just want to see if they can break things. You must guard against them. An example invalid move is shown below in [A Quick Look at Moves](#A%20Quick%20Look%20at%20Moves).
 
 ## Program.cs
 
 Moving on, let&#39;s examine the Program.cs code.
 
-Take note of System.Runtime.InteropServices in the includes. We&#39;ll be using a good deal of unmanaged code and calling methods from libxayawrap.dll, which is the C++ wrapper for libxayagame. libxayagame can only be linked statically.
+Take note of `System.Runtime.InteropServices` in the includes. We&#39;ll be using a good deal of unmanaged code and calling methods from libxayawrap.dll, which is the C++ wrapper for libxayagame. libxayagame can only be linked statically.
 
 	using System;
 	using System.IO;
 	using System.Runtime.InteropServices;
 
+The `NativeMethods` class gives us access to some native Windows methods that we&#39;ll need to get started in our example game.
 
-The NativeMethods class gives us access to some native Windows methods that we&#39;ll need to get started in our example game.
-
-- LoadLibrary: Used to load the libxayagame C++ wrapper, libxayawrap.dll
-- GetProcAddress: Used to access methods and callbacks in the libxayawrap.dll C++ wrapper
-- SetDllDirectory: Used to set the path to the libxayawrap.dll C++ wrapper
+- `LoadLibrary`: Used to load the libxayagame C++ wrapper, libxayawrap.dll
+- `GetProcAddress`: Used to access methods and callbacks in the libxayawrap.dll C++ wrapper
+- `SetDllDirectory`: Used to set the path to the libxayawrap.dll C++ wrapper
 
 	static class NativeMethods
 	{
@@ -193,7 +190,6 @@ The NativeMethods class gives us access to some native Windows methods that we&#
 	    public static extern bool SetDllDirectory(string pathName);
 	}
 
-
 For more information on interop, you can refer to Pinvoke.net:
 
 [http://pinvoke.net/default.aspx/kernel32.GetProcAddress](http://pinvoke.net/default.aspx/kernel32.GetProcAddress)
@@ -202,7 +198,7 @@ For more information on interop, you can refer to Pinvoke.net:
 
 [http://pinvoke.net/default.aspx/kernel32.SetDllDirectory](http://pinvoke.net/default.aspx/kernel32.SetDllDirectory)
 
-With that wired up, we&#39;re ready to look at our Program class.
+With that wired up, we&#39;re ready to look at our `Program` class.
 
 At the top there are quite a few declarations. They&#39;re mostly for delegates and callbacks, but there are some member variables as well.
 
@@ -249,7 +245,7 @@ The member variables are:
 	static string dataPath;
 
 
-pDll is a handle for the C++ wrapper, libxayawrap.dll. The remainder are configuration variables and will be explained as we encounter them in code below.
+`pDll` is a handle for the C++ wrapper, libxayawrap.dll. The remainder are configuration variables and will be explained as we encounter them in code below.
 
 The variables for delegates and callbacks can be grouped otherwise for additional clarity.
 
@@ -264,14 +260,12 @@ Three are for the initialisation callback:
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
 	private delegate void setInitialCallback(InitialCallback callback);
 
-
 Another 3 are for processing moves forward, i.e. regular moves in normal gameplay:
 
 	private delegate string ForwardCallback(string oldState, string blockData, string undoData, out string newData);
 	static ForwardCallback forwardCallback;
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
 	private delegate void setForwardCallback(ForwardCallback callback);
-
 
 And 3 are for processing moves backwards, such as in rewinding to correct a fork:
 
@@ -280,7 +274,7 @@ And 3 are for processing moves backwards, such as in rewinding to correct a fork
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
 	private delegate void setBackwardCallback(BackwardCallback callback);
 
-We&#39;ll return to these later when we do the actual assignments inside the Main method.
+We&#39;ll return to these later when we do the actual assignments inside the `Main` method.
 
 The remaining declaration is a function pointers for the C++ wrapper. It connects the RPC client.
 
@@ -290,23 +284,23 @@ The remaining declaration is a function pointers for the C++ wrapper. It connect
 
 The connection parameters are:
 
-- gameId: This is &quot;g/mv&quot; or simply &quot;mv&quot;. It&#39;s a XAYA name
-- XayaRpcUrl: This is a standard URL of the form &quot;user:password@ip-or-domain:port&quot;
-- GameRpcPort: This is 8900 as it is set in the C++ wrapper
-- EnablePruning: This is -1. Further discussion is beyond the scope of this tutorial
-- chain: This is used to select between mainnet (0), testnet (1), and regtestnet (2)
-- storageType: One of &quot;memory&quot;, &quot;sqlite&quot;, or &quot;lmdb&quot;
-- dataDirectory: This is where data is saved to by the XAYA daemon
-- glogName: The name of the glog instance
-- glogDataDir: The path where glog data is saved to
+- `gameId`: This is &quot;g/mv&quot; or simply &quot;mv&quot;. It&#39;s a XAYA name
+- `XayaRpcUrl`: This is a standard URL of the form &quot;user:password@ip-or-domain:port&quot;
+- `GameRpcPort`: This is 8900 as it is set in the C++ wrapper
+- `EnablePruning`: This is -1. Further discussion is beyond the scope of this tutorial
+- `chain`: This is used to select between mainnet (0), testnet (1), and regtestnet (2)
+- `storageType`: One of &quot;memory&quot;, &quot;sqlite&quot;, or &quot;lmdb&quot;
+- `dataDirectory`: This is where data is saved to by the XAYA daemon
+- `glogName`: The name of the glog instance
+- `glogDataDir`: The path where glog data is saved to
 
 While glog is basically invisible to us in this tutorial, it&#39;s used by libxayagame and parameters for it must be set. You can find glog [here](https://github.com/google/glog). In this example, libxayagame uses glog to display information to the console. When you run the project, this will appear as a scrolling blur of text.
 
 #### Main
 
-We begin the Main method by initialising several configuration variables with the values we require. We could accept arguments from the command line, parse them, and then assign those values, but for clarity it&#39;s easier to hard code these values for the purpose of illustration.
+We begin the `Main` method by initialising several configuration variables with the values we require. We could accept arguments from the command line, parse them, and then assign those values, but for clarity it&#39;s easier to hard code these values for the purpose of illustration.
 
-The dataPath is set to the same path as the example game&#39;s executable file.
+The `dataPath` is set to the same path as the example game&#39;s executable file.
 
 	dataPath = AppDomain.CurrentDomain.BaseDirectory;
 
@@ -326,7 +320,7 @@ The XAYA daemon runs on port 8396 and we&#39;ll be connecting over the local loo
 
 	FLAGS_xaya_rpc_url = "xayagametest:xayagametest@127.0.0.1:8332";
 
-These configuration parameters will depend on how you are running xayad. If you&#39;re using the Electron wallet, it&#39;s already well configured. You will need to get the user name and password from the .cookie file in %appdata%\Xaya. However, you can also specify these if you set configurations in the xaya.conf file there, e.g.:
+These configuration parameters will depend on how you are running xayad. If you&#39;re using the Electron wallet, it&#39;s already well configured. You will need to get the user name and password from the .cookie file in the %appdata%\Xaya folder. However, you can also specify these if you set configurations in the xaya.conf file, e.g.:
 
 	rpcuser=xayagametest
 	rpcpassword=xayagametest
@@ -339,7 +333,7 @@ These configuration parameters will depend on how you are running xayad. If you&
 	zmqpubgameblocks=tcp://127.0.0.1:28332
 	rpcallowip=127.0.0.1
 
-The alternative is to start up the wallet/daemon with all the required configurations parameters from the command line.
+The alternative is to start up the wallet/daemon with all the required configuration parameters from the command line.
 
 The ZMQ values must also be set as shown. You can see ZMQ values set by looking in the BAT files in this folder:
 
@@ -349,7 +343,7 @@ With the configuration complete, it&#39;s time to load the wrapper and start wir
 
 ##### Loading the Wrapper and Wiring Up Callbacks
 
-The first thing to address is setting the proper folder where the C++ wrapper is. In this example it&#39;s in a subfolder from the game executable named &quot;XayaStateProcessor&quot;. We do this using the Windows native method &quot;SetDllDirectory&quot; from kernel32.dll. Note that we&#39;re using the dataPath variable that we set above.
+The first thing to address is setting the proper folder where the C++ wrapper is. In this example it&#39;s in a subfolder from the game executable named &quot;XayaStateProcessor&quot;. We do this using the Windows native method `SetDllDirectory` from kernel32.dll. Note that we&#39;re using the `dataPath` variable that we set above.
 
     if (!NativeMethods.SetDllDirectory(dataPath + "\\XayaStateProcessor\\"))
     {
@@ -358,11 +352,11 @@ The first thing to address is setting the proper folder where the C++ wrapper is
         return;
     }
 
-With the path set, we then load the wrapper into our IntPtr handle, &quot;pDll&quot;.
+With the path set, we then load the wrapper into our `IntPtr` handle, `pDll`.
 
     pDll = NativeMethods.LoadLibrary(dataPath.Replace("/", "\\") + "\\XayaStateProcessor\\libxayawrap.dll");
 
-If the wrapper loaded ok, then the handle should hold a value, so we now test to make certain that it loaded properly. If its value is IntPtr.Zero, then it didn&#39;t load for one reason or another, and we exit the program.
+If the wrapper loaded ok, then the handle should hold a value, so we now test to make certain that it loaded properly. If its value is `IntPtr.Zero`, then it didn&#39;t load for one reason or another, and we exit the program.
 
     if (pDll == IntPtr.Zero)
     {
@@ -371,7 +365,7 @@ If the wrapper loaded ok, then the handle should hold a value, so we now test to
         return;
     }
 
-Similar to how we loaded the C++ wrapper, we load the procedure addresses of our callbacks from the C++ wrapper with the NativeMethods.GetProcAddress method and set them each in a handle (IntPtr).
+Similar to how we loaded the C++ wrapper, we load the procedure addresses of our callbacks from the C++ wrapper with the `NativeMethods.GetProcAddress` method and set them each in a handle (`IntPtr`).
 
     IntPtr pSetInitialCallback = NativeMethods.GetProcAddress(pDll, "setInitialCallback");
     if (pSetInitialCallback == IntPtr.Zero)
@@ -397,17 +391,16 @@ Similar to how we loaded the C++ wrapper, we load the procedure addresses of our
         return;
     }
 
-
 We diligently check for errors, and if any of those fail, then we exit the program.
 
-Next, we resolve these using Marshal.GetDelegateForFunctionPointer, which is a member of System.Runtime.InteropServices. It takes 2 arguments:
+Next, we resolve these using `Marshal.GetDelegateForFunctionPointer`, which is a member of `System.Runtime.InteropServices`. It takes 2 arguments:
 
-- An IntPtr for a handle (pSetXXXCallback)
-- A Type
+- An `IntPtr` for a handle (pSetXXXCallback)
+- A `Type`
 
-The handle (IntPtr) comes from the code above.
+The handle (`IntPtr`) comes from the code above.
 
-We get the type using typeof. This is the same as the unmanaged function pointer delegate members that we defined above.
+We get the type using `typeof`. This is the same as the unmanaged function pointer delegate members that we defined above.
 
     setInitialCallback SetInitialCallback = (setInitialCallback)Marshal.GetDelegateForFunctionPointer(pSetInitialCallback, typeof(setInitialCallback));
     setForwardCallback SetForwardlCallback = (setForwardCallback)Marshal.GetDelegateForFunctionPointer(pSetForwardCallback, typeof(setForwardCallback));
@@ -422,13 +415,13 @@ Once we&#39;ve resolved the function pointers into our delegates, we can assign 
     backwardsCallback = new BackwardCallback(CallbackFunctions.backwardCallbackResult);
     SetBackwardCallback(backwardsCallback);
 
-With this, our next task in Main is to establish our connection to the XAYA daemon:
+With this, our next task in `Main` is to establish our connection to the XAYA daemon:
 
 	Connect();
 
 #### Connect
 
-The first task in creating the connection is to get the procedure address from the C++ wrapper into a handle (IntPtr) and do some error checking. This is the same basic operation that we did when we loaded the callbacks into handles in the Main method. &quot;CSharp\_ConnectToTheDaemon&quot; is defined in libxayawrap.dll and performs the actual connection.
+The first task in creating the connection is to get the procedure address from the C++ wrapper into a handle (`IntPtr`) and do some error checking. This is the same basic operation that we did when we loaded the callbacks into handles in the `Main` method. `CSharp_ConnectToTheDaemon` is defined in libxayawrap.dll and performs the actual connection.
 
     IntPtr pDaemonConnect = NativeMethods.GetProcAddress(pDll, "CSharp_ConnectToTheDaemon");
     if (pDaemonConnect == IntPtr.Zero)
@@ -440,33 +433,33 @@ The first task in creating the connection is to get the procedure address from t
 
 If loading the connection method from the wrapper fails, we exit the program.
 
-Once we have our handle, we pass it into Marshal.GetDelegateForFunctionPointer just as above, not forgetting to also pass the proper type using typeof.
+Once we have our handle, we pass it into `Marshal.GetDelegateForFunctionPointer` just as above, not forgetting to also pass the proper type using `typeof`.
 
     CSharp_ConnectToTheDaemon ConnectToTheDaemon_CSharp = (CSharp_ConnectToTheDaemon)
 		Marshal.GetDelegateForFunctionPointer(pDaemonConnect, typeof(CSharp_ConnectToTheDaemon));
 
-This completes the creation of our CSharp\_ConnectToTheDaemon method and we&#39;re just about ready to call it with the proper parameters.
+This completes the creation of our `CSharp_ConnectToTheDaemon` method and we&#39;re just about ready to call it with the proper parameters.
 
-However, as we&#39;re using glog via libxayagame (this is done in libxayawrap.dll), we must ensure that our expected data folder exists otherwise glog will throw an exception. We&#39;ll be passing this same path into our CSharp\_ConnectToTheDaemon method.
+However, as we&#39;re using glog via libxayagame (this is done in libxayawrap.dll), we must ensure that our expected data folder exists otherwise glog will throw an exception. We&#39;ll be passing this same path into our `CSharp_ConnectToTheDaemon` method.
 
     if (!Directory.Exists(dataPath + "\\XayaStateProcessor\\glogs\\"))
     {
         Directory.CreateDirectory(dataPath + "\\XayaStateProcessor\\glogs\\");
     }
 
-We can now connect through our CSharp\_ConnectToTheDaemon method. Note the parameters for it:
+We can now connect through our `CSharp_ConnectToTheDaemon` method. Note the parameters for it:
 
-- gameId: For our example, this is &quot;mv&quot;, which is a g/ name reserved on the XAYA blockchain
-- XayaRpcUrl: From our initial configuration variables, this is FLAGS\_xaya\_rpc\_url
-- GameRpcPort: From our initial configuration variables, this is 8332
-- EnablePruning: This is set to -1. See the libxayagame documentation for further information
-- chain: As mentioned above, our example runs on mainnet, so this is 0
-- storageType: From our initial configuration variables, this is set to &quot;memory&quot;
-- dataDirectory: This is a subfolder from our game executable file
-- glogName: This is a name for our glog instance
-- glogDataDir: The directory where all glog data is saved
+- `gameId`: For our example, this is `mv`, which is a `g/` name reserved on the XAYA blockchain
+- `XayaRpcUrl`: From our initial configuration variables, this is `FLAGS_xaya_rpc_url`
+- `GameRpcPort`: From our initial configuration variables, this is `8396`
+- `EnablePruning`: This is set to `-1`. See the libxayagame documentation for further information
+- `chain`: As mentioned above, our example runs on mainnet, so this is `0`
+- `storageType`: From our initial configuration variables, this is set to `memory`
+- `dataDirectory`: This is a subfolder from our game executable file
+- `glogName`: This is a name for our glog instance
+- `glogDataDir`: The directory where all glog data is saved
 
-To handle a known issue, we remove &quot;http://&quot; from our FLAGS\_xaya\_rpc\_url before passing it to our connection method. The connection is launched in a thread to prevent blocking.
+To handle a known issue, we remove &quot;http://&quot; from our `FLAGS_xaya_rpc_url` before passing it to our connection method. The connection is launched in a thread to prevent blocking.
 
     FLAGS_xaya_rpc_url = FLAGS_xaya_rpc_url.Replace("http://", ""); // The http prefix issue is known
 	new Thread( 
@@ -484,25 +477,25 @@ So far we&#39;ve wired up a lot of callbacks and done a lot of work with importi
 
 ## CallbackFunctions.cs and Game Logic
 
-THIS is what you&#39;ve been waiting for. Game logic. The good stuff. The juicy, lovely, delectable game code. Everything we&#39;ve done so far has worked up to this point.
+**THIS** is what you&#39;ve been waiting for. Game logic. The good stuff. The juicy, lovely, delectable game code. Everything we&#39;ve done so far has worked up to this point.
 
 There are 3 methods (callbacks or delegates) in our CallbackFunctions class.
 
-- initialCallbackResult
-- forwardCallbackResult
-- backwardCallbackResult
+- `initialCallbackResult`
+- `forwardCallbackResult`
+- `backwardCallbackResult`
 
 The first merely sets some parameters for us when we initially start the game.
 
-The forwardCallbackResult is where we process our game logic for regular moves.
+The `forwardCallbackResult` is where we process our game logic for regular moves.
 
-The backwardCallbackResult is where we rewind in the case of a fork. This is where we use undo data.
+The `backwardCallbackResult` is where we rewind in the case of a fork. This is where we use undo data.
 
 Let&#39;s jump in.
 
 ##### initialCallbackResult
 
-The initialCallbackResult reads which chain we plan to use, then sets the height to start at, and the hash for that block in hexadecimal. It&#39;s very straight forward.
+The `initialCallbackResult` reads which chain we plan to use, then sets the `height` to start at, and the hash (`hashHex`) for that block in hexadecimal. It&#39;s very straight forward.
 	
 	public static string initialCallbackResult(out int height, out string hashHex)
 	{
@@ -527,7 +520,7 @@ The initialCallbackResult reads which chain we plan to use, then sets the height
 
 We must know what block we should start reading at. There&#39;s no sense in reading blocks prior to a game&#39;s existence.
 
-For the hashHex, to find out a block hash, you can use the official XAYA explorer available at [https://explorer.xaya.io/](https://explorer.xaya.io/). As an example, this is block zero (0), also known as the genesis block:
+For `hashHex`, to find out a block hash, you can use the official XAYA explorer available at [https://explorer.xaya.io/](https://explorer.xaya.io/). As an example, this is block zero (0), also known as the genesis block:
 
 [https://explorer.xaya.io/block/0](https://explorer.xaya.io/block/0)
 
@@ -535,26 +528,26 @@ Its hash is &quot;e5062d76e5f50c42f493826ac9920b63a8def2626fd70a5cec707ec47a4c46
 
 ##### forwardCallbackResult and Processing Moves
 
-forwardCallbackResult runs whenever a new block is received. It processes the moves (or game logic) to create a new game state and creates undo data. Let&#39;s examine it in detail.
+`forwardCallbackResult` runs whenever a new block is received. It processes the moves (or game logic) to create a new game state and creates undo data. Let&#39;s examine it in detail.
 
 Here&#39;s the method signature:
 
 	public static string forwardCallbackResult(string oldState, string blockData, string undoData, out string newData)
 
-- oldState: This string contains the game state as it currently is
-- blockData: This contains all the new moves that have come in from the blockchain
-- undoData: This is the undo data that will be created. This is the return value of the callback
-- newData: This is an out parameter and will store the updated game state
+- `oldState`: This string contains the game state as it currently is
+- `blockData`: This contains all the new moves that have come in from the blockchain
+- `undoData`: This is the undo data that will be created. This is the return value of the callback
+- `newData`: This is an out parameter and will store the updated game state
 
-First, we deserialise the oldState JSON string as a GameState object. Remember that most of our string data like this is actually JSON.
+First, we deserialise the `oldState` JSON string as a `GameState` object. Remember that most of our string data like this is actually JSON.
 
 	GameState state = JsonConvert.DeserializeObject<GameState>(oldState);
 
-Similarly, we deserialise the block we received from the XAYA daemon as a dynamic type.
+Similarly, we deserialise the block we received from the XAYA daemon as a `dynamic` type.
 
 	dynamic blockDataS = JsonConvert.DeserializeObject(blockData);
 
-We&#39;ll be creating some undo data to hedge against the possibility of encountering a fork, so we initialise a Dictionary for that with the PlayerUndo type.
+We&#39;ll be creating some undo data to hedge against the possibility of encountering a fork/reorg, so we initialise a `Dictionary` for that with the `PlayerUndo` type.
 
 	Dictionary<string, PlayerUndo> undo = new Dictionary<string, PlayerUndo>();
 
@@ -566,7 +559,7 @@ It&#39;s possible that there are no moves for us to process, so we check for tha
 	    return "";
 	}
 
-While we&#39;re developing our example game, it&#39;s nice to have some console feedback. This could be commented out or removed in our final release.
+While we&#39;re developing our example game, it&#39;s nice to have some console feedback. This would be commented out or removed in our final release.
 
 	Console.WriteLine("Got new forward block at height: " + blockDataS["block"]["height"]);
 
@@ -577,21 +570,21 @@ If this is the first move of the game, then we should create a new instance of o
 	    state = new GameState();
 	}
 
-If you remember from above in JSONClasses.cs, our GameState class merely contains a Dictionary of PlayerStates.
+If you remember from above in JSONClasses.cs, our `GameState` class merely contains a `Dictionary` of `PlayerStates`.
 
 	public class GameState
 	{
 	    public Dictionary<string, PlayerState> players;
 	}
 
-So for the players property of our GameState, if it&#39;s null, then we should initialise it.
+So for the players property of our `GameState`, if it&#39;s null, then we should initialise it.
 
 	if (state.players == null)
 	{
 	    state.players = new Dictionary<string, PlayerState>();
 	}
 
-Let&#39;s remind ourselves about the players property being a PlayerState. Again, that is found in the JSONClasses.cs file.
+Let&#39;s remind ourselves about the players property being a `PlayerState`. Again, that is found in the JSONClasses.cs file.
 
 	public class PlayerState
 	{
@@ -601,13 +594,14 @@ Let&#39;s remind ourselves about the players property being a PlayerState. Again
 	    public Int32 steps_left;
 	}
 
-
 That completes the basic setup and initialisation for us to process a move.
 
 The rest of our game logic consists of 2 loops:
 
 - A loop to process moves and create undo data
 - A loop to process moves and update the game state
+
+##### A Quick Look at Moves
 
 Before proceeding, let&#39;s look at what a typical move will look like for any given name that wishes to create that move.
 
@@ -624,9 +618,9 @@ Or, as a single line:
 
 	{ "g": { "mv": { "d": "u", "n": 10 } } }
 
-The &quot;g&quot; tells us that we&#39;re in the game name namespace for the XAYA blockchain. Inside of that, the first element, &quot;mv&quot;, tells us that this name\_update is for our Mover example game, i.e. the XAYA name for Mover is &quot;mv&quot;. Inside of mv is a move. &quot;d&quot; is the direction, which will be resolved by our HelperFunctions.ParseDirection method. &quot;n&quot; is the number of steps to take. (&quot;u&quot; is Direction.RIGHT\_UP.)
+The `g`; tells us that we&#39;re in the game name namespace for the XAYA blockchain. Inside of that, the first element, `mv`, tells us that this `name_update` is for our Mover example game, i.e. the XAYA name for Mover is &quot;mv&quot;. Inside of `mv` is a move. `d` is the direction, which will be resolved by our `HelperFunctions.ParseDirection` method. `n` is the number of steps to take. (&quot;u&quot; is `Direction.RIGHT_UP`.)
 
-Moves are done through the &quot;name\_update&quot; operation in the XAYA daemon. It&#39;s possible for people to issue these name\_updates through the XAYA QT wallet or directly into the daemon with arbitrary data. For example, someone could issue a name\_update like so:
+Moves are done through the `name_update` operation in the XAYA daemon. It&#39;s possible for people to issue these `name_update`s through the XAYA QT wallet or directly into the daemon with arbitrary data. For example, someone could issue a `name_update` like so:
 
 	{ "g": { "mv": { "d": "Dr. Evil", "n": "1 million dollars!" } } }
 
@@ -634,43 +628,43 @@ This is obviously an invalid move for our Mover game. As such, it is critically 
 
 ##### The First Loop
 
-Let&#39;s look into our first loop inside forwardCallbackResult.
+Let&#39;s look into our first loop inside `forwardCallbackResult`.
 
 	foreach (var m in blockDataS["moves"])
 
-Here, blockDataS contains many moves that we will iterate over, storing each one as a var in m.
+Here, `blockDataS` contains many moves that we will iterate over, storing each one as a `var` in `m`.
 
-First, we extract the player&#39;s name from m.
+First, we extract the player&#39;s name from `m`.
 
 	string name = m["name"].ToString();
 
-Next, we put the move into a JObject that we will pass to ParseMove to verify. Note that we&#39;re using the Newtonsoft JSON library here.
+Next, we put the move into a `JObject` that we will pass to `ParseMove` to verify. Note that we&#39;re using the Newtonsoft JSON library here.
 
 	JObject obj = JsonConvert.DeserializeObject<JObject>(m["move"].ToString());
 
-All moves have a direction and a number of steps to take, so we initialise a couple variables to hold those values. The initial values are arbitrary and will change in ParseMove.
+All moves have a direction and a number of steps to take, so we initialise a couple variables to hold those values. The initial values are arbitrary and will change in `ParseMove`.
 
 	Direction dir = Direction.UP;
 	Int32 steps = 0;
 
-As stated above, error checking is critical. Our ParseMove method will determine if a move is valid or not, and will update values for the parameters we pass in as they are being passed by reference (ref). In particular, we&#39;ll be using the values for &quot;dir&quot; and &quot;steps&quot; later on.
+As stated above, error checking is critical. Our `ParseMove` method will determine if a move is valid or not, and will update values for the parameters we pass in as they are being passed by reference (ref). In particular, we&#39;ll be using the values for `dir` and `steps` later on.
 
 	if (!HelperFunctions.ParseMove(ref obj, ref dir, ref steps))
 	{
 	    continue;
 	}
 
-If the move isn&#39;t valid, we &quot;continue&quot;, i.e. we stop where we are in the loop and start over with the next move (m) inside of our blockDataS object.
+If the move isn&#39;t valid, we `continue`, i.e. we stop where we are in the loop and start over with the next move (`m`) inside of our `blockDataS` object.
 
-We need a PlayerState, so we allocate memory for one.
+We need a `PlayerState`, so we allocate memory for one.
 
 	PlayerState p;
 
-It&#39;s important to know whether we have an existing name (game account) or if this player is already in the game. In our first step above, we assigned a value to our string variable `name`. Here we check to see if it already exists in our GameState object, state.
+It&#39;s important to know whether we have an existing name (game account) or if this player is already in the game. In our first step above, we assigned a value to our string variable `name`. Here we check to see if it already exists in our `GameState` object, `state`.
 
 	bool isNotNew = state.players.ContainsKey(name);
 
-If it exists, then we set our PlayerState object (p) to that name. If not, we initialise our PlayerState p as a new instance of a PlayerState and then add it to our GameState (state).
+If it exists, then we set our `PlayerState` object (`p`) to that name. If not, we initialise our `PlayerState` `p` as a new instance of a `PlayerState` and then add it to our `GameState` (`state`).
 
 	if (isNotNew)
 	{
@@ -682,17 +676,17 @@ If it exists, then we set our PlayerState object (p) to that name. If not, we in
 	    state.players.Add(name, p);
 	}
 
-We must create undo data for each player, so we initialise a new instance of PlayerUndo.
+We must create undo data for each player, so we initialise a new instance of `PlayerUndo`.
 
 	PlayerUndo u = new PlayerUndo();
 
-We&#39;ve not changed the PlayerState yet, so what we have in p originally comes from our &quot;oldState&quot; parameter, which we deserialised as &quot;state&quot;. We must preserve this as undo data, so we add it to our undo Dictionary.
+We&#39;ve not changed the `PlayerState` yet, so what we have in `p` originally comes from our `oldState` parameter, which we deserialised as `state`. We must preserve this as undo data, so we add it to our `undo` `Dictionary`.
 
 	undo.Add(name, u);
 
-If we have a new player, then we set the is\_new property of our PlayerUndo object to true and update our PlayerState (p) to place the player on the map at the origin, i.e. [0, 0].
+If we have a new player, then we set the `is_new` property of our `PlayerUndo` object to `true` and update our `PlayerState` (`p`) to place the player on the map at the origin, i.e. (0, 0).
 
-Otherwise, we update the previous\_dir and previous\_steps\_left with the current values in our PlayerState (p).
+Otherwise, we update the `previous_dir` and `previous_steps_left` with the current values in our `PlayerState` (`p`).
 
 	if (!isNotNew)
 	{
@@ -706,7 +700,7 @@ Otherwise, we update the previous\_dir and previous\_steps\_left with the curren
 	    u.previous_steps_left = p.steps_left;
 	}
 
-Finally, we update our PlayerState (p) with the new direction and number of steps left. Recall from above that we obtained these values when we called the HelperFunctions.ParseMove method with dir and steps being passed in by reference. Refer to the ParseMove method for how this is done.
+Finally, we update our `PlayerState` (`p`) with the new direction and number of steps left. Recall from above that we obtained these values when we called the `HelperFunctions.ParseMove` method with `dir` and `steps` being passed in by reference. Refer to the `ParseMove` method for how this is done.
 
 	p.dir = dir;
 	p.steps_left = steps;
@@ -716,8 +710,8 @@ That completes our first loop. To summarize what we did here:
 1. We initialised some variables
 2. We checked to see if we had a valid move (this updated some values for us)
 3. We determined if we had a new or existing player and updated as required
-4. We saved the PlayerState as undo data and stored it in our undo object
-5. We finally updated the move in our PlayerState
+4. We saved the `PlayerState` as undo data and stored it in our `undo` object
+5. We finally updated the move in our `PlayerState`
 6. We looped back and did 1-5 for all **moves**
 
 ##### The Second Loop
@@ -726,7 +720,7 @@ The second loop iterates over all players. Here&#39;s the loop declaration:
 
 	foreach (var mi in state.players)
 
-For each player, we get the name and PlayerState into some variables.
+For each player, we get the name and `PlayerState` into some variables.
 
 	string name = mi.Key;
 	PlayerState p = mi.Value;
@@ -738,7 +732,6 @@ If the player isn&#39;t moving, then we stop and skip back to the beginning of t
 	    continue;
 	}
 
-
 Similarly for steps, if they have 0 or fewer steps to go, we skip back to the top of the loop. For situations like this, you should do error checking as people may issue commands through the QT or daemon for negative steps in a direction, which is equivalent to positive steps in the diametrically opposed direction. We&#39;re skipping those kinds of error checks here for simplicity, but you should be aware that people can issue arbitrary commands, so error checking is an absolute imperative.
 
 	if (p.steps_left <= 0)
@@ -746,22 +739,22 @@ Similarly for steps, if they have 0 or fewer steps to go, we skip back to the to
 	    continue;
 	}
 
-Next, we initialise a couple integers for the player&#39;s move, then update those variables by passing them by reference to our HelperFunctions.GetDirectionOffset method, and update our PlayerState (p).
+Next, we initialise a couple integers for the player&#39;s move, then update those variables by passing them by reference to our `HelperFunctions.GetDirectionOffset` method, and update our `PlayerState` (`p`).
 
 	Int32 dx = 0, dy = 0;
 	HelperFunctions.GetDirectionOffset(p.dir, ref dx, ref dy);
 	p.x += dx;
 	p.y += dy;
 
-As we&#39;ve now &quot;used&quot; that move by updating the PlayerState, we must decrement the number of steps left for it to go.
+As we&#39;ve now &quot;used&quot; that move by updating the `PlayerState`, we must decrement the number of steps left for it to go.
 
 	p.steps_left -= 1;
 
 If there are no steps left for that player, then we set undo data and do some cleanup.
 
-For the undo data, we check whether the player already exists in our undo Dictionary and add the player by name. If not, we create a new PlayerUndo and then add that to our undo Dictionary with the player&#39;s name.
+For the undo data, we check whether the player already exists in our `undo` `Dictionary` and add the player by name. If not, we create a new `PlayerUndo` and then add that to our `undo` `Dictionary` with the player&#39;s name.
 
-To clean up, we set the finished\_dir of the PlayerUndo object and set the PlayerState&#39;s dir property to Direction.NONE (there are no steps left).
+To clean up, we set the `finished_dir` of the `PlayerUndo` object and set the PlayerState&#39;s `dir` property to `Direction.NONE`, i.e. there are no steps left.
 
 	if (p.steps_left == 0)
 	{
@@ -782,24 +775,24 @@ To clean up, we set the finished\_dir of the PlayerUndo object and set the Playe
 	
 	}
 
-Finally, we set the undoData and the newData (the new game state) parameter (that was passed by reference) and return the undoData.
+Finally, we set the `undoData` parameter and the `newData` (the new game state) parameter (that was passed by reference) and return `undoData`.
 
 	undoData = JsonConvert.SerializeObject(undo);
 	newData = JsonConvert.SerializeObject(state);
 	return undoData;
 
-To quickly summarize forwardCallbackResult:
+To quickly summarize `forwardCallbackResult`:
 
-1. We received some data and set up some variables, including a GameState
+1. We received some data and set up some variables, including a `GameState`
 2. We did some error checking and checked to see if we had any moves
-3. We processed all moves and populated our GameState with players
-4. We created some undo data in case we encounter a fork
-5. We updated our GameState with all the players&#39; moves
-6. We returned our GameState and undo data
+3. We processed all moves and populated our `GameState` with players
+4. We created some undo data in case we encounter a fork/reorg
+5. We updated our `GameState` with all the players&#39; moves
+6. We returned our `GameState` and undo data
 
 ##### backwardCallbackResult and Undoing a Game State Step
 
-backwardCallbackResult rolls back the game state by 1 block with the undo data from the previous block. It is similar to forwardCallbackResult, but we don&#39;t create any undo data because we&#39;re consuming some undo data.
+`backwardCallbackResult` rolls back the game state by 1 block with the undo data from the previous block. It is similar to `forwardCallbackResult`, but we don&#39;t create any undo data because we&#39;re consuming some undo data.
 
 In a production game, you will likely want to store more undo data than just for 1 block. This allows you to have a greater buffer in the unlikely event that you discover that you&#39;ve been on a fork for more than 1 block. Remember, you can always post questions in the XAYA Development forums at [https://forum.xaya.io/forum/6-development/](https://forum.xaya.io/forum/6-development/).
 
@@ -807,11 +800,11 @@ Here&#39;s the method signature:
 
 	public static string backwardCallbackResult(string newState, string blockData, string undoData)
 
-- newState: Our GameState data
-- blockData: This is unused in this example
-- undoData: This is the data we use to roll back the game state by 1 block
+- `newState`: Our `GameState` data
+- `blockData`: This is unused in this example
+- `undoData`: This is the data we use to roll back the game state by 1 block
 
-To start, we initialise GameState and UndoData objects with deserialised data from our parameters.
+To start, we initialise `GameState` and `UndoData` objects with deserialised data from our parameters.
 
 	GameState state = JsonConvert.DeserializeObject<GameState>(newState);
 	UndoData undo = JsonConvert.DeserializeObject<UndoData>(undoData);
@@ -824,7 +817,7 @@ We need to check each player to see if they need to be rolled back. We do this b
 
 	foreach (var mi in state.players)
 
-To start our loop, we initialise some variables. We need to know the player&#39;s name and PlayerState. We get this from &quot;mi&quot;. A PlayerUndo variable is also created as null.
+To start our loop, we initialise some variables. We need to know the player&#39;s name and `PlayerState`. We get this from `mi`. A `PlayerUndo` variable is also created as null.
 
 	string name = mi.Key;	
 	PlayerState p = mi.Value;	
@@ -834,7 +827,7 @@ We only need to undo a player if they exist in our undo data, so we create a boo
 
 	bool undoIt = undo.players.ContainsKey(name);
 
-The first thing to do if a player needs to be rewound, is to check if they are new players and add them to our playersToRemove list. We get the specific player through undo.players[name] and then we check the is\_new property. Also, if the player is a new player, then we skip to the top of the loop. We&#39;ll remove the new players all at once later with our playersToRemove list.
+The first thing to do if a player needs to be rewound, is to check if they are new players and add them to our `playersToRemove` list. We get the specific player through `undo.players[name]` and then we check the `is_new` property. Also, if the player is a new player, then we skip to the top of the loop. We&#39;ll remove the new players all at once later with our `playersToRemove` list.
 
 	if (undoIt)
 	{
@@ -847,7 +840,7 @@ The first thing to do if a player needs to be rewound, is to check if they are n
 	    }
 	}
 
-Next, if the player has not finished moving according to the undo data, i.e. their Direction is not Direction.NONE, then we must check whether or not their current direction is NONE and they have no steps left. If so, we set their current direction to their undo data direction.
+Next, if the player has not finished moving according to the undo data, i.e. their `Direction` is not `Direction.NONE`, then we must check whether or not their current direction is `NONE` and they have no steps left. If so, we set their current direction to their undo data direction.
 
 	if (undoIt)
 	{
@@ -862,7 +855,7 @@ Next, if the player has not finished moving according to the undo data, i.e. the
 	    }
 	}
 
-Now, for all players we check if their current direction is not NONE. If so, we add a step and subtract the direction offset from their current position.
+Now, for all players we check if their current direction is not `NONE`. If so, we add a step and subtract the direction offset from their current position.
 
 	if (p.dir != Direction.NONE)
 	{
@@ -873,9 +866,9 @@ Now, for all players we check if their current direction is not NONE. If so, we 
 	    p.y -= dy;
 	}
 
-To undo a player move we must set their current player state to their undo player state if our undoIt boolean flag is set for this player (this was set above in `bool undoIt = undo.players.ContainsKey(name);`).
+To undo a player move we must set their current player state to their undo player state if our `undoIt` boolean flag is set for this player (this was set above in `bool undoIt = undo.players.ContainsKey(name);`).
 
-So, for all players in the undo data, if their direction is not NONE, we set their current player state direction to the direction in the undo data. This effectively undoes their direction.
+So, for all players in the undo data, if their direction is not `NONE`, we set their current player state direction to the direction in the undo data. This effectively undoes their direction.
 
 We also set their current player state steps to the number of steps in their undo data if it&#39;s not our default value of 99999999.
 
@@ -898,14 +891,17 @@ This effectively completes undoing the player&#39;s last move so we return back 
 
 	foreach (var mi in state.players)
 
-That completes our loop over the players. The only remaining step to rewind 1 block is to remove all the new players that we stored in playersToRemove.
+That completes our loop over the players. The only remaining step to rewind 1 block is to remove all the new players that we stored in `playersToRemove`.
 
 	foreach (string nm in playersToRemove)
 	{
 	    state.players.Remove(nm);
 	}
 
-Finally, we return the serialised GameState object so we can update the game state.
+Finally, we return the serialised `GameState` object so we can update the game state.
 
 	return JsonConvert.SerializeObject(state);
+
+# Summary
+
 
