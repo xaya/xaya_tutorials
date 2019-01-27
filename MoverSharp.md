@@ -36,7 +36,7 @@ Also download libxayagame here:
 
 In this example game, Mover, users control a player on a square-grid map and move their player around. There are no borders, so a player can move infinitely in any direction. That&#39;s all there is to it.
 
-## JSONClasses.cs
+# JSONClasses.cs
 
 To start, let&#39;s examine the data structures in the game as they&#39;re very simple and critically important to understand later code in the game. They&#39;re all found in the JSONClasses.cs file:
 
@@ -149,7 +149,7 @@ With those data structures, it&#39;s easier to understand the game flow.
 3. We update the game with the game state
 4. If we encounter a fork and need to revert (reorg), our &quot;backward&quot; callback lets us use all the `PlayerUndo` data in `UndoData` to revert backwards by 1 block
 
-## HelperFunctions.cs
+# HelperFunctions.cs
 
 Our `HelperFunctions` class contains static methods that we&#39;ll use in the game logic. Note that for some we have return values from parameters that we pass in by reference, i.e. ref type var.
 
@@ -162,7 +162,7 @@ As there&#39;s nothing particularly special in this class, further examination o
 
 To make the case for extreme error checking, consider that anyone could issue a `name_update` operation through the daemon or XAYA QT wallet console. That data would be entirely arbitrary. Each and every bit of data from the blockchain **MUST** be checked. While normal people just want to play the game, there are some people that just want to see if they can break things. You must guard against them. An example invalid move is shown below in [A Quick Look at Moves](#A%20Quick%20Look%20at%20Moves).
 
-## Program.cs
+# Program.cs
 
 Moving on, let&#39;s examine the Program.cs code.
 
@@ -296,7 +296,7 @@ The connection parameters are:
 
 While glog is basically invisible to us in this tutorial, it&#39;s used by libxayagame and parameters for it must be set. You can find glog [here](https://github.com/google/glog). In this example, libxayagame uses glog to display information to the console. When you run the project, this will appear as a scrolling blur of text.
 
-#### Main
+## Main
 
 We begin the `Main` method by initialising several configuration variables with the values we require. We could accept arguments from the command line, parse them, and then assign those values, but for clarity it&#39;s easier to hard code these values for the purpose of illustration.
 
@@ -341,7 +341,7 @@ The ZMQ values must also be set as shown. You can see ZMQ values set by looking 
 
 With the configuration complete, it&#39;s time to load the wrapper and start wiring up our delegates/callbacks.
 
-##### Loading the Wrapper and Wiring Up Callbacks
+## Loading the Wrapper and Wiring Up Callbacks
 
 The first thing to address is setting the proper folder where the C++ wrapper is. In this example it&#39;s in a subfolder from the game executable named &quot;XayaStateProcessor&quot;. We do this using the Windows native method `SetDllDirectory` from kernel32.dll. Note that we&#39;re using the `dataPath` variable that we set above.
 
@@ -419,7 +419,7 @@ With this, our next task in `Main` is to establish our connection to the XAYA da
 
 	Connect();
 
-#### Connect
+## Connect
 
 The first task in creating the connection is to get the procedure address from the C++ wrapper into a handle (`IntPtr`) and do some error checking. This is the same basic operation that we did when we loaded the callbacks into handles in the `Main` method. `CSharp_ConnectToTheDaemon` is defined in libxayawrap.dll and performs the actual connection.
 
@@ -475,7 +475,7 @@ If all goes well, we should now be connected to the game, so we&#39;ll send ours
 
 So far we&#39;ve wired up a lot of callbacks and done a lot of work with importing functions through the C++ wrapper. Pat yourself on the back. We&#39;re almost at the finish line, and in keeping with tradition, we&#39;ve saved the best for last. Game logic!
 
-## CallbackFunctions.cs and Game Logic
+# CallbackFunctions.cs and Game Logic
 
 **THIS** is what you&#39;ve been waiting for. Game logic. The good stuff. The juicy, lovely, delectable game code. Everything we&#39;ve done so far has worked up to this point.
 
@@ -493,7 +493,7 @@ The `backwardCallbackResult` is where we rewind in the case of a fork. This is w
 
 Let&#39;s jump in.
 
-##### initialCallbackResult
+## initialCallbackResult
 
 The `initialCallbackResult` reads which chain we plan to use, then sets the `height` to start at, and the hash (`hashHex`) for that block in hexadecimal. It&#39;s very straight forward.
 	
@@ -526,7 +526,7 @@ For `hashHex`, to find out a block hash, you can use the official XAYA explorer 
 
 Its hash is &quot;e5062d76e5f50c42f493826ac9920b63a8def2626fd70a5cec707ec47a4c4651&quot;.
 
-##### forwardCallbackResult and Processing Moves
+## forwardCallbackResult and Processing Moves
 
 `forwardCallbackResult` runs whenever a new block is received. It processes the moves (or game logic) to create a new game state and creates undo data. Let&#39;s examine it in detail.
 
@@ -601,7 +601,7 @@ The rest of our game logic consists of 2 loops:
 - A loop to process moves and create undo data
 - A loop to process moves and update the game state
 
-##### A Quick Look at Moves
+### A Quick Look at Moves
 
 Before proceeding, let&#39;s look at what a typical move will look like for any given name that wishes to create that move.
 
@@ -626,7 +626,7 @@ Moves are done through the `name_update` operation in the XAYA daemon. It&#39;s 
 
 This is obviously an invalid move for our Mover game. As such, it is critically important to ensure that you do proper error checking and exclude invalid moves.
 
-##### The First Loop
+### The First Loop
 
 Let&#39;s look into our first loop inside `forwardCallbackResult`.
 
@@ -714,7 +714,7 @@ That completes our first loop. To summarize what we did here:
 5. We finally updated the move in our `PlayerState`
 6. We looped back and did 1-5 for all **moves**
 
-##### The Second Loop
+### The Second Loop
 
 The second loop iterates over all players. Here&#39;s the loop declaration:
 
@@ -790,7 +790,7 @@ To quickly summarize `forwardCallbackResult`:
 5. We updated our `GameState` with all the players&#39; moves
 6. We returned our `GameState` and undo data
 
-##### backwardCallbackResult and Undoing a Game State Step
+## backwardCallbackResult and Undoing a Game State Step
 
 `backwardCallbackResult` rolls back the game state by 1 block with the undo data from the previous block. It is similar to `forwardCallbackResult`, but we don&#39;t create any undo data because we&#39;re consuming some undo data.
 
@@ -903,5 +903,19 @@ Finally, we return the serialised `GameState` object so we can update the game s
 	return JsonConvert.SerializeObject(state);
 
 # Summary
+
+We looked at how to wire up Mover to process moves. 
+
+In JSONClasses.cs, we looked at the data structures for the game.
+
+For HelperFunctions, we briefly explained the methods, but didn't look at any code as they're all very simple. 
+
+In the Program.cs file, we wired up and connected to libxayawrap.dll. We edited `FLAGS_xaya_rpc_url` specifically for our own machines by changing the password so that the program would properly connect.  
+
+In CallbackFunctions.cs we looked at how game logic is implemented. This was done in 3 C++ callbacks inside of libxayagame that we wired up and implemented as delegates in C#:
+
+- initialCallbackResult
+- forwardCallbackResult
+- backwardCallbackResult
 
 
