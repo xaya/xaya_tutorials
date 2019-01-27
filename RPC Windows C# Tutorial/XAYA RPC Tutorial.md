@@ -13,7 +13,7 @@ NOTE: You must have a fully sync&#39;d XAYA Electron wallet running to use this 
 
 Everything can be done through a single object, an ICoinService initialised as a XAYAService. First, we set a member variable for our XAYAService like so:
 
-`private static ICoinService xayaCoinService;`
+	private static ICoinService xayaCoinService;
 
 For the sake of ease, we initialise that in the Form1\_Load method. It takes several parameters:
 

@@ -25,7 +25,7 @@ Several other methods are also described below, though their usefulness to you m
 
 The XAYA daemon communicates through JSON-RPC over HTTP (see [jsonrpc.org](https://www.jsonrpc.org/) for protocol information). You can use the XAYA QT wallet's console, the `xaya-cli` command line program that comes with the QT wallet, or any RPC library in any language that you prefer. 
 
-The examples below use `xaya-cli` and a XAYA game wallet. 
+The examples below use xaya-cli and a XAYA game wallet. 
 
 Most likely, you will wish to use an RPC library inside of your game for RPC calls. 
 
@@ -35,7 +35,7 @@ See [Interacting with the XAYA Wallet Through RPC in C#](https://github.com/xaya
 
 Names are unique entries in the XAYA blockchain. They can be used for game accounts or to create games. See [Name and Value Restrictions](https://github.com/xaya/xaya_docs/blob/master/blockchain.md#name-and-value-restrictions-) for information on restrictions and limitations. 
 
-All names exists in a [namespace](https://github.com/xaya/xaya_docs/blob/master/blockchain.md#name-and-value-restrictions-), e.g. "p/" is for player accounts and "g/" is for games. A namespace ends with the "/" character, and everything following that is the name. The following are examples of valid names:
+All names exists in a [namespace](https://github.com/xaya/xaya_docs/blob/master/blockchain.md#name-and-value-restrictions-), e.g. `p/` is for player accounts and `g/` is for games. A namespace ends with the `/` character, and everything following that is the name. The following are examples of valid names:
 
 - p/John Doe
 - p/Larry
@@ -103,7 +103,7 @@ If "p/xaya" exists in the current wallet, the following result is returned:
 
 Running that command will return zero results for you. Create 1 or more names first in order to get a non-empty result set.
 
-Without a name as a parameter, the complete list of names in a wallet is returned. For some people this can be a large number.
+Without a name as a parameter, the complete list of names in a wallet is returned. For some wallets this can be a large number.
 
 ### For Your Game
 
@@ -117,11 +117,11 @@ If they have no names, you can prompt them to create a name to use in your game.
 
 This method registers a name on the XAYA blockchain. That name can then be used in games. It takes 2 mandatory parameters and 1 optional parameter. 
 
-- **name**: The name to create. It must include a [namespace](https://github.com/xaya/xaya_docs/blob/master/blockchain.md#name-and-value-restrictions-), e.g. "p/" for player account names
-- **value**: Valid JSON passed as a string. This can simply be "{}" or "[]"
+- **name**: The name to create. It must include a [namespace](https://github.com/xaya/xaya_docs/blob/master/blockchain.md#name-and-value-restrictions-), e.g. `p/` for player account names
+- **value**: Valid JSON passed as a string. This can simply be `"{}"` or `"[]"`
 - **options**: This must be passed directly as a JSON object
 
-**NOTE:** When passing `options` to `xaya-cli`, it will automatically convert it to a JSON object, but when calling through a JSON-RPC library, you must cast `options` as a JSON object yourself.
+**NOTE:** When passing `options` to xaya-cli, it will automatically convert it to a JSON object, but when calling through a JSON-RPC library, you must cast `options` as a JSON object yourself.
 
 It returns a `txid` if the transaction is successful or an error if it fails.
 
@@ -137,17 +137,17 @@ This method updates the value associated with a name. It takes 2 mandatory param
 - **value**: Valid JSON passed as a string and containing data
 - **options**: This must be passed directly as a JSON object
 
-**NOTE:** When passing `options` to `xaya-cli`, it will automatically convert it to a JSON object, but when calling through a JSON-RPC library, you must cast `options` as a JSON object yourself.
+**NOTE:** When passing `options` to xaya-cli, it will automatically convert it to a JSON object, but when calling through a JSON-RPC library, you must cast `options` as a JSON object yourself.
 
 In order to make the best use of XAYA, developers should follow the format for name updates outlined in [Name and Value Restrictions](https://github.com/xaya/xaya_docs/blob/master/blockchain.md#name-and-value-restrictions-), [Moves](https://github.com/xaya/xaya_docs/blob/master/games.md#moves-), and [Sending Moves](https://github.com/xaya/xaya_docs/blob/master/interface.md#sending-moves).
 
-The following command updates the name "p/Name pending test 1" to an empty value, i.e. "{}". (Remember that the name must exist in the wallet.)
+The following command updates the name `p/Name pending test 1` to an empty value, i.e. `{}`. (Remember that the name must exist in the wallet.)
 
 	xaya-cli -rpcwallet=game.dat name_update "p/Name pending test 1" "{}"
 
 The return value for a `name_update` is a `txid`, e.g. "4909229f9d50690e7de9bd8fca10df8a554859eee4b64e441a9955fbf4d57253". 
 
-An error will be returned for unsuccessful calls, e.g. "Input tx not found in wallet (code -4)".
+An error will be returned for unsuccessful calls, e.g. `Input tx not found in wallet (code -4)`.
 
 This will likely be the most important RPC call for most game developers as it is how game moves are entered into the blockchain. 
 
