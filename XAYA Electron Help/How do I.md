@@ -21,6 +21,8 @@ Click in the side navigation panel for specific tasks.
 - [Get Support](#Get-support)
 - [Fix Stuck Wallet](#Fix-stuck-wallet)
 
+— [Top](#top) — [Encrypt Vault Wallet](#Encrypt-vault-wallet) — [Get a New Wallet](#Get-a-new-wallet) — [Back up wallets](#Back-up-wallets) — [Buy CHI](#Buy-chi) — [Get an Account Name](#Get-an-account-name) — [Transfer a Name](#Transfer-a-name) — [Mine CHI](#Mine-chi) — [Get Support](#Get-support) — [Fix Stuck Wallet](#Fix-stuck-wallet) — 
+
 # Encrypt Vault Wallet
 
 It is STRONGLY recommended that you encrypt your vault wallet. This will help to 
@@ -99,6 +101,8 @@ notice above in step 1.) See [Get a New Wallet](#get-a-new-wallet) for
 information on how to get a new vault wallet to encrypt. After that, start over 
 at step 1.
 
+— [Top](#top) — [Encrypt Vault Wallet](#Encrypt-vault-wallet) — [Get a New Wallet](#Get-a-new-wallet) — [Back up wallets](#Back-up-wallets) — [Buy CHI](#Buy-chi) — [Get an Account Name](#Get-an-account-name) — [Transfer a Name](#Transfer-a-name) — [Mine CHI](#Mine-chi) — [Get Support](#Get-support) — [Fix Stuck Wallet](#Fix-stuck-wallet) — 
+
 # Get a New Wallet
 
 If for any reason you want or need a new wallet, it's very simple to do.
@@ -154,6 +158,8 @@ Take note that the process above does not delete the old wallet.dat file. If you
 are certain that the wallet has nothing of value, you may wish to delete it. If 
 you are replacing a wallet because you have lost the password, you should still 
 keep the wallet as it may be possible to retrieve the wallet's password.
+
+— [Top](#top) — [Encrypt Vault Wallet](#Encrypt-vault-wallet) — [Get a New Wallet](#Get-a-new-wallet) — [Back up wallets](#Back-up-wallets) — [Buy CHI](#Buy-chi) — [Get an Account Name](#Get-an-account-name) — [Transfer a Name](#Transfer-a-name) — [Mine CHI](#Mine-chi) — [Get Support](#Get-support) — [Fix Stuck Wallet](#Fix-stuck-wallet) — 
 
 # Back Up Wallets
 
@@ -273,6 +279,8 @@ To back up a wallet file:
 
 3. Restart your wallet software.
 
+— [Top](#top) — [Encrypt Vault Wallet](#Encrypt-vault-wallet) — [Get a New Wallet](#Get-a-new-wallet) — [Back up wallets](#Back-up-wallets) — [Buy CHI](#Buy-chi) — [Get an Account Name](#Get-an-account-name) — [Transfer a Name](#Transfer-a-name) — [Mine CHI](#Mine-chi) — [Get Support](#Get-support) — [Fix Stuck Wallet](#Fix-stuck-wallet) — 
+
 # Buy CHI
 
 CHI can be purchased from anyone willing to sell it. The XAYA team has no 
@@ -284,11 +292,15 @@ Check the XAYA forums at <a href="https://forum.xaya.io/" >https://forum.xaya.io
 Telegram channel at <a href="https://t.me/xaya_en" >https://t.me/xaya_en/</a> for any 
 exchange listings.
 
+— [Top](#top) — [Encrypt Vault Wallet](#Encrypt-vault-wallet) — [Get a New Wallet](#Get-a-new-wallet) — [Back up wallets](#Back-up-wallets) — [Buy CHI](#Buy-chi) — [Get an Account Name](#Get-an-account-name) — [Transfer a Name](#Transfer-a-name) — [Mine CHI](#Mine-chi) — [Get Support](#Get-support) — [Fix Stuck Wallet](#Fix-stuck-wallet) — 
+
 # Get an Account Name
 
 Names are used as accounts inside of games. See [Create 
 Names](#create-names) 
 for information on how to create your own names.
+
+— [Top](#top) — [Encrypt Vault Wallet](#Encrypt-vault-wallet) — [Get a New Wallet](#Get-a-new-wallet) — [Back up wallets](#Back-up-wallets) — [Buy CHI](#Buy-chi) — [Get an Account Name](#Get-an-account-name) — [Transfer a Name](#Transfer-a-name) — [Mine CHI](#Mine-chi) — [Get Support](#Get-support) — [Fix Stuck Wallet](#Fix-stuck-wallet) — 
 
 # Transfer a Name
 
@@ -324,6 +336,8 @@ it is confirmed, it will disappear.
 Once you have transferred the name to your other wallet, you can check [My 
 Names](#my-names) or [Transactions](#transactions) in that wallet.
 
+— [Top](#top) — [Encrypt Vault Wallet](#Encrypt-vault-wallet) — [Get a New Wallet](#Get-a-new-wallet) — [Back up wallets](#Back-up-wallets) — [Buy CHI](#Buy-chi) — [Get an Account Name](#Get-an-account-name) — [Transfer a Name](#Transfer-a-name) — [Mine CHI](#Mine-chi) — [Get Support](#Get-support) — [Fix Stuck Wallet](#Fix-stuck-wallet) — 
+
 # Mine CHI
 
 Mining is a complex topic and beyond the scope of this help file.
@@ -331,10 +345,14 @@ Mining is a complex topic and beyond the scope of this help file.
 See the <a href="https://forum.xaya.io/forum/14-mining/" >Mining forum</a> for information 
 and help.
 
+— [Top](#top) — [Encrypt Vault Wallet](#Encrypt-vault-wallet) — [Get a New Wallet](#Get-a-new-wallet) — [Back up wallets](#Back-up-wallets) — [Buy CHI](#Buy-chi) — [Get an Account Name](#Get-an-account-name) — [Transfer a Name](#Transfer-a-name) — [Mine CHI](#Mine-chi) — [Get Support](#Get-support) — [Fix Stuck Wallet](#Fix-stuck-wallet) — 
+
 # Get Support
 
 Visit the <a href="https://forum.xaya.io/forum/16-support/" >XAYA Support forum</a> for 
 general support.
+
+— [Top](#top) — [Encrypt Vault Wallet](#Encrypt-vault-wallet) — [Get a New Wallet](#Get-a-new-wallet) — [Back up wallets](#Back-up-wallets) — [Buy CHI](#Buy-chi) — [Get an Account Name](#Get-an-account-name) — [Transfer a Name](#Transfer-a-name) — [Mine CHI](#Mine-chi) — [Get Support](#Get-support) — [Fix Stuck Wallet](#Fix-stuck-wallet) — 
 
 # Fix Sync Problems
 
@@ -344,7 +362,7 @@ Advanced users may wish to run the wallet from the command line with a "-reindex
 
 You can also delete the blockchain data and resynchronise. See [Delete Chain](#delete-chain) for more information.
 
-
+— [Top](#top) — [Encrypt Vault Wallet](#Encrypt-vault-wallet) — [Get a New Wallet](#Get-a-new-wallet) — [Back up wallets](#Back-up-wallets) — [Buy CHI](#Buy-chi) — [Get an Account Name](#Get-an-account-name) — [Transfer a Name](#Transfer-a-name) — [Mine CHI](#Mine-chi) — [Get Support](#Get-support) — [Fix Stuck Wallet](#Fix-stuck-wallet) — 
 
 
 

@@ -9,7 +9,7 @@
 - [Help](#Help)
 - [Minimize](#Minimize)
 
-— [Wallets](#Wallets)  —  [Language](#Language) — [About](#About)  — [Help](#Help)  — [Minimize](#Minimize)  —   
+— [Top](#top) — [Wallets](#Wallets)  —  [Language](#Language) — [About](#About)  — [Help](#Help)  — [Minimize](#Minimize)  —   
 
 # Wallets
 
@@ -88,6 +88,8 @@ amount of information on computer security available online. It can even be fun.
 
 > Being as 3 is a magic number, we should mention that <b>BACKING UP YOUR WALLETS</b> is a good idea!
 
+— [Top](#top) — [Wallets](#Wallets)  —  [Language](#Language) — [About](#About)  — [Help](#Help)  — [Minimize](#Minimize)  —  
+
 # Language
 
 The language drop-down menu lets you switch languages.
@@ -99,6 +101,8 @@ Ten languages are currently supported. More language will follow.
 Anyone wishing to help with translations can <a href="https://github.com/xaya/xaya_electron/tree/master/src/assets/i18n" >find the language resources at the 
 open source Github respository 
 here</a>.
+
+— [Top](#top) — [Wallets](#Wallets)  —  [Language](#Language) — [About](#About)  — [Help](#Help)  — [Minimize](#Minimize)  —  
 
 # About
 
@@ -112,6 +116,8 @@ here</a>.
 
 ![about-dialog](img/about-dialog.png)
 
+— [Top](#top) — [Wallets](#Wallets)  —  [Language](#Language) — [About](#About)  — [Help](#Help)  — [Minimize](#Minimize)  —  
+
 # Help
 
 The Help dialog displays links where you can get help or support.
@@ -119,6 +125,8 @@ The Help dialog displays links where you can get help or support.
 It also links to this help documentation.
 
 ![help-dialog](img/help-dialog.png)
+
+— [Top](#top) — [Wallets](#Wallets)  —  [Language](#Language) — [About](#About)  — [Help](#Help)  — [Minimize](#Minimize)  —  
 
 # Minimize
 
@@ -135,7 +143,7 @@ choose "Show App".
 You can also shut down the XAYA Electron wallet and XAYA daemon by clicking 
 "Quit".
 
-
+— [Top](#top) — [Wallets](#Wallets)  —  [Language](#Language) — [About](#About)  — [Help](#Help)  — [Minimize](#Minimize)  —  
 
 
 
