@@ -117,8 +117,11 @@ sending.
 You can check your transaction on the [Transactions screen](#transactions).
 
 > DO NOT TYPE ADDRESSES.
+>
 > Typing address is highly discouraged. You could make a simple mistake, and lose your CHI.
+>
 > We **STRONGLY** recommend copying and pasting addresses.
+>
 > The Send screen is not for transferring names. See <a href="#transferring-a-name">Transferring a name</a> for more information.
 
 ## Transactions
