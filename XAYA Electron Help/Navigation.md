@@ -37,7 +37,7 @@ It displays the amount in full to 8 decimal places.
 Should you "be surprised" at an amount in your wallet, it may be that you've 
 simple got the wrong one selected.
 
-See [Wallets](#wallets) for more information.
+See [Wallets](Top.md#wallets) for more information.
 
 ### Network Info
 
@@ -117,11 +117,8 @@ sending.
 You can check your transaction on the [Transactions screen](#transactions).
 
 > DO NOT TYPE ADDRESSES.
-
 > Typing address is highly discouraged. You could make a simple mistake, and lose your CHI.
-
 > We **STRONGLY** recommend copying and pasting addresses.
-
 > The Send screen is not for transferring names. See <a href="#transferring-a-name">Transferring a name</a> for more information.
 
 ## Transactions
