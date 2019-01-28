@@ -26,7 +26,7 @@ Additional resources will be added on an ongoing basis.
 
 If you're unfamiliar with blockchain technology, [Blockchain Basics](Blockchain%20General.md) will give you a quick overview and highlight some important aspects. This is a quick, high-level overview and far from exhaustive. If you are already familiar, you should skip this.
 
-> [GOTO Blockchain Basics](Blockchain%20General.md)
+> ![GO!](img/arrow-green-right-2a.png) [GOTO Blockchain Basics](Blockchain%20General.md)
 
 # XAYA Specifications
 
@@ -44,7 +44,7 @@ In particular, important topics are:
 
 The specifications are required reading. Other documents will refer to specific sections of the specifications. 
 
-> [GOTO Specifications](https://github.com/xaya/xaya_docs)
+> ![GO!](img/arrow-green-right-2a.png) [GOTO Specifications](https://github.com/xaya/xaya_docs)
 
 # XAYA RPC 
 
@@ -56,13 +56,13 @@ XAYA is language agnostic, so you can use any language you wish so long as it is
 
 The [XAYA RPC Methods](XAYA%20RPC%20Methods.md) document describes several of the most useful RPC methods and provides examples. It is language agnostic and you should read this first.
 
-> [GOTO XAYA RPC Methods](XAYA%20RPC%20Methods.md)
+> ![GO!](img/arrow-green-right-2a.png) [GOTO XAYA RPC Methods](XAYA%20RPC%20Methods.md)
 
 ## RPC Windows C# Tutorial
 
 The [RPC Windows C# Tutorial](RPC%20Windows%20C%23%20Tutorial/XAYA%20RPC%20Tutorial.md) uses a 3rd party library to demonstrate using several XAYA RPC methods. A sample Windows Forms application is provided with comments to assist you.
 
-> [GOTO RPC Windows C# Tutorial](RPC%20Windows%20C%23%20Tutorial/XAYA%20RPC%20Tutorial.md)
+> ![GO!](img/arrow-green-right-2a.png) [GOTO RPC Windows C# Tutorial](RPC%20Windows%20C%23%20Tutorial/XAYA%20RPC%20Tutorial.md)
 
 # libxayagame
 
@@ -74,13 +74,13 @@ Once you have libxayagame wired up, you only need to implement 3 callback method
 
 Code ninjas and rock stars may enjoy browsing through the code or [code documentation available here](https://xaya.io/docs/libxayagame/).
 
-> [GOTO libxayagame](https://github.com/xaya/libxayagame) 
+> ![GO!](img/arrow-green-right-2a.png) [GOTO libxayagame](https://github.com/xaya/libxayagame) 
 
 ## Component Relationships
 
 This tutorial provides a high-level overview of the component relationships and information flows when using libxayagame. While it aims to explain the Mover sample game, other scenarios are briefly outlined.
 
-> [GOTO libxayagame Component Relationships](libxayagame%20Component%20Relationships.md)
+> ![GO!](img/arrow-green-right-2a.png) [GOTO libxayagame Component Relationships](libxayagame%20Component%20Relationships.md)
 
 ## Mover Sample Game Overview
 
@@ -88,7 +88,7 @@ This tutorial provides a high-level overview of the component relationships and 
 
 Both libxayagame and Mover are written in C++. The Mover sample includes a game test written in Python. For more information, see the [Mover Sample Game Overview](Mover.md) tutorial.
 
-> [GOTO Mover Sample Game Overview](Mover.md) 
+> ![GO!](img/arrow-green-right-2a.png) [GOTO Mover Sample Game Overview](Mover.md) 
 
 ## Mover Sharp - A C# Implementation
 
@@ -96,7 +96,7 @@ MoverSharp is a truncated C# implementation that does not allow user input. It m
 
 This tutorial illustrates how libxayagame is wired up for Mover and then explores game logic on the XAYA platform. 
 
-> [GOTO Mover Sharp - A C# Implementation](MoverSharp.md)
+> ![GO!](img/arrow-green-right-2a.png) [GOTO Mover Sharp - A C# Implementation](MoverSharp.md)
 
 ## Mover in Unity
 
@@ -104,7 +104,7 @@ For C# developers, the Mover example has been ported to C# along with code to wr
 
 The Unity project provides a front-end GUI for Mover. The wrapper and additional code implement the Mover game itself.
 
-> [GOTO Unity Mover.md](Unity%20Mover.md)
+> ![GO!](img/arrow-green-right-2a.png) [GOTO Unity Mover.md](Unity%20Mover.md)
 
 # Regtestnet
 
@@ -116,19 +116,19 @@ You can instamine CHI at will and control exactly when and how blocks are mined.
 
 See the "[Getting Started with Regtestnet](Regtestnet.md)" tutorial for more information.
 
-> [GOTO Getting Started with Regtestnet](Regtestnet.md)
+> ![GO!](img/arrow-green-right-2a.png) [GOTO Getting Started with Regtestnet](Regtestnet.md)
 
 # Getting Started with xaya-cli
 
 The XAYA Command Line Interface (xaya-cli) lets you easily interact with the XAYA daemon and XAYA wallets. It's used extensively in various tutorials. This tutorial introduces xaya-cli and gives examples that you can practice with to learn it very quickly. 
 
-> [GOTO Getting Started with xaya-cli](xaya-cli.md)
+> ![GO!](img/arrow-green-right-2a.png) [GOTO Getting Started with xaya-cli](xaya-cli.md)
 
 # XAYA Electron Wallet Help
 
 This is end user documentation for the [XAYA Electron wallet](https://xaya.io/docs/electron_wallet/).
 
-> [GOTO XAYA Electron wallet help](https://xaya.io/docs/electron_wallet/)
+> ![GO!](img/arrow-green-right-2a.png) [GOTO XAYA Electron wallet help](https://xaya.io/docs/electron_wallet/)
 
 
 
