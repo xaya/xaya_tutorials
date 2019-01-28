@@ -234,7 +234,6 @@ address.
 2. Paste in the CHI address that you want to transfer the name to.  
    
 ![enter-chi-address-to-transfer-name-to](img/enter-chi-address-to-transfer-name-to.png)  
- 
 
 3. Click OK.
 

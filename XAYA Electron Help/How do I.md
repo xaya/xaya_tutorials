@@ -96,7 +96,7 @@ at step 1.
 
 If for any reason you want or need a new wallet, it's very simple to do.
 
-> This is simple for advanced users. If you aren't comfortable working outside of regular user folders, proceed with caution and always make backups of your wallets as described in <a href="#backing-up-your-wallets">Settings</a>.
+> This is simple for advanced users. If you aren't comfortable working outside of regular user folders, proceed with caution and always make backups of your wallets as described in <a href="Navigation.md#backing-up-your-wallets">Settings</a>.
 
 
 The XAYA Electron wallet has 2 wallets: a game wallet and a vault wallet. They 
