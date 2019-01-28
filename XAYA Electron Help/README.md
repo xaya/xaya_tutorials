@@ -2,6 +2,8 @@
 
 ![Xaya-logo-Rx-b-800x441](img/xaya-logo-rx-b-800x441.png)
 
+— [Navigation Tabs](#Navigation-Tabs) — [Top Navigation](#top-navigation) — [How do I...?](#how-do-i) — [About XAYA](#about-xaya) —
+
 # Navigation Tabs
 
 - [Overview](Navigation.md#overview)
@@ -26,6 +28,8 @@
 - [Console](Navigation.md#Console)
 - [Exit](Navigation.md#Exit)
 
+— [Navigation Tabs](#Navigation-Tabs) — [Top Navigation](#top-navigation) — [How do I...?](#how-do-i) — [About XAYA](#about-xaya) —
+
 # Top Navigation
 
 - [Wallets](Top.md#Wallets)
@@ -36,6 +40,8 @@
 - [About](Top.md#About)
 - [Help](Top.md#Help)
 - [Minimize](Top.md#Minimize)
+
+— [Navigation Tabs](#Navigation-Tabs) — [Top Navigation](#top-navigation) — [How do I...?](#how-do-i) — [About XAYA](#about-xaya) —
 
 # How do I...?
 
@@ -60,4 +66,6 @@
 
 - [About XAYA](About.md#about-xaya)
 - [Further Documentation](About.md#Further-Documentation)
+
+— [Navigation Tabs](#Navigation-Tabs) — [Top Navigation](#top-navigation) — [How do I...?](#how-do-i) — [About XAYA](#about-xaya) —
 
