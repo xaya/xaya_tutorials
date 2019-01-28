@@ -126,9 +126,9 @@ The XAYA Command Line Interface (xaya-cli) lets you easily interact with the XAY
 
 # XAYA Electron Wallet Help
 
-This is end user documentation for the [XAYA Electron wallet](https://xaya.io/docs/electron_wallet/).
+This is end user documentation for the [XAYA Electron wallet](XAYA%20Electron%20Help).
 
-> ![GO!](img/arrow-green-right-2a.png) [GOTO XAYA Electron wallet help](https://xaya.io/docs/electron_wallet/)
+> ![GO!](img/arrow-green-right-2a.png) [GOTO XAYA Electron wallet help](XAYA%20Electron%20)
 
 
 
