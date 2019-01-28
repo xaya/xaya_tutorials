@@ -7,6 +7,13 @@ Click in the side navigation panel for specific tasks.
 - [Encrypt Vault Wallet](#Encrypt-vault-wallet)
 - [Get a New Wallet](#Get-a-new-wallet)
 - [Back up wallets](#Back-up-wallets)
+	+ ["Safe Location"](#safe-location)
+	+ [Wallet Backup Feature](#Wallet-Backup-Feature)
+	+ [Manually Backing Up Wallets](#manually-backing-up-wallets)
+	+ [File-based Backups](#file-based-backups)
+	+ [XAYA QT Wallet Folder](#xaya-qt-wallet-folder)
+	+ [XAYA Electron Wallets Folders](#xaya-electron-wallets-folders)
+	+ [Backing Up Wallet Files](#backing-up-wallet-files)
 - [Buy CHI](#Buy-chi)
 - [Get an Account Name](#Get-an-account-name)
 - [Transfer a Name](#Transfer-a-name)
@@ -14,7 +21,7 @@ Click in the side navigation panel for specific tasks.
 - [Get Support](#Get-support)
 - [Fix Stuck Wallet](#Fix-stuck-wallet)
 
-## Encrypt Vault Wallet
+# Encrypt Vault Wallet
 
 It is STRONGLY recommended that you encrypt your vault wallet. This will help to 
 keep the CHI and blockchain assets in it secure.
@@ -92,7 +99,7 @@ notice above in step 1.) See [Get a New Wallet](#get-a-new-wallet) for
 information on how to get a new vault wallet to encrypt. After that, start over 
 at step 1.
 
-## Get a New Wallet
+# Get a New Wallet
 
 If for any reason you want or need a new wallet, it's very simple to do.
 
@@ -148,7 +155,7 @@ are certain that the wallet has nothing of value, you may wish to delete it. If
 you are replacing a wallet because you have lost the password, you should still 
 keep the wallet as it may be possible to retrieve the wallet's password.
 
-## Back Up Wallets
+# Back Up Wallets
 
 It is critically important that you back up your wallets. Failure to do so could 
 result in the loss of your CHI and blockchain assets.
@@ -160,7 +167,7 @@ location](#backing-up-your-wallets)
 * [Manually back up your wallets by copying them to a safe 
 location](#manually-backing-up-wallets) 
 
-### "Safe Location"
+## "Safe Location"
 
 Your back ups should be stored in a "safe location". This will have different 
 meanings for different people. One person may want a physical printout and 
@@ -169,7 +176,7 @@ backup on the same drive a safe location. This has entirely to do with your risk
 tolerance and what you consider safe. The following backup methods are to help 
 you decide on what is right for you.
 
-### Wallet Backup Feature
+## Wallet Backup Feature
 
 The easiest way to back up your wallets is to use the backup feature in 
 [Settings](#settings).
@@ -181,13 +188,13 @@ feature](#backing-up-your-wallets).
 
 > Unless you are comfortable with manual backups, you should only use the built-in backup feature.
 
-### Manually Backing Up Wallets
+## Manually Backing Up Wallets
 
 The following explains in detail how to back up your wallets manually.
 
 > NOTE: This is for advanced users. If you have any difficulty whatsoever with anything below, you should use the backup features in the Electron or QT wallet software.
 
-### File-based Backups
+## File-based Backups
 
 XAYA has 3 distinct wallets depending on which wallet software you are running. 
 One wallet is used by the XAYA QT wallet, while the XAYA Electron wallet has 2 
@@ -197,7 +204,7 @@ to a safe location to back them up.
 [Click here to skip to the wallet 
 locations](#xaya-qt-wallet-folder).
 
-### XAYA QT Wallet Folder
+## XAYA QT Wallet Folder
 
 The XAYA QT wallet can be found in the datadir wallets folder on Windows here:
 
@@ -217,7 +224,7 @@ On OS X (Mac) the wallet folder is here:
 
 ~/Library/Application Support/Xaya/wallets/
 
-### XAYA Electron Wallets Folders
+## XAYA Electron Wallets Folders
 
 The XAYA Electron wallets are in the game.dat and vault.dat subfolders. On 
 Windows, those are here:
@@ -234,7 +241,7 @@ C:\\Users\\\<user>\\AppData\\Roaming\\Xaya\\wallets\\vault.dat\\
 
 The XAYA Electron wallet is not yet available for Linux or OS X (Mac).
 
-### Backing Up Wallet Files
+## Backing Up Wallet Files
 
 Backing up wallet files is only a matter of copying them to a safe location. The 
 Electron wallet has 2 wallet files while the QT wallet has only 1 wallet file.
@@ -266,7 +273,7 @@ To back up a wallet file:
 
 3. Restart your wallet software.
 
-## Buy CHI
+# Buy CHI
 
 CHI can be purchased from anyone willing to sell it. The XAYA team has no 
 control over who buys or sells CHI.
@@ -277,13 +284,13 @@ Check the XAYA forums at <a href="https://forum.xaya.io/" >https://forum.xaya.io
 Telegram channel at <a href="https://t.me/xaya_en" >https://t.me/xaya_en/</a> for any 
 exchange listings.
 
-## Get an Account Name
+# Get an Account Name
 
 Names are used as accounts inside of games. See [Create 
 Names](#create-names) 
 for information on how to create your own names.
 
-## Transfer a Name
+# Transfer a Name
 
 You can transfer names between your game and vault wallet, or you can transfer a 
 name to another person using one of their CHI addresses.
@@ -317,19 +324,19 @@ it is confirmed, it will disappear.
 Once you have transferred the name to your other wallet, you can check [My 
 Names](#my-names) or [Transactions](#transactions) in that wallet.
 
-## Mine CHI
+# Mine CHI
 
 Mining is a complex topic and beyond the scope of this help file.
 
 See the <a href="https://forum.xaya.io/forum/14-mining/" >Mining forum</a> for information 
 and help.
 
-## Get Support
+# Get Support
 
 Visit the <a href="https://forum.xaya.io/forum/16-support/" >XAYA Support forum</a> for 
 general support.
 
-## Fix Sync Problems
+# Fix Sync Problems
 
 There are different reasons why your wallet may get stuck synchronising. 
 

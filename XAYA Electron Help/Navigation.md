@@ -23,7 +23,7 @@
 - [Exit](#Exit)
 
 
-## Overview
+# Overview
 
 The Overview is the "home" screen for the wallet.
 
@@ -33,7 +33,7 @@ information, version information, and the block synchronization of the wallet.
 ![XAYA Electron Wallet](img/xaya-electron-wallet-overview-game-wallet.zoom52.png 
 "XAYA Electron Wallet")
 
-### Balance
+## Balance
 
 The Balance area on the Overview screen displays how much CHI you have in the 
 [currently selected wallet](Top.md#wallets).
@@ -47,7 +47,7 @@ simple got the wrong one selected.
 
 See [Wallets](Top.md#wallets) for more information.
 
-### Network Info
+## Network Info
 
 The Network Info area displays basic information about the blockchain.
 
@@ -61,14 +61,14 @@ on testnet (this is where testing is done).
 with a shorter version (true).
 * **Median Time:** Just the time. It updates periodically, and not in real time.
 
-### Version
+## Version
 
 The version area displays the current XAYA Electron wallet version and the 
 current XAYA daemon version.
 
 ![versions-area](img/versions-area.png)
 
-### Block Progression
+## Block Progression
 
 The Block Progression area shows you the latest block that you've downloaded 
 from the network, and the current block height. If they are equal, your wallet 
@@ -83,7 +83,7 @@ forum</a>.
 > It is possible that during a lengthy synchronisation, the two numbers could be equal for a very short period without your wallet being fully synchronised due to there being more blocks to be downloaded still. This is rare and only lasts a very short time.
 
 
-## Receive
+# Receive
 
 The Receive screen lets you create CHI addresses where you can receive CHI.
 
@@ -100,7 +100,7 @@ To create an address:
 You can select the address and press CTRL+C or you can click COPY to copy the 
 address to the clipboard.
 
-## Send
+# Send
 
 The Send screen lets you send CHI to other people at their CHI addresses.
 
@@ -132,7 +132,7 @@ You can check your transaction on the [Transactions screen](#transactions).
 >
 > The Send screen is not for transferring names. See <a href="#transferring-a-name">Transferring a name</a> for more information.
 
-## Transactions
+# Transactions
 
 The Transactions screen has a complete record of your transaction history.
 
@@ -157,14 +157,14 @@ more transactions.
 
 ![transactions-paging-prev-next](img/transactions-paging-prev-next.png)
 
-## Create Names
+# Create Names
 
 Creating names is one of the most important aspects of the wallet. Here you can 
 create names for accounts that you use for different games.
 
 ![create-names-screen](img/create-names-screen.zoom53.png)
 
-### Choosing an Account Name
+## Choosing an Account Name
 
 To create a name for use as an account for games:
 
@@ -185,7 +185,7 @@ This is for reserving account names.
 
 You can check your acount name on the [My Names screen](#my-names).
 
-### Choosing a Game Name
+## Choosing a Game Name
 
 This is not the actual name of your game. XAYA uses "name" as jargon. Here, a 
 "game name" is more traditionally best described as a "game ID".
@@ -206,13 +206,13 @@ This is for reserving game names.
 
 You can check your game name on the [My Names screen](#my-names).
 
-### Choosing a Custom Namespace
+## Choosing a Custom Namespace
 
 Custom namespaces are reserved for further development.
 
 There is little to no point in reserving a name in a custom namespace. Some developers may find a use, but are discouraged from using custom namespaces without serious consideration. 
 
-## My Names
+# My Names
 
 The My Names screen lists all of the names that you've reserved for yourself. 
 The following example has 1 name, but you could have many more.
@@ -227,12 +227,12 @@ There are 4 columns:
 * **Update/Transfer:** This allows you to change the properties of your name or to 
 transfer your name (account) to someone else.
 
-### Updating a Name
+## Updating a Name
 
 Unless you fully understand what an update is, you should NOT update your name. 
 Updating names is an advanced feature meant for experts.
 
-### Transferring a Name
+## Transferring a Name
 
 You can transfer a name to someone else by sending the name to a valid CHI 
 address.
@@ -249,7 +249,7 @@ The name is transferred to the address. You can check the transaction on the
 [Transactions screen](#transactions).
 
 
-## Settings
+# Settings
 
 The Settings screen lets you change connection settings, back up your wallets, 
 and switch to testnet.
@@ -288,7 +288,7 @@ On OS X (Mac) the datadir is here:
 People with limited space on their system drive may wish to change the datadir 
 folder location.
 
-### Backing Up Your Wallets
+## Backing Up Your Wallets
 
 You can back up your wallets by clicking the wallet backup buttons.
 
@@ -317,7 +317,7 @@ See [Back Up Wallets](#back-up-wallets) for additional information or
 [Manually Backing Up Wallets](#manually-backing-up-wallets) for 
 how to do it manually.
 
-### Delete Chain
+## Delete Chain
 
 If your wallet will not fully synchronise, you can click DELETE CHAIN to delete the current blockchain data and resynchronise. This should get your wallet properly sync'ing again. 
 
@@ -325,7 +325,7 @@ If your wallet will not fully synchronise, you can click DELETE CHAIN to delete 
 
 If you still experience problems, post in the <a href="https://forum.xaya.io/forum/16-support/" >Support forums here</a>. 
 
-### Testnet
+## Testnet
 
 > Most people have no need for testnet. Proceed with caution. 
 
@@ -337,7 +337,7 @@ Testnet is used for testing. Most people have no need for testnet.
 However, if you wish, you can use testnet to try out different features and 
 become familiar with them before you "go live" and try them on mainnet.
 
-## Console
+# Console
 
 The console is for testing purposes only. It is provided for those who wish to 
 get blockchain information and should not be used to write to the blockchain.
@@ -357,7 +357,7 @@ Those wishing to perform more advanced operations should work with the XAYA
 daemon directly or download the XAYA QT wallet. It is similar to the Bitcoin 
 Core wallet.
 
-## Exit
+# Exit
 
 The Exit menu item shuts down the XAYA Electron wallet and the XAYA daemon.
 

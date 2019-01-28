@@ -9,7 +9,7 @@
 - [Help](#Help)
 - [Minimize](#Minimize)
 
-## Wallets
+# Wallets
 
 The XAYA Electron wallet supports 2 distinct wallets.
 
@@ -28,7 +28,7 @@ corner of the XAYA Electron wallet.
 
 > • The individual wallets inside of the software, i.e. the vault wallet and game wallet. These are the wallet.dat files inside of the game.dat and vault.dat folders in the datadir (%APPDATA%\Xaya\, C:\Users\< user >\AppData\Roaming\Xaya, etc.).
 
-### Vault Wallet
+## Vault Wallet
 
 Your vault wallet is designed to be encrypted. This is where you should store 
 most of your CHI and valuable blockchain assets that you're not currently using.
@@ -48,7 +48,7 @@ To reiterate, **BACK UP YOUR WALLET AND STORE YOUR PASSWORD IN A SAFE PLACE**.
 
 > Did we mention that <b>BACKING UP YOUR WALLETS</b> is a good idea?
 
-### Game Wallet
+## Game Wallet
 
 > Your game wallet should NOT be encrypted. Leaving it unencrypted makes it easier and faster to do moves in games. If it were encrypted, you'd have to enter your password every time you made a move. This would be cumbersome, inconvenient, and could make some games effectively unplayable.
 
@@ -58,7 +58,7 @@ You can back up your game wallet on the [Settings screen](#settings).
 
 > In case we forgot to mention it, <b>BACKING UP YOUR WALLETS</b> is a good idea.
 
-### Very Basic Security Tips
+## Very Basic Security Tips
 
 The basic security advice here is basic, and not exhaustive. You may wish to use 
 better security practices.
@@ -86,7 +86,7 @@ amount of information on computer security available online. It can even be fun.
 
 > Being as 3 is a magic number, we should mention that <b>BACKING UP YOUR WALLETS</b> is a good idea!
 
-## Language
+# Language
 
 The language drop-down menu lets you switch languages.
 
@@ -98,7 +98,7 @@ Anyone wishing to help with translations can <a href="https://github.com/xaya/xa
 open source Github respository 
 here</a>.
 
-## About
+# About
 
 The About dialog has some basic information about the wallet, including license 
 and copyright information.
@@ -110,7 +110,7 @@ here</a>.
 
 ![about-dialog](img/about-dialog.png)
 
-## Help
+# Help
 
 The Help dialog displays links where you can get help or support.
 
@@ -118,7 +118,7 @@ It also links to this help documentation.
 
 ![help-dialog](img/help-dialog.png)
 
-## Minimize
+# Minimize
 
 Clicking the Minimize link sends the wallet to the task bar notification area 
 (aka system tray).
