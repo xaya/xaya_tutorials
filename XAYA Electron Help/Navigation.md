@@ -20,9 +20,9 @@
 	+ [Delete Chain](Navigation.md#delete-chain)
 	+ [Testnet](Navigation.md#Testnet)
 - [Console](#Console)
-- [Console](#Console)
+- [Exit](#Exit)
 
-— [Top](#top) — [Overview](#overview) — [Receive](#receive) — [Send](#send) — [Transactions](#Transactions) — [Create Names](#Create-Names) — [My Names](#My-Names)  — [Settings](#Settings) — [Console](#Console) — [Console](#Console) — 
+— [Top](#top) — [Overview](#overview) — [Receive](#receive) — [Send](#send) — [Transactions](#Transactions) — [Create Names](#Create-Names) — [My Names](#My-Names)  — [Settings](#Settings) — [Console](#Console) — [Exit](#Exit) — 
 
 # Overview
 
@@ -33,6 +33,8 @@ information, version information, and the block synchronization of the wallet.
 
 ![XAYA Electron Wallet](img/xaya-electron-wallet-overview-game-wallet.zoom52.png 
 "XAYA Electron Wallet")
+
+— [Top](#top) — [Overview](#overview) — [Receive](#receive) — [Send](#send) — [Transactions](#Transactions) — [Create Names](#Create-Names) — [My Names](#My-Names)  — [Settings](#Settings) — [Console](#Console) — [Exit](#Exit) — 
 
 ## Balance
 
@@ -101,6 +103,8 @@ To create an address:
 You can select the address and press CTRL+C or you can click COPY to copy the 
 address to the clipboard.
 
+— [Top](#top) — [Overview](#overview) — [Receive](#receive) — [Send](#send) — [Transactions](#Transactions) — [Create Names](#Create-Names) — [My Names](#My-Names)  — [Settings](#Settings) — [Console](#Console) — [Exit](#Exit) — 
+
 # Send
 
 The Send screen lets you send CHI to other people at their CHI addresses.
@@ -133,6 +137,8 @@ You can check your transaction on the [Transactions screen](#transactions).
 >
 > The Send screen is not for transferring names. See <a href="#transferring-a-name">Transferring a name</a> for more information.
 
+— [Top](#top) — [Overview](#overview) — [Receive](#receive) — [Send](#send) — [Transactions](#Transactions) — [Create Names](#Create-Names) — [My Names](#My-Names)  — [Settings](#Settings) — [Console](#Console) — [Exit](#Exit) — 
+
 # Transactions
 
 The Transactions screen has a complete record of your transaction history.
@@ -157,6 +163,8 @@ Once you scroll to the bottom, you can click the PREV or NEXT buttons to view
 more transactions.
 
 ![transactions-paging-prev-next](img/transactions-paging-prev-next.png)
+
+— [Top](#top) — [Overview](#overview) — [Receive](#receive) — [Send](#send) — [Transactions](#Transactions) — [Create Names](#Create-Names) — [My Names](#My-Names)  — [Settings](#Settings) — [Console](#Console) — [Exit](#Exit) — 
 
 # Create Names
 
@@ -213,6 +221,8 @@ Custom namespaces are reserved for further development.
 
 There is little to no point in reserving a name in a custom namespace. Some developers may find a use, but are discouraged from using custom namespaces without serious consideration. 
 
+— [Top](#top) — [Overview](#overview) — [Receive](#receive) — [Send](#send) — [Transactions](#Transactions) — [Create Names](#Create-Names) — [My Names](#My-Names)  — [Settings](#Settings) — [Console](#Console) — [Exit](#Exit) — 
+
 # My Names
 
 The My Names screen lists all of the names that you've reserved for yourself. 
@@ -249,6 +259,7 @@ address.
 The name is transferred to the address. You can check the transaction on the 
 [Transactions screen](#transactions).
 
+— [Top](#top) — [Overview](#overview) — [Receive](#receive) — [Send](#send) — [Transactions](#Transactions) — [Create Names](#Create-Names) — [My Names](#My-Names)  — [Settings](#Settings) — [Console](#Console) — [Exit](#Exit) — 
 
 # Settings
 
@@ -338,6 +349,8 @@ Testnet is used for testing. Most people have no need for testnet.
 However, if you wish, you can use testnet to try out different features and 
 become familiar with them before you "go live" and try them on mainnet.
 
+— [Top](#top) — [Overview](#overview) — [Receive](#receive) — [Send](#send) — [Transactions](#Transactions) — [Create Names](#Create-Names) — [My Names](#My-Names)  — [Settings](#Settings) — [Console](#Console) — [Exit](#Exit) — 
+
 # Console
 
 The console is for testing purposes only. It is provided for those who wish to 
@@ -358,6 +371,8 @@ Those wishing to perform more advanced operations should work with the XAYA
 daemon directly or download the XAYA QT wallet. It is similar to the Bitcoin 
 Core wallet.
 
+— [Top](#top) — [Overview](#overview) — [Receive](#receive) — [Send](#send) — [Transactions](#Transactions) — [Create Names](#Create-Names) — [My Names](#My-Names)  — [Settings](#Settings) — [Console](#Console) — [Exit](#Exit) — 
+
 # Exit
 
 The Exit menu item shuts down the XAYA Electron wallet and the XAYA daemon.
@@ -367,7 +382,7 @@ The Exit menu item shuts down the XAYA Electron wallet and the XAYA daemon.
 You must have the daemon running in order to play games or interact with the 
 XAYA blockchain. The wallet is a convenient GUI wrapped around the daemon.
 
-
+— [Top](#top) — [Overview](#overview) — [Receive](#receive) — [Send](#send) — [Transactions](#Transactions) — [Create Names](#Create-Names) — [My Names](#My-Names)  — [Settings](#Settings) — [Console](#Console) — [Exit](#Exit) — 
 
 
 
