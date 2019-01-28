@@ -1,0 +1,2 @@
+ - <a href='https://xaya.io/'>Visit XAYA</a>
+ - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
