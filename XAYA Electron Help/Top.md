@@ -1,8 +1,8 @@
 # Top Navigation
 
 - [Wallets](#Wallets)
-	+ [Vault](#Vault-wallet)
-	+ [Game](#Game-wallet)
+	+ [Vault Wallet](#Vault-wallet)
+	+ [Game Wallet](#Game-wallet)
 	+ [Very Basic Security Tips](#very-basic-security-tips)
 - [Language](#Language)
 - [About](#About)
