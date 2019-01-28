@@ -28,7 +28,7 @@ information, version information, and the block synchronization of the wallet.
 ### Balance
 
 The Balance area on the Overview screen displays how much CHI you have in the 
-[currently selected wallet](#wallets).
+[currently selected wallet](Top.md#wallets).
 
 ![balance-area](img/balance-area.png)
 
