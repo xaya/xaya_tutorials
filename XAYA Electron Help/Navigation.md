@@ -68,8 +68,8 @@ is (probably) synchronised with the network.
 
 ![block-progression-area](img/block-progression-area.png)
 
-If you cannot get your wallet to synchronise properly, visit the <a href="https://forum.xaya.io/" target="_blank">XAYA 
-forums</a> and post in the <a href="https://forum.xaya.io/forum/16-support/" target="_blank">Support 
+If you cannot get your wallet to synchronise properly, visit the <a href="https://forum.xaya.io/" >XAYA 
+forums</a> and post in the <a href="https://forum.xaya.io/forum/16-support/" >Support 
 forum</a>.
 
 > It is possible that during a lengthy synchronisation, the two numbers could be equal for a very short period without your wallet being fully synchronised due to there being more blocks to be downloaded still. This is rare and only lasts a very short time.
@@ -315,7 +315,7 @@ If your wallet will not fully synchronise, you can click DELETE CHAIN to delete 
 
 > Keep in mind that it can take a significant amount of time to fully resync your wallet, and largely depends on your network speed.  
 
-If you still experience problems, post in the <a href="https://forum.xaya.io/forum/16-support/" target="_blank">Support forums here</a>. 
+If you still experience problems, post in the <a href="https://forum.xaya.io/forum/16-support/" >Support forums here</a>. 
 
 ### Testnet
 

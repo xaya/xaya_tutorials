@@ -91,7 +91,7 @@ The language drop-down menu lets you switch languages.
 
 Ten languages are currently supported. More language will follow.
 
-Anyone wishing to help with translations can <a href="https://github.com/xaya/xaya_electron/tree/master/src/assets/i18n" target="_blank">find the language resources at the 
+Anyone wishing to help with translations can <a href="https://github.com/xaya/xaya_electron/tree/master/src/assets/i18n" >find the language resources at the 
 open source Github respository 
 here</a>.
 
@@ -100,9 +100,9 @@ here</a>.
 The About dialog has some basic information about the wallet, including license 
 and copyright information.
 
-XAYA is open source. Source code is available at the <a href="https://github.com/xaya/" target="_blank">XAYA Github respository here</a>.
+XAYA is open source. Source code is available at the <a href="https://github.com/xaya/" >XAYA Github respository here</a>.
 
-XAYA is experimental software <a href="https://opensource.org/licenses/MIT" target="_blank">distributed under the MIT license available 
+XAYA is experimental software <a href="https://opensource.org/licenses/MIT" >distributed under the MIT license available 
 here</a>.
 
 ![about-dialog](img/about-dialog.png)

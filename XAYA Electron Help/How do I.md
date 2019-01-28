@@ -273,8 +273,8 @@ control over who buys or sells CHI.
 
 CHI may be purchased on an exchange.
 
-Check the XAYA forums at <a href="https://forum.xaya.io/" target="\_blank">https://forum.xaya.io/</a> or 
-Telegram channel at <a href="https://t.me/xaya_en" target="\_blank">https://t.me/xaya_en/</a> for any 
+Check the XAYA forums at <a href="https://forum.xaya.io/" >https://forum.xaya.io/</a> or 
+Telegram channel at <a href="https://t.me/xaya_en" >https://t.me/xaya_en/</a> for any 
 exchange listings.
 
 ## Get an Account Name
@@ -321,12 +321,12 @@ Names](#my-names) or [Transactions](#transactions) in that wallet.
 
 Mining is a complex topic and beyond the scope of this help file.
 
-See the <a href="https://forum.xaya.io/forum/14-mining/" target="_blank">Mining forum</a> for information 
+See the <a href="https://forum.xaya.io/forum/14-mining/" >Mining forum</a> for information 
 and help.
 
 ## Get Support
 
-Visit the <a href="https://forum.xaya.io/forum/16-support/" target="_blank">XAYA Support forum</a> for 
+Visit the <a href="https://forum.xaya.io/forum/16-support/" >XAYA Support forum</a> for 
 general support.
 
 ## Fix Sync Problems
