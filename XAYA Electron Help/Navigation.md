@@ -85,6 +85,7 @@ forum</a>.
 
 > It is possible that during a lengthy synchronisation, the two numbers could be equal for a very short period without your wallet being fully synchronised due to there being more blocks to be downloaded still. This is rare and only lasts a very short time.
 
+— [Top](#top) — [Overview](#overview) — [Receive](#receive) — [Send](#send) — [Transactions](#Transactions) — [Create Names](#Create-Names) — [My Names](#My-Names)  — [Settings](#Settings) — [Console](#Console) — [Exit](#Exit) — 
 
 # Receive
 
