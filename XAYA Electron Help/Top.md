@@ -9,6 +9,8 @@
 - [Help](#Help)
 - [Minimize](#Minimize)
 
+— [Wallets](#Wallets)  —  [Language](#Language) — [About](#About)  — [Help](#Help)  — [Minimize](#Minimize)  —   
+
 # Wallets
 
 The XAYA Electron wallet supports 2 distinct wallets.
