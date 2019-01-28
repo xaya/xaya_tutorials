@@ -21,6 +21,9 @@
 # Top Navigation
 
 - [Wallets](Top.md#Wallets)
+	+ [Vault](Top.md#Vault-wallet)
+	+ [Game](Top.md#Game-wallet)
+	+ [Very Basic Security Tips](Top.md#very-basic-security-tips)
 - [Language](Top.md#Language)
 - [About](Top.md#About)
 - [Help](Top.md#Help)
