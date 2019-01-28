@@ -20,8 +20,9 @@
 	+ [Delete Chain](Navigation.md#delete-chain)
 	+ [Testnet](Navigation.md#Testnet)
 - [Console](#Console)
-- [Exit](#Exit)
+- [Console](#Console)
 
+— [Top](#top) — [Overview](#overview) — [Receive](#receive) — [Send](#send) — [Transactions](#Transactions) — [Create Names](#Create-Names) — [My Names](#My-Names)  — [Settings](#Settings) — [Console](#Console) — [Console](#Console) — 
 
 # Overview
 
