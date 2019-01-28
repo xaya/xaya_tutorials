@@ -4,7 +4,7 @@
 
 # Navigation Tabs
 
--[Overview](#overview)
+- [Overview](#overview)
 	+ [Balance](#Balance)
 	+ [Network Info](#Network-Info)
 	+ [Version](#version)
