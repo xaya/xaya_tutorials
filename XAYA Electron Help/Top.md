@@ -19,14 +19,11 @@ corner of the XAYA Electron wallet.
 
 ![xaya-wallet-selector](img/xaya-wallet-selector.png)
 
-<aside class="notice">The term "wallet" refers to several distinct things.
-<br /><br />
-• The wallet software, e.g. XAYA Electron wallet, or XAYA QT wallet
-<br />
-• The individual wallets inside of the software, i.e. the vault wallet and game 
-wallet. These are the wallet.dat files inside of the game.dat and vault.dat 
-folders in the datadir (%APPDATA%\Xaya\, 
-C:\Users\< user >\AppData\Roaming\Xaya, etc.).</aside>
+> The term "wallet" refers to several distinct things.
+
+> • The wallet software, e.g. XAYA Electron wallet, or XAYA QT wallet
+
+> • The individual wallets inside of the software, i.e. the vault wallet and game wallet. These are the wallet.dat files inside of the game.dat and vault.dat folders in the datadir (%APPDATA%\Xaya\, C:\Users\< user >\AppData\Roaming\Xaya, etc.).
 
 ### Vault Wallet
 
@@ -46,27 +43,24 @@ wallet.
 
 To reiterate, **BACK UP YOUR WALLET AND STORE YOUR PASSWORD IN A SAFE PLACE**.
 
-<aside class="success">Did we mention that <b>BACKING UP YOUR WALLETS</b> is a good idea?</aside>
+> Did we mention that <b>BACKING UP YOUR WALLETS</b> is a good idea?
 
 ### Game Wallet
 
-Your game wallet should NOT be encrypted. Leaving it unencrypted makes it easier 
-and faster to do moves in games. If it were encrypted, you'd have to enter your 
-password every time you made a move. This would be cumbersome, inconvenient, and 
-could make some games effectively unplayable.
+> Your game wallet should NOT be encrypted. Leaving it unencrypted makes it easier and faster to do moves in games. If it were encrypted, you'd have to enter your password every time you made a move. This would be cumbersome, inconvenient, and could make some games effectively unplayable.
 
 The game wallet is what you will be using most of the time.
 
 You can back up your game wallet on the [Settings screen](#settings).
 
-<aside class="success">In case we forgot to mention it, <b>BACKING UP YOUR WALLETS</b> is a good idea.</aside>
+> In case we forgot to mention it, <b>BACKING UP YOUR WALLETS</b> is a good idea.
 
 ### Very Basic Security Tips
 
 The basic security advice here is basic, and not exhaustive. You may wish to use 
 better security practices.
 
-Never give anyone your wallet.dat file or password.
+> Never give anyone your wallet.dat file or password.
 
 Physical security is important. Do not run XAYA wallet software on computers 
 that other people have access to. If you must run the software on a computer 
@@ -87,7 +81,7 @@ running wallet software on.
 Ultimately you and only you are responsible for your security. There is a great 
 amount of information on computer security available online. It can even be fun.
 
-<aside class="success">Being as 3 is a magic number, we should mention that <b>BACKING UP YOUR WALLETS</b> is a good idea!</aside>
+> Being as 3 is a magic number, we should mention that <b>BACKING UP YOUR WALLETS</b> is a good idea!
 
 ## Language
 

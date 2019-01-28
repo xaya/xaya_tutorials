@@ -23,7 +23,7 @@ You must back up your vault wallet after you encrypt it and ensure that you have
 stored your password for it safely. Failure to do so could result in lost CHI 
 and lost blockchain assets.
 
-<aside class="success">Once you've encrypted your vault wallet, you'll no longer be nagged continually and forever by the XAYA Electron wallet to encrypt your vault wallet... and it will nag you forever... until you encrypt your vault wallet... with a password that you 100% promise to never lose or forget. Right?</aside>
+> Once you've encrypted your vault wallet, you'll no longer be nagged continually and forever by the XAYA Electron wallet to encrypt your vault wallet... and it will nag you forever... until you encrypt your vault wallet... with a password that you 100% promise to never lose or forget. Right?
 
 Ideally, you should start with a 0 balance in your vault wallet and have no 
 blockchain assets or names stored in it. The purpose here is to test your newly 
@@ -96,9 +96,8 @@ at step 1.
 
 If for any reason you want or need a new wallet, it's very simple to do.
 
-<aside class="warning">
-This is simple for advanced users. If you aren't comfortable working outside of regular user folders, proceed with caution and always make backups of your wallets as described in <a href="#backing-up-your-wallets">Settings</a>.
-</aside>
+> This is simple for advanced users. If you aren't comfortable working outside of regular user folders, proceed with caution and always make backups of your wallets as described in <a href="#backing-up-your-wallets">Settings</a>.
+
 
 The XAYA Electron wallet has 2 wallets: a game wallet and a vault wallet. They 
 are located here:
@@ -180,15 +179,13 @@ The easiest way to back up your wallets is to use the backup feature in
 [Click here for help with the built-in backup 
 feature](#backing-up-your-wallets).
 
-<aside class="warning">Unless you are comfortable with manual backups, you should only use the built-in backup feature.</aside>
+> Unless you are comfortable with manual backups, you should only use the built-in backup feature.
 
 ### Manually Backing Up Wallets
 
 The following explains in detail how to back up your wallets manually.
 
-<aside class="warning">NOTE: This is for advanced users. If you have any difficulty whatsoever with 
-anything below, you should use the backup features in the Electron or QT wallet 
-software.</aside>
+> NOTE: This is for advanced users. If you have any difficulty whatsoever with anything below, you should use the backup features in the Electron or QT wallet software.
 
 ### File-based Backups
 

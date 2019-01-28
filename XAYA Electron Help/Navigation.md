@@ -53,9 +53,9 @@ on testnet (this is where testing is done).
 with a shorter version (true).
 * **Median Time:** Just the time. It updates periodically, and not in real time.
 
-### Versions
+### Version
 
-The versions area displays the current XAYA Electron wallet version and the 
+The version area displays the current XAYA Electron wallet version and the 
 current XAYA daemon version.
 
 ![versions-area](img/versions-area.png)
@@ -72,9 +72,8 @@ If you cannot get your wallet to synchronise properly, visit the <a href="https:
 forums</a> and post in the <a href="https://forum.xaya.io/forum/16-support/" target="_blank">Support 
 forum</a>.
 
-<aside class="notice">
-It is possible that during a lengthy synchronisation, the two numbers could be equal for a very short period without your wallet being fully synchronised due to there being more blocks to be downloaded still. This is rare and only lasts a very short time.
-</aside>
+> It is possible that during a lengthy synchronisation, the two numbers could be equal for a very short period without your wallet being fully synchronised due to there being more blocks to be downloaded still. This is rare and only lasts a very short time.
+
 
 ## Receive
 
@@ -117,14 +116,13 @@ sending.
 
 You can check your transaction on the [Transactions screen](#transactions).
 
-<aside class="warning">DO NOT TYPE ADDRESSES.</aside>
+> DO NOT TYPE ADDRESSES.
 
-Typing address is highly discouraged. You could make a simple mistake, and lose 
-your CHI.
+> Typing address is highly discouraged. You could make a simple mistake, and lose your CHI.
 
-We **STRONGLY** recommend copying and pasting addresses.
+> We **STRONGLY** recommend copying and pasting addresses.
 
-<aside class="notice">The Send screen is not for transferring names. See <a href="#transferring-a-name">Transferring a name</a> for more information.</aside>
+> The Send screen is not for transferring names. See <a href="#transferring-a-name">Transferring a name</a> for more information.
 
 ## Transactions
 
@@ -316,13 +314,13 @@ how to do it manually.
 
 If your wallet will not fully synchronise, you can click DELETE CHAIN to delete the current blockchain data and resynchronise. This should get your wallet properly sync'ing again. 
 
-<aside class="warning">Keep in mind that it can take a significant amount of time to fully resync your wallet, and largely depends on your network speed. </aside> 
+> Keep in mind that it can take a significant amount of time to fully resync your wallet, and largely depends on your network speed.  
 
 If you still experience problems, post in the <a href="https://forum.xaya.io/forum/16-support/" target="_blank">Support forums here</a>. 
 
 ### Testnet
 
-<aside class="warning">Most people have no need for testnet. Proceed with caution. </aside>
+> Most people have no need for testnet. Proceed with caution. 
 
 To switch to testnet, check the Testnet checkbox then click the SUBMIT SETTINGS 
 button and restart the XAYA Electron wallet.
@@ -341,7 +339,7 @@ get blockchain information and should not be used to write to the blockchain.
 
 Type "help" then press Enter or click SEND for a list of commands.
 
-<aside class="warning">Not all commands are supported in the XAYA Electron wallet. Use the XAYA QT wallet for full support.</aside>
+> Not all commands are supported in the XAYA Electron wallet. Use the XAYA QT wallet for full support.
 
 An example of a useful command is "getmininginfo". It returns the current 
 results, similar to the figure below.
