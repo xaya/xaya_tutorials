@@ -13,8 +13,8 @@ For game developers, this is the first place you should look to get started with
 	+ [RPC Windows C# Tutorial](#RPC-Windows-C-Tutorial)
 - **[libxayagame](#libxayagame)**
 	+ [Component Relationships](#Component-Relationships)
-	+ [Mover Sharp - A C# Implementation](#)
 	+ [Mover Sample Game Overview](#Mover-Sample-Game-Overview)
+	+ [Mover Sharp - A C# Implementation](#)
 	+ [Mover in Unity](#Mover-in-Unity)
 - **[Regtestnet](#Regtestnet)**
 - **[Getting Started with xaya-cli](#Getting-Started-with-xaya-cli)**
