@@ -4,7 +4,7 @@
 
 — [Navigation Tabs](#Navigation-Tabs) — [Top Navigation](#top-navigation) — [How do I...?](#how-do-i) — [About XAYA](#about-xaya) —
 
-# Navigation Tabs
+# [Navigation Tabs](Navigation.md)
 
 - [Overview](Navigation.md#overview)
 	+ [Balance](Navigation.md#Balance)
@@ -30,7 +30,7 @@
 
 — [Navigation Tabs](#Navigation-Tabs) — [Top Navigation](#top-navigation) — [How do I...?](#how-do-i) — [About XAYA](#about-xaya) —
 
-# Top Navigation
+# [Top Navigation](Top.md)
 
 - [Wallets](Top.md#Wallets)
 	+ [Vault](Top.md#Vault-wallet)
@@ -43,7 +43,7 @@
 
 — [Navigation Tabs](#Navigation-Tabs) — [Top Navigation](#top-navigation) — [How do I...?](#how-do-i) — [About XAYA](#about-xaya) —
 
-# How do I...?
+# [How do I...?](How%20do%20I.md)
 
 - [Encrypt Vault Wallet](How%20do%20I.md#Encrypt-vault-wallet)
 - [Get a New Wallet](How%20do%20I.md#Geta-new-wallet)
@@ -62,7 +62,7 @@
 - [Get Support](How%20do%20I.md#Get-support)
 - [Fix Stuck Wallet](How%20do%20I.md#Fix-stuck-wallet)
 
-# About XAYA
+# [About XAYA](About.md)
 
 - [About XAYA](About.md#about-xaya)
 - [Further Documentation](About.md#Further-Documentation)
