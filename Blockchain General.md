@@ -77,7 +77,9 @@ Blockchains must have high performance. There are many different operations and 
 
 There can be no variation in results for the same inputs. All operations must be deterministic, such as how hash operations are deterministic and their outputs are always the same for the same inputs. All machines running any given code must always produce the same results. 
 
+# Time on the Blockchain
 
+Time on the blockchain operates slightly differently from how we normally perceive time. Time is measured in "blocks" instead of seconds, minutes, etc. Difficulty adjustments are used to make blocks easier or more difficult to solve, which simply means that they're faster or slower to solve. Difficulty retargeting algorithms are used to determine difficulty levels that will be solved on average in a predetermined number of seconds or minutes. In this way, each block is (on average) solved in 10 minutes for Bitcoin, or 30 seconds for XAYA. 
 
 
 
