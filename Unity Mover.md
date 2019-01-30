@@ -1,5 +1,7 @@
 # Mover Sample Game in C# with Unity
 
+*IN PROGRESS...*
+
 This tutorial demonstrates how to wire up a game to run on the XAYA platform. Of particular interest, it shows how to use libxayagame and various RPCs. But most importantly, it shows how to write a simple game on the XAYA platform. Portions of this tutorial repeat portions of other tutorials. 
 
 You'll need to download the code. It's available here. Extract the ZIP file. You'll find 3 projects inside the folder. 
@@ -628,9 +630,45 @@ Member variables of `MoveGUIAndGameController` are then set. Most importantly:
 
 # Game Logic
 
-At long last we arrive at the game logic. 
+At long last we arrive at the game logic. It is in the `XAYAMoverGame` namespace and contained in 3 files:
+
+- JSONClasses.cs
+- HelperFunctions.cs
+- CallbackFunctions.cs
+
+The following is a class diagram of `XAYAMoverGame`.
 
 ![XAYA Mover Game Class Diagram.png](img/XAYAMoverGameClassDiagram.png)
+
+JSONClasses.cs has the core classes for game elements.
+
+- Direction: This is the direction for the player to move
+- PlayerState: This tells where the player is on the map, their direction, and the number of steps left for them to take
+- GameStateResultFromResponse: This is for receiving a GameStateResult. It has been implemented in BitcoinLib as `GameStateResult` to illustrate another technique 
+- GameState: This is a dictionary of all players, i.e. their `PlayerState`s. `GameState` is used to update the front end
+- PlayerUndo: This is the undo information for a single player
+- UndoData: This is a `Dictionary` of `PlayerUndo`s. It is used to rewind the current game state by 1 block
+
+Because a user could encounter a bad block or require a reorg, we need to keep undo data so that we can "rewind" the game if needed. You can think of this as a user being sucked into an alternate reality that's not compatible with the game. Undoing (or rewinding) then brings them back into reality, i.e. a valid game state. 
+
+We'll examing rewinding when we look at the [backwardCallbackResult](#backwardCallbackResult).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
