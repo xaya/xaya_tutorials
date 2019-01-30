@@ -64,6 +64,8 @@ There is no 'fast' way to explain the callbacks. Please see below for more infor
 
 If you have further questions from the FAST way, see the relevant portions below. 
 
+********
+
 # Tutorial Requirements
 
 For this tutorial, you'll need several pieces of software:
@@ -239,6 +241,8 @@ The Connect signature is:
 - glogsPath: The path to glog
 
 We'll look at getting data (new game states) from libxayagame below.
+
+**********
 
 # XAYAUnity
 
@@ -538,7 +542,7 @@ There is no error checking there for the sake of simplicity. However, in general
 
 The `xayaService.GetNameList` is the RPC call to the XAYA wallet to get the names. 
 
-With the name list populated,
+With the name list populated, users can select a name and play the game. 
 
 
 
