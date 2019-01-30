@@ -110,7 +110,7 @@ For our purposes, this is a "black box" until we look at the XAYAMoverGame names
 
 ## XAYAConnector
 
-This is where `XAYAWrapper` is used. It gets data through RPC (BitcoinLib) and updates information for `MoveGUIAndGameController` so that `MoveGUIAndGameController` can update the UI. This will be examined in more depth later. 
+This connects to and disconnects from `XAYAWrapper`. It gets data through RPC (BitcoinLib) and updates information for `MoveGUIAndGameController` so that `MoveGUIAndGameController` can update the UI. This will be examined in more depth later. 
 
 ## XAYAClient
 
@@ -285,7 +285,16 @@ When running and filled in, those settings will appear as illustrated below.
 
 ![Settings filled in](img/Unity-connection-settings-filled-in.png)
 
-These settings are used with XAYAConnector as we'll see below.
+These settings are used with XAYAWrapper as we'll see below.
+
+How these settings make their way to XAYAWrapper follows this path:
+
+1. Settings are saved as member variables in `MoveGUIAndGameController`
+2. `XAYAConnector.LaunchMoverStateProcessor` sets 2 additional parameters and starts a [coroutine](https://docs.unity3d.com/ScriptReference/MonoBehaviour.StartCoroutine.html) with `StartEnum` in order to continue starting the XAYAWrapper
+3. `XAYAConnector.StartEnum` uses Ciela Spike's ThreadNinja to start an asynchronous coroutine with `DaemonAsync`
+4. `XAYAConnector.DaemonAsync` finally constructs the `XAYAWrapper` (`wrapper`) and calls its `Connect` method
+
+The following walks through those steps all the way from initially getting the settings to finally connecting and disconnecting the XAYAWrapper.
 
 ## Saving Settings
 
@@ -382,7 +391,7 @@ Actually starting the wrapper is done in a separate thread beginning with `Start
         }
     }
 
-This starts `DaemonAsync` in a thread. We've already seen some of this code when we looked at how to wire up [XAYAWrapper](#XAYAWrapper) above.
+This starts `DaemonAsync` in a thread. We've already seen some of this code when we looked at wiring up [XAYAWrapper](#XAYAWrapper) above.
 
     IEnumerator DaemonAsync()
     {
