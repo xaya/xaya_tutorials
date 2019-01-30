@@ -1134,7 +1134,8 @@ Mover is very simple. To update the map, it's cleared and then each player is ad
 
 `pDic` is used to set the coordinates as the player is placed on the map.
 
-	player.GetComponent<RectTransform>().anchoredPosition = new Vector3(pWidth * pDic.Value.x, pWidth * pDic.Value.y, 0);
+	player.GetComponent<RectTransform>().anchoredPosition 
+		= new Vector3(pWidth * pDic.Value.x, pWidth * pDic.Value.y, 0);
 
 Most everything else in the `RedrawGameClient` method is regular code. 
 
