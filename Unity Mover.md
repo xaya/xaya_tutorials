@@ -309,7 +309,7 @@ The `FillSettingsFromPlayerPrefs` method sets connection member variables from t
         chain_s = PlayerPrefs.GetInt("chain", 0);
     }
 
-## Starting XAYAConnector
+## Starting XAYAConnector and Disconnecting
 
 Starting and stopping the XAYAConnector is done in the OnButton_DaemonLaunch method.
 
@@ -326,7 +326,7 @@ Starting and stopping the XAYAConnector is done in the OnButton_DaemonLaunch met
         }
     }
 
-## Disconnecting
+### Starting
 
 Starting is done in XAYAConector's `LaunchMoverStateProcessor` method.
 
@@ -351,6 +351,8 @@ Starting is done in XAYAConector's `LaunchMoverStateProcessor` method.
     }
 
 There we can see the settings from `MoveGUIAndGameController` being used. 
+
+### Disconnecting
 
 The XAYAConnection `Disconnect` method is:
 
