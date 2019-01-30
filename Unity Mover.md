@@ -381,9 +381,13 @@ That method recursively tries to stop the connection to the wrapper.
 The CONNECT button in the front end calls the `ConnectClient` method. This method does 2 things:
 
 1. Connects `xayaClient`
+
 	xayaClient.Connect()
+
 2. Submits moves 
-	ShowError(xayaClient.ExecuteMove(nameSelected, DirectionDropdownToMoverDir(directionSelected), distanceSelected));
+
+	ShowError(xayaClient.ExecuteMove(nameSelected, 
+		DirectionDropdownToMoverDir(directionSelected), distanceSelected));
 
 
 
