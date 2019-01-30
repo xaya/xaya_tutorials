@@ -1,6 +1,6 @@
 # Mover Sample Game in C# with Unity
 
-*IN PROGRESS...*
+**IN PROGRESS...**
 
 This tutorial demonstrates how to wire up a game to run on the XAYA platform. Of particular interest, it shows how to use libxayagame and various RPCs. But most importantly, it shows how to write a simple game on the XAYA platform. Portions of this tutorial repeat portions of other tutorials. This tutorial is written such that you can skip around easily to those parts of greatest interest to you. 
 
@@ -22,7 +22,7 @@ If you're impatient and simply want to get started, you can use the code as a te
 The most important things you'll also need to know are:
 
 - [How to write the callbacks for XAYA](#Callbacks)
-- [How to consume a GameState and update the front end](# Update-the-Front-End-with-a-GameState)
+- [How to consume a GameState and update the front end](#Update-the-Front-End-with-a-GameState)
 
 ## 1) Compile BitcoinLib and XAYAWrapper
 
