@@ -1104,108 +1104,39 @@ Your game will require more complex logic to undo a block, but the above should 
 
 # Update the Front End with a GameState
 
-After creating the game logic, it's time to update the front end for the user.
+After creating the game logic, it's time to update the front end for the user. There are 2 important methods in `MoveGUIAndGameController`.
 
+- Update
+- RedrawGameClient
 
+`Update` is automatically called by Unity. In it, we check to see if the game screen needs to be redrawn/updated.
 
+    void Update()
+    {
+        if (needsRedraw)
+        {
+            needsRedraw = false;
+            RedrawGameClient();
+        }
+    }
 
+As we saw above, the `needsRedraw` flag is set to true whenever new information comes in from XAYAWrapper. It was set in `XAYAConnector.WaitForChangesInner`.
 
+	MoveGUIAndGameController.Instance.needsRedraw = true;
 
+If `needsRedraw` is `true`, it's set to `false` and `RedrawGameClient` is called.
 
+`RedrawGameClient` is where the `GameState` (`state`) is consumed in order to process all the moves that were included in the last mined block and update the display.
 
+Mover is very simple. To update the map, it's cleared and then each player is added inside a loop.
 
+	foreach (KeyValuePair<string, PlayerState> pDic in state.players)
 
+`pDic` is used to set the coordinates as the player is placed on the map.
 
+	player.GetComponent<RectTransform>().anchoredPosition = new Vector3(pWidth * pDic.Value.x, pWidth * pDic.Value.y, 0);
 
-************
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-************
-
-\#4 is the simplest to explain. `MoverObject` isn't a part of the core game files. Instead, it inherits from MonoBehaviour. A instance is constructed and set in the Redraw method, but it is never used. When set, it's given a value from the game state. This illustrates how you can pull data from the game state and create some object not strictly defined inside of the game state processor (GSP) or game logic to use in the front end. 
-
-For example, you may have many other properties defined for a "game piece", but only important parts for the game logic are stored or processed in the game logic. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Most everything else in the `RedrawGameClient` method is regular code. 
 
 
 
