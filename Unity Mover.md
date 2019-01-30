@@ -211,10 +211,12 @@ The constructor's signature is:
 		FLAGS_xaya_rpc_url, 
 		MoveGUIAndGameController.Instance.gamehostport_s, 
 		MoveGUIAndGameController.Instance.chain_s.ToString(), 
-		MoveGUIAndGameController.Instance.GetStorageString(MoveGUIAndGameController.Instance.storage_s), 
+		MoveGUIAndGameController.Instance.GetStorageString(
+			MoveGUIAndGameController.Instance.storage_s), 
 		"mv", 
 		dPath + "\\..\\XayaStateProcessor\\database\\", 
 		dPath + "\\..\\XayaStateProcessor\\glogs\\" );
+
 
 The Connect signature is:
 
@@ -352,6 +354,61 @@ Starting is done in XAYAConector's `LaunchMoverStateProcessor` method.
 
 There we can see the settings from `MoveGUIAndGameController` being used. 
 
+#### Starting the Wrapper
+
+Actually starting the wrapper is done in a separate thread beginning with `StartCoroutine(StartEnum())`. 
+
+    IEnumerator StartEnum()
+    {
+        Task task;
+        this.StartCoroutineAsync(DaemonAsync(), out task);
+        yield return StartCoroutine(task.Wait());
+
+        if (task.State == TaskState.Error)
+        {
+            MoveGUIAndGameController.Instance.ShowError(task.Exception.ToString());
+            Debug.LogError(task.Exception.ToString());
+        }
+    }
+
+This starts `DaemonAsync` in a thread. We've already seen some of this code when we looked at how to wire up [XAYAWrapper](#XAYAWrapper) above.
+
+    IEnumerator DaemonAsync()
+    {
+        string functionResult = "";
+
+        wrapper = new XayaWrapper(dPath, MoveGUIAndGameController.Instance.host_s, 
+		MoveGUIAndGameController.Instance.gamehostport_s, 
+		ref functionResult, 
+		CallbackFunctions.initialCallbackResult, 
+		CallbackFunctions.forwardCallbackResult,
+		CallbackFunctions.backwardCallbackResult);
+
+        yield return Ninja.JumpToUnity;
+        Debug.Log(functionResult);
+        yield return Ninja.JumpBack;
+
+        functionResult = wrapper.Connect(dPath, 
+		FLAGS_xaya_rpc_url, 
+		MoveGUIAndGameController.Instance.gamehostport_s, 
+		MoveGUIAndGameController.Instance.chain_s.ToString(), 
+		MoveGUIAndGameController.Instance.GetStorageString(
+			MoveGUIAndGameController.Instance.storage_s), 
+		"mv", 
+		dPath + "\\..\\XayaStateProcessor\\database\\", 
+		dPath + "\\..\\XayaStateProcessor\\glogs\\" );
+
+        yield return Ninja.JumpToUnity;
+        Debug.Log(functionResult);
+        yield return Ninja.JumpBack;
+
+        Debug.Log("Check if fatal?");
+
+        CheckIfFatalError();
+    }
+
+`wrapper.Connect` is called and if all goes well, we're successfully connected to libxayagame. 
+
 ### Disconnecting
 
 The XAYAConnection `Disconnect` method is:
@@ -378,7 +435,7 @@ That method recursively tries to stop the connection to the wrapper.
 
 # Connecting XAYAClient
 
-The CONNECT button in the front end calls the `ConnectClient` method. This method does 2 things:
+The CONNECT button in the front end calls the `ConnectClient` method. This method does 3 things:
 
 1. Connects `xayaClient`
 
@@ -389,7 +446,92 @@ The CONNECT button in the front end calls the `ConnectClient` method. This metho
 	ShowError(xayaClient.ExecuteMove(nameSelected, 
 		DirectionDropdownToMoverDir(directionSelected), distanceSelected));
 
+3. Toggles between "CONNECT" and "MOVE!"
 
+When `xayaClient` connects, it:
+
+1. Creates a XAYAService (from BitcoinLib) for RPC calls 
+2. Subscribes the XAYAConnector to the wrapper to listen for updates.
+
+Connecting `xayaService` is done in its constructor:
+
+	xayaService = new XAYAService(MoveGUIAndGameController.Instance.host_s + ":" 
+		+ MoveGUIAndGameController.Instance.hostport_s + "/wallet/game.dat", 
+		MoveGUIAndGameController.Instance.rpcuser_s, 
+		MoveGUIAndGameController.Instance.rpcpassword_s, 
+		"", 
+		10);
+
+If the connection is successful, `XAYAClient` calls:
+
+	connector.SubscribeForBlockUpdates();
+
+This subscribes the XAYAConnector instance to updates from libxayagame (`XAYAWrapper` or `wrapper`). This happens in a separate thread to prevent blocking. See [SubscribeForBlockUpdates](#SubscribeForBlockUpdates) below for how this is done. 
+
+# Getting and Populating Player Names
+
+Once connected, we can get a list of names from the user's wallet and populate the name list drop down menu.
+
+![Getting Names](img/Populate-names.png)
+
+`FillNameList` gets and populates the menu.
+
+    public void FillNameList()
+    {
+        nameList = xayaClient.GetNameList();
+
+        playernamelist.ClearOptions();
+        playernamelist.AddOptions(nameList);
+
+        if(nameList.Count > 0 && nameSelected.Length <= 1)
+        {
+            nameSelected = nameList[0];
+        }
+    }
+
+There is no error checking there for the sake of simplicity. However, in general you should check that:
+
+* You only use names in the `p/` namespace
+* You ensure that elements of your game properly handle long or otherwise complex names
+* You filter for script injection attacks
+
+## Getting the Names
+
+`xayaClient.GetNameList` returns a `List<string>` of names. 
+
+    public List<string> GetNameList()
+    {
+        List<string> allMyNames = new List<string>();
+
+        List<GetNameListResponse> nList = xayaService.GetNameList();
+
+        foreach(var nname in nList)
+        {
+            if (nname.ismine == true)
+            {
+                allMyNames.Add(nname.name);
+            }
+        }
+
+        return allMyNames;
+    }
+
+The `xayaService.GetNameList` is the RPC call to the XAYA wallet to get the names. 
+
+With the name list populated,
+
+
+
+
+
+
+
+
+
+
+
+
+************
 
 
 
@@ -397,6 +539,8 @@ The CONNECT button in the front end calls the `ConnectClient` method. This metho
 # Getting a Player
 
 The front end (`MoveGUIAndGameController`) needs to get a list of names from the XAYA wallet in order for 
+
+
 
 
 # Connecting from the Front End
