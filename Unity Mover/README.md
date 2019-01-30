@@ -12,17 +12,17 @@ You'll need to download the code. It's available here. Extract the ZIP file. You
 
 # The FAST Way to Get Started
 
-If you're impatient and simply want to get started, here's how. For a thorough tutorial, skip to here.
+If you're impatient and simply want to get started, you can use the code as a template. For a thorough tutorial, [skip to here](#Tutorial-Requirements).
 
 1. Compile BitcoinLib and XAYAWrapper
-2. Create your game in Unity with Mover as a template
+2. Use Mover as a template
 3. Write your game logic
 4. Write your front end
 
 The most important things you'll also need to know are:
 
-- How to write the callbacks for XAYA
-- How to consume a GameState
+- [How to write the callbacks for XAYA](#Callbacks)
+- [How to consume a GameState and update the front end](# Update-the-Front-End-with-a-GameState)
 
 ## 1) Compile BitcoinLib and XAYAWrapper
 
@@ -45,11 +45,11 @@ Game moves are submitted through XAYAClient, so you'll need to change the Execut
 
 ## 3) Write Your Game Logic
 
-The game logic resides in the XAYAMoverGame namespace, which is found in HelperFunctions.cs, JSONClasses.cs, and CallbackFunctions.cs. See below for explanations of the various callbacks. This is **meat** for creating a new XAYA game. 
+The game logic resides in the [XAYAMoverGame](#Game-Logic) namespace, which is found in HelperFunctions.cs, JSONClasses.cs, and CallbackFunctions.cs. See below for explanations of the various [callbacks](#callbacks). This is **meat** for creating a new XAYA game. 
 
 ## 4) Write Your Front End
 
-MoveGUIAndGameController is the front end and where all the Unity code resides. This is where you consume the `GameState`. You'll need to change the front end for your game. Take note of how the XAYAConnector and XAYAClient classes are used in the various controls in Mover. 
+`MoveGUIAndGameController` is the front end and where all the Unity code resides. This is where you consume the `GameState`. You'll need to change the front end for your game. Take note of how the `XAYAConnector` and `XAYAClient` classes are used in the various controls in Mover. 
 
 There are 2 methods of particular interest to get started quickly:
 
@@ -60,11 +60,11 @@ The `needsRedraw` flag in the `Update` method is set in the `XAYAConnector`. Che
 
 Similarly for `RedrawGameClient`, the data (i.e. the `GameState`) you need to consume comes from XAYAConnector. However, that data comes from XAYAWrapper (libxayagame) but is set in the callbacks that you must write. In this case, they're in the `XAYAMoverGame` namespace, and in particular, in the `forwardCallbackResult` and `backwardCallbackResult` methods. 
 
-There is no 'fast' way to explain the callbacks. Please see below for more information.
+There is no 'fast' way to explain the callbacks. Refer to the section on [callbacks](#callbacks) for more information.
 
 ## Further Info 
 
-If you have further questions from the FAST way, see the relevant portions below. 
+If you have further questions from the FAST way, see the relevant portions below. You can also post for help in the [Development section of the XAYA forums](https://forum.xaya.io/forum/6-development/).
 
 ********
 
@@ -75,12 +75,12 @@ For this tutorial, you'll need several pieces of software:
 - Unity
 - Visual Studio
 - VS Class Diagram
-- MoverUnity.zip
+- [Unity Mover Code.zip](Unity%20Mover%20Code.zip)
 - Knowledge of Unity
 
 Visual Studio no longer ships with Class Diagram. To get it, type "class diagram" into the Quick Launch in the upper-left corner of Visual Studio and search. It will return a link to install VS Class Diagram. 
 
-MoverUnity.zip contains all the code for this tutorial. 
+[Unity Mover Code.zip](Unity%20Mover%20Code.zip) contains all the code for this tutorial. 
 
 This tutorial doesn't delve into explaning Unity elements. You should have a basic understanding of Unity already. If not, you will need to read the code, explore, and search online for information about Unity.
 
@@ -90,7 +90,7 @@ This Unity implementation of Mover is structured as illustrated below.
 
 ![Structure](img/xaya-mover-unity-structure.png)
 
-<font color=red>Red</font> signifies "black box" code. You don't need to change anything here. Simply compile it and add the reference.
+<font color=red>Red</font> signifies "black box" code. You don't need to change anything here. Simply compile it and add the reference or copy the DLL.
 
 Yellow signifies code that you can edit if you wish.
 
@@ -114,17 +114,17 @@ For our purposes, this is a "black box" until we look at the XAYAMoverGame names
 
 ## XAYAConnector
 
-This connects to and disconnects from `XAYAWrapper`. It gets data through RPC (BitcoinLib) and updates information for `MoveGUIAndGameController` so that `MoveGUIAndGameController` can update the UI. This will be examined in more depth later. 
+This connects to and disconnects from `XAYAWrapper`. It gets data through RPC (BitcoinLib) and updates information for `MoveGUIAndGameController` so that `MoveGUIAndGameController` can update the UI. This will be examined in more depth [later](#using-settings-to-start-xayawrapper). 
 
 ## XAYAClient
 
 This is used for some RPC calls through BitcoinLib, and more specifically to get a list of XAYA names in the user's wallet and to send moves to the XAYA blockchain. 
 
-It also sets the XAYAConnector to subscribe for updates from libxayagame. Those updates that XAYAConnector receives, as mentioned above, are then asynchronously updated in the front end, i.e. MoveGUIAndGameController. (This will be examined in more depth later. 
+It also sets the XAYAConnector to subscribe for updates from libxayagame. Those updates that XAYAConnector receives, as mentioned above, are then asynchronously updated in the front end, i.e. MoveGUIAndGameController. This will be examined in more depth [later](#connecting-xayaclient). 
 
 ## XAYAMoverGame
 
-It is up to you to write this as this is the core game logic. We'll examine this in great detail below and explain the callbacks extensively. 
+It is up to you to write this as this is the core game logic. We'll examine this in great detail [below](#game-logic) and explain the callbacks extensively. 
 
 ## XAYA Unity - MoveGUIAndGameController
 
@@ -166,16 +166,18 @@ The imporant fields are:
 - backwardsCallback
 - xayaGameService
 
-We'll examine the callbacks later on when we look at the game logic. In order to use libxayagame, this is perhaps the most important part to understand, 
+We'll examine the [callbacks](#Callbacks) later on when we look at the [game logic](#game-logic). In order to use libxayagame, this is perhaps the most important part to understand.
 
 xayaGameService is part of BitcoinLib and can be used to send RPC calls. While we've used BitcoinLib for RPCs, you can choose any RPC library that you prefer. 
 
 There are 4 methods:
 
-- Connect: Connects to the daemon
-- ShutdownDaemon: Stops the daemon
-- Stop: Stops BitcoinLib 
-- XayaWrapper: Constructor
+- `Connect`: Connects to the daemon
+- `ShutdownDaemon`: Stops the daemon
+- `Stop`: Stops BitcoinLib 
+- `XayaWrapper`: Constructor
+
+## Wiring Up XAYAWrapper
 
 Wiring up XAYAWrapper is very easy. 
 
@@ -244,7 +246,7 @@ The Connect signature is:
 - databasePath: The path to the sqlite or lmdb database
 - glogsPath: The path to glog
 
-We'll look at getting data (new game states) from libxayagame below.
+We'll look at [getting data](#subscribeforblockupdates) (new game states) from libxayagame below.
 
 **********
 
@@ -1093,7 +1095,9 @@ Finally, we return the serialised `GameState` object so we can update the game s
 
 Your game will require more complex logic to undo a block, but the above should suffice to illustrate the general technique. 
 
+# Update the Front End with a GameState
 
+After creating the game logic, it's time to update the front end for the user.
 
 
 
