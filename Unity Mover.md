@@ -276,6 +276,8 @@ Here we'll look at:
 2. [Connecting XAYAClient](#Connecting-XAYAClient)
 3. [Getting and Populating Player Names](#Getting-and-Populating-Player-Names)
 	1. [Getting the Names](#Getting-the-Names)
+4. [Making a Move](#Making-a-Move)
+5. [SubscribeForBlockUpdates](#SubscribeForBlockUpdates)
 
 FILL THESE IN
 
@@ -297,7 +299,7 @@ How these settings make their way to XAYAWrapper follows this path:
 
 1. Settings are saved as member variables in `MoveGUIAndGameController`
 2. `XAYAConnector.LaunchMoverStateProcessor` sets 2 additional parameters and starts a [coroutine](https://docs.unity3d.com/ScriptReference/MonoBehaviour.StartCoroutine.html) with `StartEnum` in order to continue starting the XAYAWrapper
-3. `XAYAConnector.StartEnum` uses Ciela Spike's ThreadNinja to start an asynchronous coroutine with `DaemonAsync`
+3. `XAYAConnector.StartEnum` uses [Ciela Spike's Thread Ninja](https://assetstore.unity.com/packages/tools/thread-ninja-multithread-coroutine-15717) to start an asynchronous coroutine with `DaemonAsync`
 4. `XAYAConnector.DaemonAsync` finally constructs the `XAYAWrapper` (`wrapper`) and calls its `Connect` method
 
 The following walks through those steps all the way from initially getting the settings to finally connecting and disconnecting the XAYAWrapper.
@@ -546,38 +548,36 @@ The `xayaService.GetNameList` is the RPC call to the XAYA wallet to get the name
 
 With the name list populated, users can select a name and play the game. 
 
+# Making a Move
 
+Users choose a direction and a number of steps to take. When they click `MOVE!`, their move is submitted to the XAYA blockchain, as mentioned above under [Connecting XAYAClient](#Connecting-XAYAClient). 
 
+	ShowError(xayaClient.ExecuteMove(nameSelected, DirectionDropdownToMoverDir(directionSelected), distanceSelected));
 
+The `ExecuteMove` method is:
 
+    public string ExecuteMove(string playername, string direction, string distance)
+	{   
+         return xayaService.NameUpdate(playername, "{\"g\":{\"mv\":{\"d\":\"" + direction + "\",\"n\":" + distance + "}}}", new object()); 		
+	}
 
+It uses xayaService (from BitcoinLib) to send a `name_update` RPC to the XAYAWallet. The wallet then broadcasts the `name_update` to the XAYA network and a miner somewhere in the world then mines the transaction into the blockchain. Once that's done, XAYAWraper (libxayagame) picks up all the moves for all players and and passes that data to the XAYAConnector, which then asynchronously updates member variables in MoveGUIAndGameController so that the front end can update itself for the new game state.
 
+Here are a couple example moves:
 
+	{"g":{"mv":{"d":"n","n":1}}}
+	{"g":{"mv":{"d":"k","n":5}}}
 
+- g: This indicates the game namespace
+- mv: This is the XAYA game name for "Mover"
+- d: This is a direction. See game logic for more information
+- n: This is the number of steps to take
+
+# SubscribeForBlockUpdates
 
 
 
 ************
-
-
-
-
-# Getting a Player
-
-The front end (`MoveGUIAndGameController`) needs to get a list of names from the XAYA wallet in order for 
-
-
-
-
-# Connecting from the Front End
-
-The CONNECT button in MoveGUIAndGameController is responsible for connecting and disconnecting XAYAConnect, which is a member of MoveGUIAndGameController:
-
-	public XAYAConnector xayaConnector; 
-
-Here's the basic code where the connection/disconnection is done:
-
-
 
 
 
