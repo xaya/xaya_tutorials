@@ -2,9 +2,9 @@
 
 *IN PROGRESS...*
 
-This tutorial demonstrates how to wire up a game to run on the XAYA platform. Of particular interest, it shows how to use libxayagame and various RPCs. But most importantly, it shows how to write a simple game on the XAYA platform. Portions of this tutorial repeat portions of other tutorials. 
+This tutorial demonstrates how to wire up a game to run on the XAYA platform. Of particular interest, it shows how to use libxayagame and various RPCs. But most importantly, it shows how to write a simple game on the XAYA platform. Portions of this tutorial repeat portions of other tutorials. This tutorial is written such that you can skip around easily to those parts of greatest interest to you. 
 
-You'll need to download the code. It's available here. Extract the ZIP file. You'll find 3 projects inside the folder. 
+You'll need to download the code. It's available [here](Unity%20Mover%20Code.zip). Extract the ZIP file. You'll find 3 projects inside the folder. 
 
 1. BitcoinLib: The RPC library
 2. XAYAWrapper: The libxayagame wrapper
@@ -294,9 +294,6 @@ Here we'll look at:
 		3. [backwardCallbackResult and Undoing a Game State Step](#backwardCallbackResult-and-Undoing-a-Game-State-Step)
 7. [Update the Front End with a GameState](#Update-the-Front-End-with-a-GameState)
 
-
-
-FILL THESE IN
 
 # Connection Settings for XAYAWrapper
 
