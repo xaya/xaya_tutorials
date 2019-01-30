@@ -282,7 +282,17 @@ Here we'll look at:
 	1. [Getting the Names](#Getting-the-Names)
 4. [Making a Move](#Making-a-Move)
 5. [SubscribeForBlockUpdates](#SubscribeForBlockUpdates)
-6. Game Logic
+6. [Game Logic](#game-logic)
+	1. [JSONClasses](#JSONClasses)
+	2. [HelperFunctions](#HelperFunctions)
+	3. [Callbacks](#Callbacks)
+		1. [initialCallbackResult](#initialCallbackResult)
+		2. [forwardCallbackResult and Processing Moves](#forwardCallbackResult-and-Processing-Moves)
+			1. [A Quick Look at Moves](#A-Quick-Look-at-Moves)
+			2. [The First Loop](#The-First-Loop)
+			3. [The Second Loop](#The-Second-Loop)
+		3. [backwardCallbackResult and Undoing a Game State Step](#backwardCallbackResult-and-Undoing-a-Game-State-Step)
+7. [Update the Front End with a GameState](#Update-the-Front-End-with-a-GameState)
 
 
 
