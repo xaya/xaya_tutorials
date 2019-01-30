@@ -261,6 +261,15 @@ Rather than follow a file-by-file approach, we'll instead do our examination by 
 Here we'll look at:
 
 1. [Connection Settings](#Connection-Settings)
+	1. [Saving Settings](#Saving-Settings)
+	2. [Loading Settings](#Loading-Settings)
+	3. [Using Settings to Start XAYAWrapper](#Using-Settings-to-Start-XAYAWrapper)
+		1. [Starting XAYAWrapper](#Starting-XAYAWrapper)
+		2. [Starting XAYAWrapper in a Separate Thread](#Starting-XAYAWrapper-in-a-Separate-Thread)
+	4. [Disconnecting XAYAWrapper](#Disconnecting-XAYAWrapper)
+2. [Connecting XAYAClient](#Connecting-XAYAClient)
+3. [Getting and Populating Player Names](#Getting-and-Populating-Player-Names)
+	1. [Getting the Names](#Getting-the-Names)
 
 FILL THESE IN
 
@@ -311,9 +320,9 @@ The `FillSettingsFromPlayerPrefs` method sets connection member variables from t
         chain_s = PlayerPrefs.GetInt("chain", 0);
     }
 
-## Starting XAYAConnector and Disconnecting
+## Using Settings to Start XAYAWrapper
 
-Starting and stopping the XAYAConnector is done in the OnButton_DaemonLaunch method.
+Starting and stopping the XAYAWrapper begins in the OnButton_DaemonLaunch method, but it is the XAYAConnector that actually starts the XAYAWrapper. 
 
     public void OnButton_DaemonLaunch()
     {
@@ -328,9 +337,11 @@ Starting and stopping the XAYAConnector is done in the OnButton_DaemonLaunch met
         }
     }
 
-### Starting
+The method to disconnect XAYAWrapper is in the button code as well. See [Disconnecting XAYAWrapper](#Disconnecting-XAYAWrapper) below for how that is done.
 
-Starting is done in XAYAConector's `LaunchMoverStateProcessor` method.
+### Starting XAYAWrapper
+
+Here you can see the settings being used. Starting XAYAWrapper begins in the `XAYAConnector.LaunchMoverStateProcessor` method.
 
     public void LaunchMoverStateProcessor()
     {
@@ -352,9 +363,9 @@ Starting is done in XAYAConector's `LaunchMoverStateProcessor` method.
         StartCoroutine(StartEnum());
     }
 
-There we can see the settings from `MoveGUIAndGameController` being used. 
+In order to prevent UI thread blocking, the XAYAWrapper must be in a separate thread. This begins with `StartCoroutine(StartEnum())`. 
 
-#### Starting the Wrapper
+#### Starting XAYAWrapper in a Separate Thread
 
 Actually starting the wrapper is done in a separate thread beginning with `StartCoroutine(StartEnum())`. 
 
@@ -409,7 +420,7 @@ This starts `DaemonAsync` in a thread. We've already seen some of this code when
 
 `wrapper.Connect` is called and if all goes well, we're successfully connected to libxayagame. 
 
-### Disconnecting
+### Disconnecting XAYAWrapper
 
 The XAYAConnection `Disconnect` method is:
 
