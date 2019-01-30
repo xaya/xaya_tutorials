@@ -130,6 +130,8 @@ This is your front end. It launches and disconnects from XAYAConnector. It uses 
 
 It uses XAYAMoverGame for the GameState, which is used to update the UI for each block where there are moves. 
 
+********
+
 # The Projects
 
 As above, there are 3 projects:
