@@ -72,10 +72,13 @@ For this tutorial, you'll need several pieces of software:
 - Visual Studio
 - VS Class Diagram
 - MoverUnity.zip
+- Knowledge of Unity
 
 Visual Studio no longer ships with Class Diagram. To get it, type "class diagram" into the Quick Launch in the upper-left corner of Visual Studio and search. It will return a link to install VS Class Diagram. 
 
 MoverUnity.zip contains all the code for this tutorial. 
+
+This tutorial doesn't delve into explaning Unity elements. You should have a basic understanding of Unity already. If not, you will need to read the code, explore, and search online for information about Unity.
 
 # How Mover is Structured in Unity
 
@@ -135,7 +138,7 @@ As above, there are 3 projects:
 
 We'll look at the first 2 very briefly then dive into the lovely goodness of actual game coding.
 
-## BitcoinLib
+# BitcoinLib
 
 We've already explained the purpose of BitcoinLib above, but should mention that you can very easily extend it. In particular, see these files:
 
@@ -144,7 +147,7 @@ We've already explained the purpose of BitcoinLib above, but should mention that
 
 Scroll to the bottom and you'll see how new functionality can be easily added. For more information on XAYA RPCs, refer to [XAYA RPC Methods](XAYA%20RPC%20Methods.md) and [Interacting with the XAYA Wallet Through RPC in C#](RPC%20Windows%20C%23%20Tutorial/XAYA%20RPC%20Tutorial.md).
 
-## XAYAWrapper
+# XAYAWrapper
 
 XAYAWrapper wraps libxayagame and exposes several fields and methods.
 
@@ -170,17 +173,29 @@ There are 4 methods:
 
 Wiring up XAYAWrapper is very easy. 
 
-1. Instantiate a XAYAWrapper as a member variable as seen in XAYAConnector:
+1\. Instantiate a XAYAWrapper as a member variable as seen in XAYAConnector:
 
 	public XayaWrapper wrapper;
 
-2. Call it's constructor as in XAYAConnector:
+2\. Call it's constructor as in XAYAConnector:
 
-	wrapper = new XayaWrapper(dPath, MoveGUIAndGameController.Instance.host_s, MoveGUIAndGameController.Instance.gamehostport_s, ref functionResult, CallbackFunctions.initialCallbackResult, CallbackFunctions.forwardCallbackResult,CallbackFunctions.backwardCallbackResult);
+	wrapper = new XayaWrapper(dPath, 
+		MoveGUIAndGameController.Instance.host_s, 
+		MoveGUIAndGameController.Instance.gamehostport_s, 
+		ref functionResult, 
+		CallbackFunctions.initialCallbackResult, 
+		CallbackFunctions.forwardCallbackResult,
+		CallbackFunctions.backwardCallbackResult);
 
 The constructor's signature is:
 
-	public XayaWrapper(string dataPath, string host_s, string gamehostport_s,  ref string result, InitialCallback inCal, ForwardCallback forCal, BackwardCallback backCal)
+	public XayaWrapper(string dataPath, 
+		string host_s, 
+		string gamehostport_s,  
+		ref string result, 
+		InitialCallback inCal, 
+		ForwardCallback forCal, 
+		BackwardCallback backCal)
 
 - dataPath: The path to the libxayagame DLL and its dependencies, i.e. the "XayaStateProcessor" folder
 - host_s: The URL to connect to, e.g. http://user:password@127.0.0.1:8396
@@ -190,26 +205,192 @@ The constructor's signature is:
 - forCal: The ForwardCallback callback that you've written
 - backCal: The BackwardCallback callback that you've written
 
-3. Connect as in XAYAConnector:
+3\. Connect as in XAYAConnector:
 
-        functionResult = wrapper.Connect(dPath, FLAGS_xaya_rpc_url, MoveGUIAndGameController.Instance.gamehostport_s, MoveGUIAndGameController.Instance.chain_s.ToString(), MoveGUIAndGameController.Instance.GetStorageString(MoveGUIAndGameController.Instance.storage_s), "mv", dPath + "\\..\\XayaStateProcessor\\database\\", dPath + "\\..\\XayaStateProcessor\\glogs\\" );
+        functionResult = wrapper.Connect(dPath, 
+		FLAGS_xaya_rpc_url, 
+		MoveGUIAndGameController.Instance.gamehostport_s, 
+		MoveGUIAndGameController.Instance.chain_s.ToString(), 
+		MoveGUIAndGameController.Instance.GetStorageString(MoveGUIAndGameController.Instance.storage_s), 
+		"mv", 
+		dPath + "\\..\\XayaStateProcessor\\database\\", 
+		dPath + "\\..\\XayaStateProcessor\\glogs\\" );
 
 The Connect signature is:
 
-	public string Connect(string dataPath, string FLAGS_xaya_rpc_url, string gamehostport_s, string chain_s, string storage_s, string gamenamespace, string databasePath, string glogsPath)
+	public string Connect(string dataPath, 
+		string FLAGS_xaya_rpc_url, 
+		string gamehostport_s, 
+		string chain_s, 
+		string storage_s, 
+		string gamenamespace, 
+		string databasePath, 
+		string glogsPath)
 
-- dataPath: 
-- FLAGS_xaya_rpc_url: 
-- gamehostport_s: 
-- chain_s: 
-- storage_s: 
-- gamenamespace: 
-- databasePath: 
-- glogsPath: 
-
+- dataPath: Unused. You can use this to modify the wrapper if you wish
+- FLAGS_xaya_rpc_url: The URL to connect to, e.g. http://user:password@127.0.0.1:8396
+- gamehostport_s: 8900
+- chain_s: This is the network to use: MAIN, TESTNET, or REGTEST
+- storage_s: One of "sqlite", "lmdb", or "memory"
+- gamenamespace: The game name. This is "mv" for Mover
+- databasePath: The path to the sqlite or lmdb database
+- glogsPath: The path to glog
 
 We'll look at getting data (new game states) from libxayagame below.
 
+# XAYAUnity
+
+The XAYAUnity project is where the game is written. There are 8 files that we should look at. They fall into 4 categories:
+
+1. Core game files
+	- CallbackFunctions.cs
+	- HelperFunctions.cs
+	- JSONClasses.cs
+2. "Wiring up" and utility files
+	- XAYAClient.cs
+	- XAYAConnector.cs
+3. Front end
+	- MoveGUIAndGameController.cs
+4. Ancilliary examples
+	- MoverObject.cs
+
+Rather than follow a file-by-file approach, we'll instead do our examination by starting with fundamental elements. We'll then progress through the Mover game code, gradually adding new elements. 
+
+Here we'll look at:
+
+1. [Connection Settings](#Connection-Settings)
+
+FILL THESE IN
+
+# Connection Settings
+
+In `MoveGUIAndGameController`, several inputs get the connection settings. In your own game, you won't have inputs like this for your users. Instead, you'll have other code to get that information. The inputs here are for demonstration purposes.
+
+Those inputs appear in the Unity designer as illustrated below.
+
+![Settings](img/Unity-connection-settings.png)
+
+When running and filled in, those settings will appear as illustrated below.
+
+![Settings filled in](Unity-connection-settings-filled-in.png)
+
+These settings are used with XAYAConnector as we'll see below.
+
+## Saving Settings
+
+The APPLY button saves the settings (`OnButton_SettingsSave` in `MoveGUIAndGameController`). 
+
+    public void OnButton_SettingsSave()
+    {
+        PlayerPrefs.SetString("host",host.text);
+        PlayerPrefs.SetString("hostport", hostport.text);
+        PlayerPrefs.SetString("tcpport", gameport.text);
+        PlayerPrefs.SetString("rpcuser", rpcuser.text);
+        PlayerPrefs.SetString("rpcpassword", rpcpassword.text);
+        PlayerPrefs.SetInt("storage", storage.value);
+        PlayerPrefs.SetInt("chain", chain.value);
+        PlayerPrefs.Save();
+
+        FillSettingsFromPlayerPrefs();
+    }
+
+## Loading Settings
+
+The `FillSettingsFromPlayerPrefs` method sets connection member variables from those settings.
+
+    void FillSettingsFromPlayerPrefs()
+    {
+        host_s = PlayerPrefs.GetString("host", "http://127.0.0.1");
+        hostport_s = PlayerPrefs.GetString("hostport", "8396");
+        gamehostport_s = PlayerPrefs.GetString("tcpport", "8900");
+        rpcuser_s = PlayerPrefs.GetString("rpcuser", "xayagametest");
+        rpcpassword_s = PlayerPrefs.GetString("rpcpassword", "xayagametest");
+        storage_s = PlayerPrefs.GetInt("storage", 0);
+        chain_s = PlayerPrefs.GetInt("chain", 0);
+    }
+
+## Starting XAYAConnector
+
+Starting and stopping the XAYAConnector is done in the OnButton_DaemonLaunch method.
+
+    public void OnButton_DaemonLaunch()
+    {
+        if (btnLaunchText.text != "STOP") // This is the "LAUNCH" button.
+        {
+            xayaConnector.LaunchMoverStateProcessor();
+            btnLaunchText.text = "STOP";
+        }
+        else
+        {   
+            xayaConnector.Disconnect();
+        }
+    }
+
+## Disconnecting
+
+Starting is done in XAYAConector's `LaunchMoverStateProcessor` method.
+
+    public void LaunchMoverStateProcessor()
+    {
+        Instance = this;
+        dPath = Application.dataPath;
+        FLAGS_xaya_rpc_url = MoveGUIAndGameController.Instance.rpcuser_s + ":" 
+		+ MoveGUIAndGameController.Instance.rpcpassword_s + "@" 
+		+ MoveGUIAndGameController.Instance.host_s + ":" 
+		+ MoveGUIAndGameController.Instance.hostport_s;
+        // Clean last session logs
+        if (Directory.Exists(dPath + "\\..\\XayaStateProcessor\\glogs\\"))
+        {
+            DirectoryInfo di = new DirectoryInfo(dPath + "\\..\\XayaStateProcessor\\glogs\\");
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
+        }
+        StartCoroutine(StartEnum());
+    }
+
+There we can see the settings from `MoveGUIAndGameController` being used. 
+
+The XAYAConnection `Disconnect` method is:
+
+    public void Disconnect()
+    {
+        StartCoroutine(TryAndStop());
+        Instance = null;
+    }
+
+It calls TryAndStop asynchronously:
+
+    IEnumerator TryAndStop()
+    {
+        if (wrapper != null)
+        {
+            wrapper.Stop();
+            yield return new WaitForSeconds(0.1f);
+            StartCoroutine(TryAndStop());
+        }
+    }
+    
+That method recursively tries to stop the connection to the wrapper. 
+
+
+
+
+
+
+# Getting a Player
+
+The front end (`MoveGUIAndGameController`) needs to get a list of names from the XAYA wallet in order for 
+
+
+# Connecting from the Front End
+
+The CONNECT button in MoveGUIAndGameController is responsible for connecting and disconnecting XAYAConnect, which is a member of MoveGUIAndGameController:
+
+	public XAYAConnector xayaConnector; 
+
+Here's the basic code where the connection/disconnection is done:
 
 
 
@@ -226,6 +407,43 @@ We'll look at getting data (new game states) from libxayagame below.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\#4 is the simplest to explain. `MoverObject` isn't a part of the core game files. Instead, it inherits from MonoBehaviour. A instance is constructed and set in the Redraw method, but it is never used. When set, it's given a value from the game state. This illustrates how you can pull data from the game state and create some object not strictly defined inside of the game state processor (GSP) or game logic to use in the front end. 
+
+For example, you may have many other properties defined for a "game piece", but only important parts for the game logic are stored or processed in the game logic. 
 
 
 
