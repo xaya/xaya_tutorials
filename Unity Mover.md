@@ -260,7 +260,7 @@ Rather than follow a file-by-file approach, we'll instead do our examination by 
 
 Here we'll look at:
 
-1. [Connection Settings](#Connection-Settings)
+1. [Connection Settings](#Connection-Settings-for-XAYAWrapper)
 	1. [Saving Settings](#Saving-Settings)
 	2. [Loading Settings](#Loading-Settings)
 	3. [Using Settings to Start XAYAWrapper](#Using-Settings-to-Start-XAYAWrapper)
@@ -273,9 +273,9 @@ Here we'll look at:
 
 FILL THESE IN
 
-# Connection Settings
+# Connection Settings for XAYAWrapper
 
-In `MoveGUIAndGameController`, several inputs get the connection settings. In your own game, you won't have inputs like this for your users. Instead, you'll have other code to get that information. The inputs here are for demonstration purposes.
+In `MoveGUIAndGameController`, there are several inputs for the XAYAWrapper's connection settings. In your own game, you won't have inputs like this for your users. Instead, you'll have other code to get that information. The inputs here are for demonstration purposes.
 
 Those inputs appear in the Unity designer as illustrated below.
 
