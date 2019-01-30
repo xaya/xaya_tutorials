@@ -558,7 +558,10 @@ The `ExecuteMove` method is:
 
     public string ExecuteMove(string playername, string direction, string distance)
 	{   
-         return xayaService.NameUpdate(playername, "{\"g\":{\"mv\":{\"d\":\"" + direction + "\",\"n\":" + distance + "}}}", new object()); 		
+         return xayaService.NameUpdate(
+		playername, 
+		"{\"g\":{\"mv\":{\"d\":\"" + direction + "\",\"n\":" + distance + "}}}", 
+		new object()); 		
 	}
 
 It uses xayaService (from BitcoinLib) to send a `name_update` RPC to the XAYAWallet. The wallet then broadcasts the `name_update` to the XAYA network and a miner somewhere in the world then mines the transaction into the blockchain. Once that's done, XAYAWraper (libxayagame) picks up all the moves for all players and and passes that data to the XAYAConnector, which then asynchronously updates member variables in MoveGUIAndGameController so that the front end can update itself for the new game state.
