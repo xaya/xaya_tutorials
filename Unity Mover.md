@@ -278,6 +278,9 @@ Here we'll look at:
 	1. [Getting the Names](#Getting-the-Names)
 4. [Making a Move](#Making-a-Move)
 5. [SubscribeForBlockUpdates](#SubscribeForBlockUpdates)
+6. Game Logic
+
+
 
 FILL THESE IN
 
@@ -564,7 +567,7 @@ The `ExecuteMove` method is:
 		new object()); 		
 	}
 
-It uses xayaService (from BitcoinLib) to send a `name_update` RPC to the XAYAWallet. The wallet then broadcasts the `name_update` to the XAYA network and a miner somewhere in the world then mines the transaction into the blockchain. Once that's done, XAYAWraper (libxayagame) picks up all the moves for all players and and passes that data to the XAYAConnector, which then asynchronously updates member variables in MoveGUIAndGameController so that the front end can update itself for the new game state.
+It uses xayaService (from BitcoinLib) to send a `name_update` RPC to the XAYAWallet. The wallet then broadcasts the `name_update` to the XAYA network and a miner somewhere in the world then mines the transaction into the blockchain. Once that's done, XAYAWrapper (libxayagame) picks up all the moves for all players and and passes that data to the XAYAConnector, which then asynchronously updates member variables in MoveGUIAndGameController so that the front end can update itself for the new game state.
 
 Here are a couple example moves:
 
@@ -577,6 +580,59 @@ Here are a couple example moves:
 - n: This is the number of steps to take
 
 # SubscribeForBlockUpdates
+
+As mentioned above, when we connect the XAYAClient, it subscribes the XAYAConnector to XAYAWrapper. The XAYAConnector then listens for updates from XAYAWrapper (libxayagame) and asynchronously updates member variables in MoveGUIAndGameController so that it can update the front end with the new game state.
+
+The path for this begins in `XAYAClient.Connect`:
+
+	connector.SubscribeForBlockUpdates();
+
+The `SubscribeForBlockUpdates` method starts a coroutine with `WaitForChanges`:
+
+	StartCoroutine(WaitForChanges());
+
+`WaitForChanges` uses Thread Ninja to start a new thread with `WaitForChangesInner`:
+
+    IEnumerator WaitForChanges()
+    {
+        Task task;
+        this.StartCoroutineAsync(WaitForChangesInner(), out task);
+        yield return StartCoroutine(task.Wait());
+    }
+
+`WaitForChangesInner` runs a `while(true)` loop. The portion we are concerned with is:
+
+	wrapper.xayaGameService.WaitForChange();
+
+	GameStateResult actualState = wrapper.xayaGameService.GetCurrentState();
+
+	if (actualState != null)
+	{
+		if (actualState.gamestate != null)
+		{
+		    GameState state = JsonConvert.DeserializeObject<GameState>(actualState.gamestate);
+
+		    MoveGUIAndGameController.Instance.state = state;
+		    MoveGUIAndGameController.Instance.totalBlock = client.GetTotalBlockCount();
+		    var currentBlock = client.xayaService.GetBlock(actualState.blockhash);
+		    MoveGUIAndGameController.Instance._sVal = currentBlock.Height;
+
+		    MoveGUIAndGameController.Instance.needsRedraw = true;
+
+In there the XAYAWrapper (`wrapper`) waits for a change and when one happens, it gets the current state as a `GameStateResult`. The `GameStateResult` is then deserialised as a `GameState`.
+
+Member variables of `MoveGUIAndGameController` are then set. Most importantly:
+
+- state: The `GameState`
+- needsRedraw: A flag that tells the front end to update itself with the new `state` value
+
+# Game Logic
+
+At long last we arrive at the game logic. 
+
+![XAYA Mover Game Class Diagram.png](img/XAYAMoverGameClassDiagram.png)
+
+
 
 
 
@@ -627,7 +683,7 @@ Here are a couple example moves:
 
 
 
-
+************
 
 \#4 is the simplest to explain. `MoverObject` isn't a part of the core game files. Instead, it inherits from MonoBehaviour. A instance is constructed and set in the Redraw method, but it is never used. When set, it's given a value from the game state. This illustrates how you can pull data from the game state and create some object not strictly defined inside of the game state processor (GSP) or game logic to use in the front end. 
 
