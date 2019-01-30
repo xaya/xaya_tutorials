@@ -272,7 +272,7 @@ Those inputs appear in the Unity designer as illustrated below.
 
 When running and filled in, those settings will appear as illustrated below.
 
-![Settings filled in](Unity-connection-settings-filled-in.png)
+![Settings filled in](img/Unity-connection-settings-filled-in.png)
 
 These settings are used with XAYAConnector as we'll see below.
 
