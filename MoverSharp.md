@@ -52,48 +52,49 @@ The game map is a grid of squares with Cartesian coordinates. Players start at t
 
 `Direction` is a simple enum of 9 directions (including NONE) that a player can move in.
 
-	// A possible direction of movement. 
-	public enum Direction
-	{
-	    /** NONE is the direction of players that are not moving, in particular
-	      * after the steps_left have counted down to zero. */
-	    NONE = 0,
-	    RIGHT = 1,
-	    LEFT = 2,
-	    UP = 3,
-	    DOWN = 4,
-	    RIGHT_UP = 5,
-	    RIGHT_DOWN = 6,
-	    LEFT_UP = 7,
-	    LEFT_DOWN = 8
-	}
+    // A possible direction of movement.
+    public enum Direction
+    {
+        // NONE is the direction for players that are not moving,
+        // in particular, after steps_left has counted down to zero.
+
+        NONE = 0,
+        RIGHT = 1,
+        LEFT = 2,
+        UP = 3,
+        DOWN = 4,
+        RIGHT_UP = 5,
+        RIGHT_DOWN = 6,
+        LEFT_UP = 7,
+        LEFT_DOWN = 8
+    }
 
 `PlayerState` contains all the information we need to know about a player, i.e. its position on the map as x and y coordinates, the direction the player is moving in (the `Direction` enum above), and the number of steps left for it to take as an integer.
 
-	/// The state of a particular player in Mover.  
-	public class PlayerState
-	{
-	    // The current x coordinate.  
-	    public int x;
-	    // The current y coordinate. 
-	    public int y;
-	
-	    // The direction of movement. 
-	    public Direction dir = Direction.UP;
-	    // The remaining number of movement steps left.
-	    public Int32 steps_left;
-	}
+    // The state of a particular player in Mover.
+    public class PlayerState
+    {
+        // The current x coordinate.
+        public int x;
+        // The current y coordinate. 
+        public int y;
+
+        // The direction of movement.
+        public Direction dir = Direction.UP;
+        // The remaining number of movement steps left. 
+        public Int32 steps_left;
+    }
 
 You can think of this as, &quot;I&#39;m here (our x and y Cartesian coordinates on the map) and I&#39;m going to walk 5 m (steps) north (a direction).&quot; It&#39;s that simple.
 
 `GameState` is a very simple class. It contains a dictionary of all the players and their states, i.e. `PlayerState`s. It&#39;s easy to access any given player by name, e.g. `GameState.players[name]`.
 
-	// The full game state. 
-	public class GameState
-	{
-	    // All players on the map and their current state. 
-	    public Dictionary<string, PlayerState> players;
-	}
+    // The full game state.
+    public class GameState
+    {
+        // All players on the map and their current state. 
+        public Dictionary<string, PlayerState> players;
+    }
 
 If we were to draw the map, we could iterate over the game state to find each player, then place them on the map with the `PlayerState` x and y values.
 
@@ -101,12 +102,12 @@ The `UndoData` class is very similar to the `GameState` class. Again, it contain
 
 It&#39;s possible that we may need to &quot;rewind&quot;, so the `UndoData` class keeps the undo information that we need for every player on the map.
 
-	// The full undo data for a block.  
-	public class UndoData
-	{
-	    // Undo data for each player that needs one.
-	    public Dictionary<string, PlayerUndo> players;
-	}
+    // The full undo data for a block. 
+    public class UndoData
+    {
+        // Undo data for each player that needs one.
+        public Dictionary<string, PlayerUndo> players;
+    }
 
 For the &quot;rewind&quot; scenario, we must know how to do that for each individual player. Individual player undo information is contained in the `PlayerUndo` class. It tells us:
 
@@ -119,28 +120,28 @@ The direction that a player finished moving in is for the case where they have f
 
 As seen above, `PlayerUndo` is used in the `UndoData` class.
 
-	// The undo data for a single player. 
-	public class PlayerUndo
-	{
-	    /** Set to true if the player was not present previously, i.e. if it was
-	      * first moved and created on the map for this block. */
-	    public bool is_new;
-	
-	    // Previous direction of the player, if it was changed explicitly.
-	    public Direction previous_dir = Direction.NONE;
-	
-	    // Previous steps left if the number was changed explicitly by a move.
-	    public Int32 previous_steps_left = 99999999;
-	
-	    /** Previous direction of the player if it counted down to zero and was
-	      * changed to NONE in this block.
-	      *
-	      * In theory, this field could be merged with previous_dir.  It is possible
-	      * that both are set, namely when a move with steps=1 was made.  But this case
-	      * could be reversed using the move data.  The potential space savings
-	      * here seem minor, though, so we use a separate field to simplify the logic. */
-	    public Direction finished_dir = Direction.NONE;
-	}
+    // The undo data for a single player. 
+    public class PlayerUndo
+    {
+        // Set to true if the player was not previously present, i.e. if it was
+        // first moved and created on the map for this block.
+        public bool is_new;
+
+        // Previous direction of the player, if it was changed explicitly.
+        public Direction previous_dir = Direction.NONE;
+
+        // Previous steps left if the number was changed explicitly by a move.
+        public Int32 previous_steps_left = 99999999;
+
+        // Previous direction of the player if it counted down to zero and was
+        // changed to NONE in this block.
+        // 
+        // In theory, this field could be merged with previous_dir. It is possible
+        // that both are set, namely when a move with steps = 1 was made. But this case
+        // could be reversed using the move data. The potential space savings
+        // here seem minor though, so we use a separate field to simplify the logic.
+        public Direction finished_dir = Direction.NONE;
+    }
 
 With those data structures, it&#39;s easier to understand the game flow.
 
@@ -166,161 +167,51 @@ To make the case for extreme error checking, consider that anyone could issue a 
 
 Moving on, let&#39;s examine the Program.cs code.
 
-Take note of `System.Runtime.InteropServices` in the includes. We&#39;ll be using a good deal of unmanaged code and calling methods from libxayawrap.dll, which is the C++ wrapper for libxayagame. libxayagame can only be linked statically.
+## Member Variables
 
-	using System;
-	using System.IO;
-	using System.Runtime.InteropServices;
+We'll need a few variables to connect to the wrapper.
 
-The `NativeMethods` class gives us access to some native Windows methods that we&#39;ll need to get started in our example game.
+        static string dPath = AppDomain.CurrentDomain.BaseDirectory;
+        static int chainType = 0;
+        static string storageType = "memory";
+        static string FLAGS_xaya_rpc_url = "xayagametest:xayagametest@127.0.0.1:8396";
+        static string host_s = "http://127.0.0.1";
+        static string gamehostport_s = "8900";
 
-- `LoadLibrary`: Used to load the libxayagame C++ wrapper, libxayawrap.dll
-- `GetProcAddress`: Used to access methods and callbacks in the libxayawrap.dll C++ wrapper
-- `SetDllDirectory`: Used to set the path to the libxayawrap.dll C++ wrapper
+- `dPath`: This is the path to the application directory
+- `chainType`: This chooses between mainnet, testnet, and regtestnet. Values are 0, 1, and 2, respectively 
+- `storageType`: This chooses between "memory", "sqlite", and "lmdb"
+- `FLAGS_xaya_rpc_url`: This is the URL in the form "http://user:password@IP-address:port"
+- `host_s`: This is the host address
+- `gamehostport_s`: This is the game host port. It's fixed at 8900 in libxayagame
 
-	static class NativeMethods
-	{
-	    [DllImport("kernel32.dll")]
-	    public static extern IntPtr LoadLibrary(string dllToLoad);
-	
-	    [DllImport("kernel32.dll")]
-	    public static extern IntPtr GetProcAddress(IntPtr hModule, string procedureName);
-	
-	    [DllImport("kernel32.dll")]
-	    public static extern bool SetDllDirectory(string pathName);
-	}
+We could accept arguments from the command line, parse them, and then assign those values, but for clarity it&#39;s easier to hard code these values for the purpose of illustration.
 
-For more information on interop, you can refer to Pinvoke.net:
+The dPath is set to the same path as the example game&#39;s executable file.
 
-[http://pinvoke.net/default.aspx/kernel32.GetProcAddress](http://pinvoke.net/default.aspx/kernel32.GetProcAddress)
-
-[http://pinvoke.net/default.aspx/kernel32.LoadLibrary](http://pinvoke.net/default.aspx/kernel32.LoadLibrary)
-
-[http://pinvoke.net/default.aspx/kernel32.SetDllDirectory](http://pinvoke.net/default.aspx/kernel32.SetDllDirectory)
-
-With that wired up, we&#39;re ready to look at our `Program` class.
-
-At the top there are quite a few declarations. They&#39;re mostly for delegates and callbacks, but there are some member variables as well.
-
-	private delegate string InitialCallback(out int height, out string hashHex);
-	private delegate string ForwardCallback(string oldState, string blockData, string undoData, out string newData);
-	private delegate string BackwardCallback(string newState, string blockData, string undoData);
-	
-	static InitialCallback initialCallback;
-	static ForwardCallback forwardCallback;
-	static BackwardCallback backwardsCallback;
-	
-	static IntPtr pDll;
-	static int xayaGameLibPort;
-	static int chainType;
-	static string storageType;
-	static string FLAGS_xaya_rpc_url;
-	static string dataPath;
-	
-	//XAYAConnector parent;
-	
-	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	private delegate void setInitialCallback(InitialCallback callback);
-	
-	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	private delegate void setForwardCallback(ForwardCallback callback);
-	
-	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	private delegate void setBackwardCallback(BackwardCallback callback);
-	
-	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	private delegate int CSharp_ConnectToTheDaemon(string gameId, 
-		string XayaRpcUrl, int GameRpcPort, int EnablePruning, 
-		int chain, string storageType, string dataDirectory, 
-		string glogName, string glogDataDir);
-
-
-The member variables are:
-
-	static IntPtr pDll;
-	static int xayaGameLibPort;
-	static int chainType;
-	static string storageType;
-	static string FLAGS_xaya_rpc_url;
-	static string dataPath;
-
-
-`pDll` is a handle for the C++ wrapper, libxayawrap.dll. The remainder are configuration variables and will be explained as we encounter them in code below.
-
-The variables for delegates and callbacks can be grouped otherwise for additional clarity.
-
-- The first delegate declaration defines the signature
-- The second holds the function pointer for our C# implementation
-- The final &quot;set&quot; delegate is the interop signature of the function in C++
-
-Three are for the initialisation callback:
-
-	private delegate string InitialCallback(out int height, out string hashHex);
-	static InitialCallback initialCallback;
-	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	private delegate void setInitialCallback(InitialCallback callback);
-
-Another 3 are for processing moves forward, i.e. regular moves in normal gameplay:
-
-	private delegate string ForwardCallback(string oldState, string blockData, string undoData, out string newData);
-	static ForwardCallback forwardCallback;
-	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	private delegate void setForwardCallback(ForwardCallback callback);
-
-And 3 are for processing moves backwards, such as in rewinding to correct a fork:
-
-	private delegate string BackwardCallback(string newState, string blockData, string undoData);
-	static BackwardCallback backwardsCallback;
-	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	private delegate void setBackwardCallback(BackwardCallback callback);
-
-We&#39;ll return to these later when we do the actual assignments inside the `Main` method.
-
-The remaining declaration is a function pointers for the C++ wrapper. It connects the RPC client.
-
-	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	private delegate int CSharp_ConnectToTheDaemon(string gameId, string XayaRpcUrl, int GameRpcPort, int EnablePruning, int chain, string storageType, string dataDirectory, string glogName, string glogDataDir);
-
-
-The connection parameters are:
-
-- `gameId`: This is &quot;g/mv&quot; or simply &quot;mv&quot;. It&#39;s a XAYA name
-- `XayaRpcUrl`: This is a standard URL of the form &quot;user:password@ip-or-domain:port&quot;
-- `GameRpcPort`: This is 8900 as it is set in the C++ wrapper
-- `EnablePruning`: This is -1. Further discussion is beyond the scope of this tutorial
-- `chain`: This is used to select between mainnet (0), testnet (1), and regtestnet (2)
-- `storageType`: One of &quot;memory&quot;, &quot;sqlite&quot;, or &quot;lmdb&quot;
-- `dataDirectory`: This is where data is saved to by the XAYA daemon
-- `glogName`: The name of the glog instance
-- `glogDataDir`: The path where glog data is saved to
-
-While glog is basically invisible to us in this tutorial, it&#39;s used by libxayagame and parameters for it must be set. You can find glog [here](https://github.com/google/glog). In this example, libxayagame uses glog to display information to the console. When you run the project, this will appear as a scrolling blur of text.
-
-## Main
-
-We begin the `Main` method by initialising several configuration variables with the values we require. We could accept arguments from the command line, parse them, and then assign those values, but for clarity it&#39;s easier to hard code these values for the purpose of illustration.
-
-The `dataPath` is set to the same path as the example game&#39;s executable file.
-
-	dataPath = AppDomain.CurrentDomain.BaseDirectory;
+	static string dPath = AppDomain.CurrentDomain.BaseDirectory;
 
 We&#39;ll connect to the C++ wrapper on port 8900. This is defined in the wrapper, so this is not optional.
 
-	xayaGameLibPort = 8900;
+	static string gamehostport_s = "8900";
 
 Our game is configured to run on mainnet. However, normally you would use testnet or regtestnet during development. Mainnet uses real XAYA names and real CHI. Should you make a bad mistake here, there&#39;s no going back and your error will be visible for eternity on the blockchain and any CHI you spend will be truly spent. On the positive side, you&#39;ll be able to see other people that have moved their player in the game, i.e. Mover is truly an extremely minimalistic massively multiplayer online game (MMOG).
 
-	chainType = 0;
+	static int chainType = 0;
 
 For this example we are using memory for storage. In larger games this may not be practical, in which case the high-performance, low-footprint database [SQLite](https://sqlite.org/) is available. There&#39;s 1 other option available, &quot;lmdb&quot;. The memory option doesn&#39;t require a data directory to be declared. All other options, i.e. &quot;lmdb&quot; and &quot;sqlite&quot; require a data directory to be defined.
 
-	storageType = "memory";
+	static string storageType = "memory";
 
 The XAYA daemon runs on port 8396 and we&#39;ll be connecting over the local loopback. Our username and password in this example are both &quot;xayagametest&quot;. **You&#39;ll need to configure this for yourself to run the example.**
 
-	FLAGS_xaya_rpc_url = "xayagametest:xayagametest@127.0.0.1:8332";
+	static string FLAGS_xaya_rpc_url = "xayagametest:xayagametest@127.0.0.1:8396";
 
-These configuration parameters will depend on how you are running xayad. If you&#39;re using the Electron wallet, it&#39;s already well configured. You will need to get the user name and password from the .cookie file in the %appdata%\Xaya folder. However, you can also specify these if you set configurations in the xaya.conf file, e.g.:
+While it's possible to connect to a wallet running on another machine, for `host_s` this should most likely be the local loopback, i.e. 127.0.0.1. 
+
+	static string host_s = "http://127.0.0.1";
+
+These configuration parameters will depend on how you are running xayad. If you&#39;re using the Electron wallet, it&#39;s already well configured. You will need to get the user name and password from the .cookie file in the "%appdata%\Xaya" folder. However, you can also specify these if you set configurations in the xaya.conf file, e.g.:
 
 	rpcuser=xayagametest
 	rpcpassword=xayagametest
@@ -339,141 +230,74 @@ The ZMQ values must also be set as shown. You can see ZMQ values set by looking 
 
 > C:\Program Files\Xaya\XAYA-Electron\resources\daemon
 
-With the configuration complete, it&#39;s time to load the wrapper and start wiring up our delegates/callbacks.
+However, it's much easier to simply run the XAYA Electron wallet. After all, it's designed for games.
 
-## Loading the Wrapper and Wiring Up Callbacks
+With the configuration complete, it&#39;s time to load the wrapper.
 
-The first thing to address is setting the proper folder where the C++ wrapper is. In this example it&#39;s in a subfolder from the game executable named &quot;XayaStateProcessor&quot;. We do this using the Windows native method `SetDllDirectory` from kernel32.dll. Note that we&#39;re using the `dataPath` variable that we set above.
+## Instantiate the Wrapper
 
-    if (!NativeMethods.SetDllDirectory(dataPath + "\\XayaStateProcessor\\"))
-    {
-        Console.WriteLine("Could not set dll directory");
-        Console.ReadLine();
-        return;
-    }
+Instantiate the wrapper by calling it's constructor. It's signature is:
 
-With the path set, we then load the wrapper into our `IntPtr` handle, `pDll`.
+	public XayaWrapper(string dataPath, 
+		string host_s, 
+		string gamehostport_s,  
+		ref string result, 
+		InitialCallback inCal, 
+		ForwardCallback forCal, 
+		BackwardCallback backCal)
 
-    pDll = NativeMethods.LoadLibrary(dataPath.Replace("/", "\\") + "\\XayaStateProcessor\\libxayawrap.dll");
+The first 3 we already have above. The result is a string message for us so we create an empty string to hold that value (it's passed by reference).
 
-If the wrapper loaded ok, then the handle should hold a value, so we now test to make certain that it loaded properly. If its value is `IntPtr.Zero`, then it didn&#39;t load for one reason or another, and we exit the program.
+	string functionResult = "";
 
-    if (pDll == IntPtr.Zero)
-    {
-        Console.WriteLine("Could not load " + dataPath.Replace("/", "\\") + "\\XayaStateProcessor\\libxayawrap.dll");
-        Console.ReadLine();
-        return;
-    }
+The callbacks we've not looked at yet. They're explained below. For now we just pass them in.
 
-Similar to how we loaded the C++ wrapper, we load the procedure addresses of our callbacks from the C++ wrapper with the `NativeMethods.GetProcAddress` method and set them each in a handle (`IntPtr`).
+	XayaWrapper wrapper = new XayaWrapper(dPath, 
+		host_s, 
+		gamehostport_s, 
+		ref functionResult, 
+		CallbackFunctions.initialCallbackResult, 
+		CallbackFunctions.forwardCallbackResult, 
+		CallbackFunctions.backwardCallbackResult);
 
-    IntPtr pSetInitialCallback = NativeMethods.GetProcAddress(pDll, "setInitialCallback");
-    if (pSetInitialCallback == IntPtr.Zero)
-    {
-        Console.WriteLine("Could not load resolve setInitialCallback");
-        Console.ReadLine();
-        return;
-    }
+With our wrapper constructed, we send ourselves the result message and wait until ENTER is pressed.
 
-    IntPtr pSetForwardCallback = NativeMethods.GetProcAddress(pDll, "setForwardCallback");
-    if (pSetForwardCallback == IntPtr.Zero)
-    {
-        Console.WriteLine("Could not load resolve pSetForwardCallback");
-        Console.ReadLine();
-        return;
-    }
+	Console.WriteLine(functionResult);
+	Console.ReadLine();
 
-    IntPtr pSetBackwardCallback = NativeMethods.GetProcAddress(pDll, "setBackwardCallback");
-    if (pSetBackwardCallback == IntPtr.Zero)
-    {
-        Console.WriteLine("Could not load resolve pSetBackwardCallback");
-        Console.ReadLine();
-        return;
-    }
+If all went well, we should see "Wrapper iInitialised" displayed. We then connect to the wrapper. It's signature is:
 
-We diligently check for errors, and if any of those fail, then we exit the program.
+	public string Connect(string dataPath, 
+		string FLAGS_xaya_rpc_url, 
+		string gamehostport_s, 
+		string chain_s, 
+		string storage_s, 
+		string gamenamespace, 
+		string databasePath, 
+		string glogsPath)
 
-Next, we resolve these using `Marshal.GetDelegateForFunctionPointer`, which is a member of `System.Runtime.InteropServices`. It takes 2 arguments:
+We've already seen most of those variables. The new ones are:
 
-- An `IntPtr` for a handle (pSetXXXCallback)
-- A `Type`
+- `gamenamespace`: The "g/" name of the game
+- `databasePath`: The path to the SQLite or other database
+- `glogsPath`: The path to the glog output folder
 
-The handle (`IntPtr`) comes from the code above.
+libxayagame uses glog for logging and that folder must be set. 
 
-We get the type using `typeof`. This is the same as the unmanaged function pointer delegate members that we defined above.
+The following connects the wrapper.
 
-    setInitialCallback SetInitialCallback = (setInitialCallback)Marshal.GetDelegateForFunctionPointer(pSetInitialCallback, typeof(setInitialCallback));
-    setForwardCallback SetForwardlCallback = (setForwardCallback)Marshal.GetDelegateForFunctionPointer(pSetForwardCallback, typeof(setForwardCallback));
-    setBackwardCallback SetBackwardCallback = (setBackwardCallback)Marshal.GetDelegateForFunctionPointer(pSetBackwardCallback, typeof(setBackwardCallback));
+	wrapper.Connect(dPath, 
+		FLAGS_xaya_rpc_url, 
+		gamehostport_s, 
+		chainType.ToString(), 
+		storageType, 
+		"mv", 
+		dPath + "\\..\\XayaStateProcessor\\database\\", 
+		dPath + "\\..\\XayaStateProcessor\\glogs\\");
 
-Once we&#39;ve resolved the function pointers into our delegates, we can assign them to the callbacks that we will write in our game logic in the CallbackFunctions.cs file.
+If all goes well, we should now be connected to the game and it will begin with its starting block to display data.
 
-    initialCallback = new InitialCallback(CallbackFunctions.initialCallbackResult);
-    SetInitialCallback(initialCallback);
-    forwardCallback = new ForwardCallback(CallbackFunctions.forwardCallbackResult);
-    SetForwardlCallback(forwardCallback);
-    backwardsCallback = new BackwardCallback(CallbackFunctions.backwardCallbackResult);
-    SetBackwardCallback(backwardsCallback);
-
-With this, our next task in `Main` is to establish our connection to the XAYA daemon:
-
-	Connect();
-
-## Connect
-
-The first task in creating the connection is to get the procedure address from the C++ wrapper into a handle (`IntPtr`) and do some error checking. This is the same basic operation that we did when we loaded the callbacks into handles in the `Main` method. `CSharp_ConnectToTheDaemon` is defined in libxayawrap.dll and performs the actual connection.
-
-    IntPtr pDaemonConnect = NativeMethods.GetProcAddress(pDll, "CSharp_ConnectToTheDaemon");
-    if (pDaemonConnect == IntPtr.Zero)
-    {
-        Console.WriteLine("Could not load resolve CSharp_ConnectToTheDaemon");
-        Console.ReadLine();
-        return;
-    }
-
-If loading the connection method from the wrapper fails, we exit the program.
-
-Once we have our handle, we pass it into `Marshal.GetDelegateForFunctionPointer` just as above, not forgetting to also pass the proper type using `typeof`.
-
-    CSharp_ConnectToTheDaemon ConnectToTheDaemon_CSharp = (CSharp_ConnectToTheDaemon)
-		Marshal.GetDelegateForFunctionPointer(pDaemonConnect, typeof(CSharp_ConnectToTheDaemon));
-
-This completes the creation of our `CSharp_ConnectToTheDaemon` method and we&#39;re just about ready to call it with the proper parameters.
-
-However, as we&#39;re using glog via libxayagame (this is done in libxayawrap.dll), we must ensure that our expected data folder exists otherwise glog will throw an exception. We&#39;ll be passing this same path into our `CSharp_ConnectToTheDaemon` method.
-
-    if (!Directory.Exists(dataPath + "\\XayaStateProcessor\\glogs\\"))
-    {
-        Directory.CreateDirectory(dataPath + "\\XayaStateProcessor\\glogs\\");
-    }
-
-We can now connect through our `CSharp_ConnectToTheDaemon` method. Note the parameters for it:
-
-- `gameId`: For our example, this is `mv`, which is a `g/` name reserved on the XAYA blockchain
-- `XayaRpcUrl`: From our initial configuration variables, this is `FLAGS_xaya_rpc_url`
-- `GameRpcPort`: From our initial configuration variables, this is `8396`
-- `EnablePruning`: This is set to `-1`. See the libxayagame documentation for further information
-- `chain`: As mentioned above, our example runs on mainnet, so this is `0`
-- `storageType`: From our initial configuration variables, this is set to `memory`
-- `dataDirectory`: This is a subfolder from our game executable file
-- `glogName`: This is a name for our glog instance
-- `glogDataDir`: The directory where all glog data is saved
-
-To handle a known issue, we remove &quot;http://&quot; from our `FLAGS_xaya_rpc_url` before passing it to our connection method. The connection is launched in a thread to prevent blocking.
-
-    FLAGS_xaya_rpc_url = FLAGS_xaya_rpc_url.Replace("http://", ""); // The http prefix issue is known
-	new Thread( 
-		() => ConnectToTheDaemon_CSharp("mv", 
-			FLAGS_xaya_rpc_url, xayaGameLibPort, -1, chainType, storageType, 
-			dataPath + "\\XayaStateProcessor\\database\\", "XayaGLOG", dataPath + "\\XayaStateProcessor\\glogs\\")
-		).Start();
-
-If all goes well, we should now be connected to the game, so we&#39;ll send ourselves a message in the console and read some input.
-
-    Console.WriteLine("Done");
-    Console.ReadLine();
-
-So far we&#39;ve wired up a lot of callbacks and done a lot of work with importing functions through the C++ wrapper. Pat yourself on the back. We&#39;re almost at the finish line, and in keeping with tradition, we&#39;ve saved the best for last. Game logic!
+Now, in keeping with tradition, we&#39;ve saved the best for last. Game logic!
 
 # CallbackFunctions.cs and Game Logic
 
@@ -910,7 +734,7 @@ In JSONClasses.cs, we looked at the data structures for the game.
 
 For HelperFunctions.cs, we briefly explained the methods, but didn't look at any code as they're all very simple. 
 
-In the Program.cs file, we wired up and connected to libxayawrap.dll. We edited `FLAGS_xaya_rpc_url` specifically for our own machines by changing the password so that the program would properly connect.  
+In the Program.cs file, we connected to libxayawrap.dll. We edited `FLAGS_xaya_rpc_url` specifically for our own machines by changing the password so that the program would properly connect.  
 
 In CallbackFunctions.cs we looked at how game logic is implemented. This was done in 3 C++ callbacks inside of libxayagame that we wired up and implemented as delegates in C#:
 
