@@ -96,7 +96,7 @@ MoverSharp is a truncated C# implementation that does not allow user input. It m
 
 This tutorial illustrates how libxayagame is wired up for Mover and then explores game logic on the XAYA platform. 
 
-> ![GO!](img/arrow-green-right-2a.png) [GOTO Mover Sharp - A C# Implementation](MoverSharp/MoverSharp.md)
+> ![GO!](img/arrow-green-right-2a.png) [GOTO Mover Sharp - A C# Implementation](MoverSharp/)
 
 ## Mover in Unity
 
