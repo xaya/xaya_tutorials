@@ -736,7 +736,7 @@ For HelperFunctions.cs, we briefly explained the methods, but didn't look at any
 
 In the Program.cs file, we connected to libxayawrap.dll. We edited `FLAGS_xaya_rpc_url` specifically for our own machines by changing the password so that the program would properly connect.  
 
-In CallbackFunctions.cs we looked at how game logic is implemented. This was done in 3 C++ callbacks inside of libxayagame that we wired up and implemented as delegates in C#:
+XAYAWrapper exposed 3 callbacks from libxayagame for us to implement our game logic. We did this in 3 classes in CallbackFunctions.cs:
 
 - initialCallbackResult
 - forwardCallbackResult
