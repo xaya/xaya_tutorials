@@ -26,13 +26,13 @@ In order to focus on coding for XAYA, the example here for &quot;Mover&quot; has
 
 To get started, download the example code here:
 
-< link to example code >
+[MoverSharp.zip](Code/MoverSharp.zip)
 
 You must make sure that you leave the project build configuration set to `x64` as the libxayagame\_wrapper.dll is 64-bit. If you have a 32-bit system, you won&#39;t be able to run this.
 
-Also download libxayagame here:
+Full source code for libxayagame is available here:
 
-< link to libxayagame binaries >
+[libxayagame](https://github.com/xaya/libxayagame)
 
 In this example game, Mover, users control a player on a square-grid map and move their player around. There are no borders, so a player can move infinitely in any direction. That&#39;s all there is to it.
 
