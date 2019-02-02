@@ -830,7 +830,31 @@ Let&#39;s look into our first loop inside `forwardCallbackResult`.
 
 	foreach (var m in blockDataS["moves"])
 
-Here, `blockDataS` contains many moves that we will iterate over, storing each one as a `var` in `m`.
+Here, `blockDataS` contains many moves that we will iterate over, storing each one as a `var` in `m`. The following is an example of what `blockDataS` could look like:
+
+	{
+	  "block": {
+	    "hash": "e494ed9494e3ef0a70ceb4ffd1484c3a4a77db3448b057c6a515740d405f4887",
+	    "height": 558194,
+	    "parent": "f5a532702d5e4b07d575af4a000ec158b620cccb09121c62c18d33ef3d3d77a8",
+	    "rngseed": "eb57a3c1552af09c8ef5dbcf1e90ee82034005f3b6acc7fb6bf2b27f239dec33",
+	    "timestamp": 1549051081
+	  },
+	  "moves": [
+	    {
+	      "move": {
+		"d": "u",
+		"n": 10
+	      },
+	      "name": "ALICE",
+	      "out": {
+		"Cb4u2jNJFBUJp915FZJvp9dKDcDbjhaLVQ": 123.456789
+	      },
+	      "txid": "cb1b8fae569ff6f6496c4088bcff49fb052f806e96d48dfba046fc58dd4593cc"
+	    }
+	  ],
+	  "reqtoken": "166a85c139ace087dcd4c3a9cd528918"
+	}
 
 First, we extract the player&#39;s name from `m`.
 
