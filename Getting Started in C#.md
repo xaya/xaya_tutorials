@@ -53,7 +53,7 @@ In your project:
 
 		UpdateMyGame((GameState)e.UserState);
 
-7. Implement the 3 callbacks defined in XAYAWrapper.
+7. Implement your game logic the 3 callbacks defined in XAYAWrapper.
 	- initialCallback
 	- forwardCallback
 	- backwardsCallback
