@@ -55,8 +55,8 @@ In your project:
 
 7. Implement the 3 callbacks defined in XAYAWrapper.
 	- initialCallback
-        - forwardCallback
-        - backwardsCallback
+	- forwardCallback
+	- backwardsCallback
 
 For how to implement those callbacks, see [here]() or [here]() or [here]().
 
