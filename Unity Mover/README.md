@@ -108,7 +108,7 @@ We'll examine what's being done when we get to that code. The BitcoinLib code is
 
 ## XAYAWrapper
 
-XAYAWrapper wraps the static libxayagame library. You need only add a reference to this in your own projects. Full C# source code is provided. libxayagame is written in C++ and can be found [here](https://github.com/xaya/libxayagame). 
+XAYAWrapper wraps the statically linked libxayagame library. You need only add a reference to this in your own projects. Full C# source code is provided. libxayagame is written in C++ and can be found [here](https://github.com/xaya/libxayagame). 
 
 For our purposes, this is a "black box" until we look at the XAYAMoverGame namespace where we implement several libxayagame callbacks. 
 
@@ -179,13 +179,13 @@ There are 4 methods:
 
 ## Wiring Up XAYAWrapper
 
-Wiring up XAYAWrapper is very easy. 
+Wiring up XAYAWrapper is very easy, but it must be done in 2 threads. 
 
 1\. Instantiate a XAYAWrapper as a member variable as seen in XAYAConnector:
 
 	public XayaWrapper wrapper;
 
-2\. Call it's constructor as in XAYAConnector:
+2\. Call it's constructor as in XAYAConnector (this is done in a thread):
 
 	wrapper = new XayaWrapper(dPath, 
 		MoveGUIAndGameController.Instance.host_s, 
@@ -213,7 +213,7 @@ The constructor's signature is:
 - forCal: The ForwardCallback callback that you've written
 - backCal: The BackwardCallback callback that you've written
 
-3\. Connect as in XAYAConnector:
+3\. Connect as in XAYAConnector (same thread as #2):
 
         functionResult = wrapper.Connect(dPath, 
 		FLAGS_xaya_rpc_url, 
@@ -592,7 +592,7 @@ Here are a couple example moves:
 
 # SubscribeForBlockUpdates
 
-As mentioned above, when we connect the XAYAClient, it subscribes the XAYAConnector to XAYAWrapper. The XAYAConnector then listens for updates from XAYAWrapper (libxayagame) and asynchronously updates member variables in MoveGUIAndGameController so that it can update the front end with the new game state.
+As mentioned above, when we connect the XAYAClient, it subscribes the XAYAConnector to XAYAWrapper in a new thread. The XAYAConnector then listens for updates from XAYAWrapper (libxayagame) and asynchronously updates member variables in MoveGUIAndGameController so that it can update the front end with the new game state.
 
 The path for this begins in `XAYAClient.Connect`:
 
