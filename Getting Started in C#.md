@@ -42,12 +42,12 @@ In your project:
 
 	+ When a change comes in, get the current game state and deserialise it for your GameState definition.
 
-		BitcoinLib.Responses.GameStateResult actualState = wrapper.xayaGameService.GetCurrentState();
-		state = JsonConvert.DeserializeObject<GameState>(actualState.gamestate);
+			BitcoinLib.Responses.GameStateResult actualState = wrapper.xayaGameService.GetCurrentState();
+			state = JsonConvert.DeserializeObject<GameState>(actualState.gamestate);
 
 	+ Send the notification to the front end.
 
-		sendingWorker.ReportProgress(0, state);
+			sendingWorker.ReportProgress(0, state);
 
 6. In the front end, get the game state from the notification thread and then update the front end.
 
