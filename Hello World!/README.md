@@ -23,6 +23,8 @@ While this tutorial only explains HelloXaya, you can find more information about
 
 [**VIDEO** tutorial here.](https://www.youtube.com/watch?v=v_jM8i2TZK8)
 
+[![Set your XAYA project to 64 bit.png](img/Set%20your%20XAYA%20project%20to%2064-bit.png)](https://www.youtube.com/watch?v=v_jM8i2TZK8)
+
 The XAYAWrapper DLL (libxayawrap.dll) is 64-bit. Consequently, your project **MUST** exclude 32-bit or explicitly be set as 64-bit. See this HelloXaya setting:
 
 ![Uncheck Prefer 32-bit](img/Prefer-32-bit-unchecked.png)
