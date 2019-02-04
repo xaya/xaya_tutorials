@@ -35,6 +35,8 @@ Otherwise, you must set your project to be 64-bit (x64).
 
 [**VIDEO** Simplified overview of implementing XAYA](https://www.youtube.com/watch?v=W0kD0ywyyqQ)
 
+[![Simplified overview of implementing XAYA](img/Simplified%20overview%20of%20implementing%20XAYA.png)](https://www.youtube.com/watch?v=W0kD0ywyyqQ)
+
 To implement XAYA, all you need to do is to is:
 
 - Instantiate XAYAWraper (1 line of code)
