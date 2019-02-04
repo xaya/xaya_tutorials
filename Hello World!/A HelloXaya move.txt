@@ -1,0 +1,7 @@
+A HELLOXAYA MOVE:
+
+"{\"g\":{\"helloworld\":{\"m\":\"Yo! WAZZUP?!?\"}}}"
+
+THE XAYA-CLI COMMAND:
+
+xaya-cli -rpcwallet=game.dat name_update "p/ALICE" "{\"g\":{\"helloworld\":{\"m\":\"Yo! WAZZUP?!?\"}}}"

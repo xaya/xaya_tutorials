@@ -169,6 +169,12 @@ In HelloXaya, we build the move in a string then send it:
 
 
 
+<!-- ## Filtering Bad Moves
+
+As mentioned above, moves for your game can be sent through various methods outside of your game. You must filter these or defend against "bad" moves. 
+
+This must be done when receiving moves. -->
+
 Done!
 
 
