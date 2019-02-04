@@ -33,9 +33,9 @@ While this tutorial only explains HelloXaya, you can find more information about
 
 # Important Considerations
 
-[**VIDEO** Set your XAYA project to 64 bit](https://www.youtube.com/watch?v=v_jM8i2TZK8)
+[**VIDEO** Set your XAYA project to 64 bit](https://gaming.youtube.com/watch?v=kM6bhzIwYY4)
 
-[![Set your XAYA project to 64 bit](img/Set%20your%20XAYA%20project%20to%2064-bit.png)](https://www.youtube.com/watch?v=v_jM8i2TZK8)
+[![Set your XAYA project to 64 bit](img/Set%20your%20XAYA%20project%20to%2064-bit.png)](https://gaming.youtube.com/watch?v=kM6bhzIwYY4)
 
 The XAYAWrapper DLL (libxayawrap.dll) is 64-bit. Consequently, your project **MUST** exclude 32-bit or explicitly be set as 64-bit. See this HelloXaya setting:
 
@@ -47,9 +47,9 @@ Otherwise, you must set your project to be 64-bit (x64).
 
 # Implementing XAYA Simplified
 
-[**VIDEO** Simplified overview of implementing XAYA](https://www.youtube.com/watch?v=W0kD0ywyyqQ)
+[**VIDEO** Simplified overview of implementing XAYA](https://gaming.youtube.com/watch?v=w4wPBOfqAjA)
 
-[![Simplified overview of implementing XAYA](img/Simplified%20overview%20of%20implementing%20XAYA.png)](https://www.youtube.com/watch?v=W0kD0ywyyqQ)
+[![Simplified overview of implementing XAYA](img/Simplified%20overview%20of%20implementing%20XAYA.png)](https://gaming.youtube.com/watch?v=w4wPBOfqAjA)
 
 To implement XAYA, all you need to do is to is:
 
@@ -75,17 +75,15 @@ Portions of XAYAWrapper are blocking operations and **MUST** be run in separate 
 
 ## Threading in HelloXaya
 
-<!-- [**VIDEO** tutorial on threading here.]() -->
-
 In HelloXaya, we've used BackgroundWorkers. There are more robust threading patterns available, but BackgroundWorkers are simple to understand with little complexity. 
 
 You can implement better threading structures on your own. 
 
 # Instantiate and Connect to XAYAWrapper
 
-[**VIDEO** Instantiate and Connect to XAYAWrapper](https://www.youtube.com/watch?v=wKKFf-xPyLU)
+[**VIDEO** Instantiate and Connect to XAYAWrapper](https://gaming.youtube.com/watch?v=hkljmSESuXQ)
 
-[![Instantiate and Connect to XAYAWrapper](img/Instantiate%20and%20Connect%20to%20XAYAWrapper.png)](https://www.youtube.com/watch?v=wKKFf-xPyLU)
+[![Instantiate and Connect to XAYAWrapper](img/Instantiate%20and%20Connect%20to%20XAYAWrapper.png)](https://gaming.youtube.com/watch?v=hkljmSESuXQ)
 
 Instantiating and Connecting to XAYAWrapper **must** be done in a thread. The connection is a blocking operation. 
 
@@ -112,11 +110,11 @@ To connect, call the Connect method:
 		dataPath + "\\..\\XayaStateProcessor\\database\\", // Path to the database folder, e.g. SQLite.
 		dataPath + "\\..\\XayaStateProcessor\\glogs\\"); // Path to glog output folder.
 
-# Listening for New `GameState`s
+# Listening for New GameStates
 
-[**VIDEO** Listening for new GameStates](https://www.youtube.com/watch?v=8fziD-sSc90)
+[**VIDEO** Listening for new GameStates](https://gaming.youtube.com/watch?v=_WwaMVVeECE)
 
-[![Listening for new GameStates](img/Listening%20for%20new%20GameStates.png)](https://www.youtube.com/watch?v=8fziD-sSc90) 
+[![Listening for new GameStates](img/Listening%20for%20new%20GameStates.png)](https://gaming.youtube.com/watch?v=_WwaMVVeECE) 
 
 We must listen for updates in a thread. There are 4 important lines of code.
 
@@ -139,9 +137,9 @@ The final step in our listening thread is to send the game state to the main UI 
 
 # Update the UI with the New GameState
 
-[**VIDEO** Update the UI with the New GameState](https://www.youtube.com/watch?v=nfXtCdDEwX4)
+[**VIDEO** Update the UI with the New GameState](https://gaming.youtube.com/watch?v=hqnFEUSNg7w)
 
-[![Update the UI with the New GameState](img/Update%20the%20UI%20with%20the%20New%20GameState.png)](https://www.youtube.com/watch?v=nfXtCdDEwX4) 
+[![Update the UI with the New GameState](img/Update%20the%20UI%20with%20the%20New%20GameState.png)](https://gaming.youtube.com/watch?v=hqnFEUSNg7w) 
 
 Our listener thread casts the event argument as a `GameState` and sends it to a method that updates the game.
 
@@ -155,11 +153,11 @@ We then update the textbox in the UI.
 
 	txtHelloGameState.Text = sb.ToString();
 
-# Sending Moves
+# Sending Moves to the Blockchain
 
-[**VIDEO** Sending Moves](https://www.youtube.com/watch?v=?????)
+[**VIDEO** Sending Moves to the Blockchain](https://gaming.youtube.com/watch?v=w-dIikNq8Gg)
 
-[![Sending Moves](img/----.png)](https://www.youtube.com/watch?v=??????) 
+[![Sending Moves to the Blockchain](img/Sending%20Moves%20to%20the%20Blockchain.png)](https://gaming.youtube.com/watch?v=w-dIikNq8Gg) 
 
 You don't need to be running an instance of a game to send moves. 
 
@@ -170,7 +168,7 @@ Moves can be sent arbitrarily in many ways. Here are some ways:
 - Sending to xayad
 - Etc.
 
-When procesing moves, you **must** guard against invalid moves with robust error checking. See the code for an example basic error check. 
+When procesing moves, you **must** guard against invalid moves with robust error checking. See the code for example error checks. 
 
 In HelloXaya, we build the move in a string then send it:
 
@@ -179,112 +177,7 @@ In HelloXaya, we build the move in a string then send it:
 		hello, 
 		new object());
 
-<!-- ## Filtering Bad Moves
-
-As mentioned above, moves for your game can be sent through various methods outside of your game. You must filter these or defend against "bad" moves. 
-
-This must be done when receiving moves. -->
-
 Done!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
