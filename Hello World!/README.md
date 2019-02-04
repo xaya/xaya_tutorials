@@ -21,9 +21,9 @@ While this tutorial only explains HelloXaya, you can find more information about
 
 # Important Considerations
 
-[**VIDEO** tutorial here.]()
+[**VIDEO** tutorial here.](https://www.youtube.com/watch?v=v_jM8i2TZK8)
 
-The XAYAWrapper DLL (libxayawrap.dll) is 64-bit. Consequently, your project **MUST** exclude 32-bit. See this HelloXaya setting:
+The XAYAWrapper DLL (libxayawrap.dll) is 64-bit. Consequently, your project **MUST** exclude 32-bit or explicitly be set as 64-bit. See this HelloXaya setting:
 
 ![Uncheck Prefer 32-bit](img/Prefer-32-bit-unchecked.png)
 
@@ -31,9 +31,27 @@ Otherwise, you must set your project to be 64-bit (x64).
 
 ![x64](img/x64.png)
 
-# Threading
+# Implementing XAYA Simplified
 
-[**VIDEO** tutorial on threading here.]()
+[**VIDEO** Simplified overview of implementing XAYA](https://www.youtube.com/watch?v=W0kD0ywyyqQ)
+
+To implement XAYA, all you need to do is to is:
+
+- Instantiate XAYAWraper (1 line of code)
+- Connect to XAYAWrapper (1 line of code)
+- Set up a listener thread to receive game states
+- Implement game logic in:
+	+ 3 callbacks
+		- initialCallbackResult (20 lines of trivial code)
+		- forwardCallbackResult
+		- backwardCallbackResult
+	+ Ancillary game logic
+		- JSON classes
+		- Helper methods
+- Send moves to the XAYA blockchain
+	+ This requires RPCs (can be implemented in many ways)
+
+# Threading
 
 It's crucial that you create threads for XAYAWrapper. 
 
@@ -41,46 +59,11 @@ Portions of XAYAWrapper are blocking operations and **MUST** be run in separate 
 
 ## Threading in HelloXaya
 
+[**VIDEO** tutorial on threading here.]()
+
 In HelloXaya, we've used BackgroundWorkers. There are more robust threading patterns available, but BackgroundWorkers are simple to understand with little complexity. 
 
 You can implement better threading structures on your own. 
-
-# Implementing XAYA Simplified
-
-To implement XAYA, all you need to do is to is:
-
-- Instantiate XAYAWraper (1 line of code)
-- Connect to XAYAWrapper (1 line of code)
-- Implement game logic in:
-	+ 3 callbacks
-		- initialCallbackResult (20 lines of trivial code)
-		- forwardCallbackResult
-		- backwardCallbackResult
-	+ Ancilliary game logic
-		- JSON classes
-		- Helper methods
-- Send moves to the XAYA blockchain
-	+ This requires RPCs (can be implemented in many ways)
-
-# Sending Moves
-
-You don't need to be running an instance of a game to send moves. 
-
-Moves can be sent arbitrarily in many ways. Here are some ways:
-
-- From xaya-cli
-- From the XAYA QT console
-- Sending to xayad
-- Etc.
-
-When procesing moves, you **must** guard against invalid moves with robust error checking.
-
-In HelloXaya, we build the move in a string then send it:
-
-	string hello = "{\"g\":{\"helloworld\":{\"m\":\"" + txtHelloWorld.Text + "\"}}}";
-	xayaService.NameUpdate(this.cbxNames.GetItemText(this.cbxNames.SelectedItem), 
-		hello, 
-		new object());
 
 # Instantiate and Connect to XAYAWrapper
 
@@ -141,6 +124,28 @@ HelloXaya merely updates a text box with what other people have said. It loops t
 We then update the textbox in the UI.
 
 	txtHelloGameState.Text = sb.ToString();
+
+# Sending Moves
+
+You don't need to be running an instance of a game to send moves. 
+
+Moves can be sent arbitrarily in many ways. Here are some ways:
+
+- From xaya-cli
+- From the XAYA QT console
+- Sending to xayad
+- Etc.
+
+When procesing moves, you **must** guard against invalid moves with robust error checking.
+
+In HelloXaya, we build the move in a string then send it:
+
+	string hello = "{\"g\":{\"helloworld\":{\"m\":\"" + txtHelloWorld.Text + "\"}}}";
+	xayaService.NameUpdate(this.cbxNames.GetItemText(this.cbxNames.SelectedItem), 
+		hello, 
+		new object());
+
+
 
 Done!
 
