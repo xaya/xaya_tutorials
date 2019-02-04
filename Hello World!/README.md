@@ -75,7 +75,9 @@ You can implement better threading structures on your own.
 
 [![Instantiate and Connect to XAYAWrapper](img/Instantiate%20and%20Connect%20to%20XAYAWrapper.png)](https://www.youtube.com/watch?v=wKKFf-xPyLU)
 
-Instantiating and Connecting to XAYAWrapper **must** be done in a thread. The connection is a blocking operation. However, once connected, XAYAWrapper will begin sending log data immediately. This log data isn't game state data though; that is examined below.
+Instantiating and Connecting to XAYAWrapper **must** be done in a thread. The connection is a blocking operation. 
+
+However, once connected, XAYAWrapper will immediately begin sending log data to the console and game state data to the listener, i.e. through calling the `XAYAWrapper.xayaGameService.GetCurrentState` method. The log data isn't game state data though; that is examined below. 
 
 To instantiate the wrapper, call it's constructor:
 
@@ -125,6 +127,10 @@ The final step in our listening thread is to send the game state to the main UI 
 
 # Update the UI with the New GameState
 
+[**VIDEO** Update the UI with the New GameState](https://www.youtube.com/watch?v=nfXtCdDEwX4)
+
+[![Update the UI with the New GameState](img/Update%20the%20UI%20with%20the%20New%20GameState.png)](https://www.youtube.com/watch?v=nfXtCdDEwX4) 
+
 Our listener thread casts the event argument as a `GameState` and sends it to a method that updates the game.
 
 	UpdateHelloChat((GameState)e.UserState);
@@ -138,6 +144,10 @@ We then update the textbox in the UI.
 	txtHelloGameState.Text = sb.ToString();
 
 # Sending Moves
+
+[**VIDEO** Sending Moves](https://www.youtube.com/watch?v=?????)
+
+[![Sending Moves](img/----.png)](https://www.youtube.com/watch?v=??????) 
 
 You don't need to be running an instance of a game to send moves. 
 
