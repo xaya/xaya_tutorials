@@ -71,11 +71,15 @@ You can implement better threading structures on your own.
 
 # Instantiate and Connect to XAYAWrapper
 
+[**VIDEO** Instantiate and Connect to XAYAWrapper](https://www.youtube.com/watch?v=wKKFf-xPyLU)
+
+[![Instantiate and Connect to XAYAWrapper](img/Instantiate%20and%20Connect%20to%20XAYAWrapper.png)](https://www.youtube.com/watch?v=wKKFf-xPyLU)
+
 Instantiating and Connecting to XAYAWrapper **must** be done in a thread. The connection is a blocking operation. However, once connected, XAYAWrapper will begin sending log data immediately. This log data isn't game state data though; that is examined below.
 
 To instantiate the wrapper, call it's constructor:
 
-	wrapper = new XayaWrapper(dataPath, // The path to XayaStateProcessor
+	wrapper = new XayaWrapper(dataPath, // The path to the game's executable file. 
 		Properties.Settings.Default.Host, // The host, e.g. localhost or 127.0.0.1
 		"8900", // The game host port. Fixed at 8900 in libxayagame.
 		ref result, // An error or success message.
@@ -85,7 +89,7 @@ To instantiate the wrapper, call it's constructor:
 
 To connect, call the Connect method:
 
-	result = wrapper.Connect(dataPath, // The path to XayaStateProcessor
+	result = wrapper.Connect(dataPath, // The path to the game's executable file. 
 		FLAGS_xaya_rpc_url, // The URL for RPC calls.
 		"8900",  // The game host port. Fixed at 8900 in libxayagame.
 		"0", // Which network to use: Mainnet, Testnet, or Regtestnet.
@@ -95,6 +99,10 @@ To connect, call the Connect method:
 		dataPath + "\\..\\XayaStateProcessor\\glogs\\"); // Path to glog output folder.
 
 # Listening for new `GameState`s
+
+[**VIDEO** Listening for new GameStates]()
+
+
 
 We must listen for updates in a thread. There are 4 important lines of code.
 
