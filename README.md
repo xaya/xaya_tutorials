@@ -1,12 +1,28 @@
 # Overview
 
-XAYA provides a convenient solution for developers to put their games up to 100% on the blockchain. The following materials can help get you started quickly. 
+XAYA provides a convenient solution for developers to put their games up to 100% on the blockchain. The following materials can help you get started quickly. 
 
 # Prerequisites
 
+Before you get started, there are some basic prerequisites, e.g. get a wallet, CHI, etc.
 
+> ![GO!](img/arrow-green-right-2a.png) [GOTO Prerequisites](Prerequisites.md)
 
 # Getting Started
+
+Once you've got the prerequisite downloads, the following will provide you with some background information and techniques that will be useful for when you start some code tutorials. 
+
+Before you get started, you should be somewhat familiar with what a blockchain is. If not, please read [Blockchain Basics](Blockchain%20General.md).
+
+Reading the [XAYA Specifications](https://github.com/xaya/xaya_docs) will give you a high-level overview and familiarise you with various concepts and details. **This is highly recommended reading.** 
+
+Wallets are critically important. Read the [Wallets](XAYA%20Electron%20Help/Top.md#Wallets) section of the [XAYA Electron wallet help](XAYA%20Electron%20Help/) for a quick high-level overview if you're not already familiar.
+
+Some tutorials use the XAYA Command Line Interface (`xaya-cli`). [Read up on `xaya-cli` here](xaya-cli.md).
+
+Next, read about [XAYA RPC Methods](XAYA%20RPC%20Methods.md). You'll need to know how to send RPC calls to the XAYA daemon. This will get you up to speed quickly. 
+
+The [libxayagame Component Relationships](libxayagame%20Component%20Relationships.md) shows you the basic architecture. It details how your game logic and front end interact with XAYA. 
 
 
 
@@ -39,7 +55,7 @@ If you're unfamiliar with blockchain technology, [Blockchain Basics](Blockchain%
 
 # XAYA Specifications
 
-The XAYA [Specifications](https://github.com/xaya/xaya_docs) repository contains technical specifications and design documents that
+The [XAYA Specifications](https://github.com/xaya/xaya_docs) repository contains technical specifications and design documents that
 describe how the various components and layers in the ecosystem interact.
 In particular, important topics are:
 

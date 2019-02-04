@@ -177,6 +177,21 @@ In HelloXaya, we build the move in a string then send it:
 		hello, 
 		new object());
 
+# Game Logic
+
+As mentioned above, game logic is handled similar to the following:
+
+- 3 callbacks
+	- initialCallbackResult
+	- forwardCallbackResult
+	- backwardCallbackResult
+- Ancillary game logic
+	- JSON classes
+	- Helper methods
+
+THIS IS A STUB. THIS PORTION OF THE HELLO WORLD TUTORIAL WILL FOLLOW.
+
+
 Done!
 
 
