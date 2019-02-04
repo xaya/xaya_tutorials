@@ -98,11 +98,11 @@ To connect, call the Connect method:
 		dataPath + "\\..\\XayaStateProcessor\\database\\", // Path to the database folder, e.g. SQLite.
 		dataPath + "\\..\\XayaStateProcessor\\glogs\\"); // Path to glog output folder.
 
-# Listening for new `GameState`s
+# Listening for New `GameState`s
 
-[**VIDEO** Listening for new GameStates]()
+[**VIDEO** Listening for new GameStates](https://www.youtube.com/watch?v=8fziD-sSc90)
 
-<!-- [![Listening for new GameStates](img/----.png)](YOUTUBE LINK) --> 
+[![Listening for new GameStates](img/Listening%20for%20new%20GameStates.png)](https://www.youtube.com/watch?v=8fziD-sSc90) 
 
 We must listen for updates in a thread. There are 4 important lines of code.
 
