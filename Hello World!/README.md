@@ -170,7 +170,7 @@ Moves can be sent arbitrarily in many ways. Here are some ways:
 - Sending to xayad
 - Etc.
 
-When procesing moves, you **must** guard against invalid moves with robust error checking.
+When procesing moves, you **must** guard against invalid moves with robust error checking. See the code for an example basic error check. 
 
 In HelloXaya, we build the move in a string then send it:
 
@@ -178,8 +178,6 @@ In HelloXaya, we build the move in a string then send it:
 	xayaService.NameUpdate(this.cbxNames.GetItemText(this.cbxNames.SelectedItem), 
 		hello, 
 		new object());
-
-
 
 <!-- ## Filtering Bad Moves
 
