@@ -63,7 +63,7 @@ Portions of XAYAWrapper are blocking operations and **MUST** be run in separate 
 
 ## Threading in HelloXaya
 
-[**VIDEO** tutorial on threading here.]()
+<!-- [**VIDEO** tutorial on threading here.]() -->
 
 In HelloXaya, we've used BackgroundWorkers. There are more robust threading patterns available, but BackgroundWorkers are simple to understand with little complexity. 
 
