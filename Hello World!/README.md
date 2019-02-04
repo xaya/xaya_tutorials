@@ -8,6 +8,18 @@ HelloXaya lets you say "Hello World!" on the XAYA blockchain. That's all it does
 
 [Download the HelloXaya project here]().
 
+## Get a XAYA Wallet
+
+You'll need a XAYA wallet and some CHI.
+
+To start, download and install the latest [XAYA Electron wallet here](https://github.com/xaya/xaya_electron/releases) if you're on Windows, or the the [XAYA QT wallet](https://github.com/xaya/xaya/releases) if you're on Linux or Mac. The wallets automatically run the XAYA daemon, i.e. xayad. (This tutorial assumes Windows.)
+
+If you run the QT or xayad, you'll need to set flags manually. They're automatically set in the Electron wallet. For more information on flags, see the [Daemon Flags tutorial](Daemon%20Flags.md).
+
+Run the wallet or xayad and give it time to fully synchronise. 
+
+You should also get some CHI. You can buy CHI at Liquid.com or ask in the Development forum. 1 CHI is lots more than enough to get started. 
+
 ## Inside HelloXaya
 
 There are 4 distinct elements inside of HelloXaya.
