@@ -21,9 +21,9 @@ While this tutorial only explains HelloXaya, you can find more information about
 
 # Important Considerations
 
-[**VIDEO** tutorial here.](https://www.youtube.com/watch?v=v_jM8i2TZK8)
+[**VIDEO** Set your XAYA project to 64 bit](https://www.youtube.com/watch?v=v_jM8i2TZK8)
 
-[![Set your XAYA project to 64 bit.png](img/Set%20your%20XAYA%20project%20to%2064-bit.png)](https://www.youtube.com/watch?v=v_jM8i2TZK8)
+[![Set your XAYA project to 64 bit](img/Set%20your%20XAYA%20project%20to%2064-bit.png)](https://www.youtube.com/watch?v=v_jM8i2TZK8)
 
 The XAYAWrapper DLL (libxayawrap.dll) is 64-bit. Consequently, your project **MUST** exclude 32-bit or explicitly be set as 64-bit. See this HelloXaya setting:
 
@@ -59,7 +59,7 @@ To implement XAYA, all you need to do is to is:
 
 It's crucial that you create threads for XAYAWrapper. 
 
-Portions of XAYAWrapper are blocking operations and **MUST** be run in separate threads.
+Portions of XAYAWrapper are blocking operations and **MUST** be run in separate threads. Specifically, the `XAYAWrapper.xayaGameService.WaitForChange` and `XAYAWrapper.Connect` methods. 
 
 ## Threading in HelloXaya
 
@@ -102,7 +102,7 @@ To connect, call the Connect method:
 
 [**VIDEO** Listening for new GameStates]()
 
-
+<!-- [![Listening for new GameStates](img/----.png)](YOUTUBE LINK) --> 
 
 We must listen for updates in a thread. There are 4 important lines of code.
 
