@@ -6,7 +6,7 @@ HelloXaya is a typical "Hello World!" example. It wires up the XAYA platform in 
 
 HelloXaya lets you say "Hello World!" on the XAYA blockchain. That's all it does.
 
-[Download the HelloXaya project here]().
+[Download the HelloXaya project here](Hello%20World!/Code/HelloXaya.zip).
 
 ## Get a XAYA Wallet
 

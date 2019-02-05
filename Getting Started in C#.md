@@ -1,6 +1,6 @@
 # Getting Started in C#
 
-Before you get started, you'll need libxayagame. There are statically linked binaries available [here](). You'll also need XAYAWrapper. It wraps the C++ libxayagame for use with C#. You can download that [here](). You'll also need to make RPC calls. That can be done any way you wish, but we've forked BitcoinLib and modified it for XAYA. You can get that project [here]().
+Before you get started, you'll need libxayagame. There are statically linked binaries available [here](). You'll also need XAYAWrapper. It wraps the C++ libxayagame for use with C#. You can download that [here]() (coming soon). You'll also need to make RPC calls. That can be done any way you wish, but we've forked BitcoinLib and modified it for XAYA. You can get that project [here]() (update coming soon).
 
 The following shows how to wire up libxayagame.
 
@@ -58,6 +58,6 @@ In your project:
 	- forwardCallback
 	- backwardsCallback
 
-For how to implement those callbacks, see [here]() or [here]() or [here]().
+Tutorials for how to implement those callbacks will be coming soon. 
 
 
