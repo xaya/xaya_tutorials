@@ -226,7 +226,7 @@ These configuration parameters will depend on how you are running xayad. If you&
 
 The alternative is to start up the wallet/daemon with all the required configuration parameters from the command line.
 
-The ZMQ values must also be set as shown. You can see ZMQ values set by looking in the BAT files in this folder:
+The ZeroMQ values must also be set as shown. You can see ZMQ values set by looking in the BAT files in this folder:
 
 > C:\Program Files\Xaya\XAYA-Electron\resources\daemon
 

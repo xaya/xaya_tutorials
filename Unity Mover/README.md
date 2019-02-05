@@ -102,7 +102,7 @@ Starting from the bottom of the diagram, we have BitcoinLib. It's the RPC librar
 - XAYAClient
 - XAYAConnector
 
-We'll examine what's being done when we get to that code. The BitcoinLib code is included in the download. You can edit it as you wish to add in more RPC methods. (See the [XAYA RPC Methods](XAYA%20RPC%20Methods.md) and [Interacting with the XAYA Wallet Through RPC in C#](RPC%20Windows%20C%23%20Tutorial/XAYA%20RPC%20Tutorial.md) for more information.)
+We'll examine what's being done when we get to that code. The BitcoinLib code is included in the download. You can edit it as you wish to add in more RPC methods. (See the [XAYA RPC Methods](XAYA%20RPC%20Methods.md) and [Interacting with the XAYA Wallet Through RPC in C#](RPC%20Windows%20C%23%20Tutorial/README.md) for more information.)
 
 ## XAYAWrapper
 
@@ -149,7 +149,7 @@ We've already explained the purpose of BitcoinLib above, but should mention that
 - BitcoinLib\Services\RpcServices\RpcService\IRpcService.cs
 - BitcoinLib\Services\RpcServices\RpcService\RpcService.cs
 
-Scroll to the bottom and you'll see how new functionality can be easily added. For more information on XAYA RPCs, refer to [XAYA RPC Methods](XAYA%20RPC%20Methods.md) and [Interacting with the XAYA Wallet Through RPC in C#](RPC%20Windows%20C%23%20Tutorial/XAYA%20RPC%20Tutorial.md).
+Scroll to the bottom and you'll see how new functionality can be easily added. For more information on XAYA RPCs, refer to [XAYA RPC Methods](XAYA%20RPC%20Methods.md) and [Interacting with the XAYA Wallet Through RPC in C#](RPC%20Windows%20C%23%20Tutorial/README.md).
 
 # XAYAWrapper
 

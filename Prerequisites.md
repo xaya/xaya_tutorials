@@ -56,7 +56,7 @@ However, when you run the QT wallet, you must set several flags or you won't be 
 
 For information about the ZeroMQ flags, refer to the Bitcoin documentation on it [here](https://github.com/bitcoin/bitcoin/blob/master/doc/zmq.md).
 
-By default, the wallet runs on mainnet. If you wish to use testnet or regtestnet, you can see 1 of these flags (but not both).
+By default, the wallet runs on mainnet. If you wish to use testnet or regtestnet, you can use 1 of these flags (but not both).
 
 - -testnet
 - -regtest
@@ -89,7 +89,7 @@ The libxayagame daemon does much of the heavy lifting that blockchain programmin
 
 - [libxayagame](https://github.com/xaya/libxayagame): The C++ source code
 - [libxayagame_wrapper](https://github.com/xaya/libxayagame_wrapper): A wrapper for libxayagame. Creates a statically linked library for Windows
-- Precompiled binaries for Windows: Statically linked library with all its dependencies
+- [Precompiled binaries for Windows](XayaStateProcessor/): Statically linked library with all its dependencies
 - XAYAWrapper: A C# project that wraps the libxayagame DLL 
 
 You don't need to decide on this right now, but you will need to download whichever option you need when it comes time to start coding. 

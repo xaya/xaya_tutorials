@@ -12,9 +12,11 @@ Before you get started, there are some basic prerequisites, e.g. get a wallet, C
 
 Once you've got the prerequisite downloads, the following will provide you with some background information and techniques that will be useful for when you start some code tutorials. 
 
+## Getting Started with Background Information
+
 Before you get started, you should be somewhat familiar with what a blockchain is. If not, please read [Blockchain Basics](Blockchain%20General.md).
 
-Reading the [XAYA Specifications](https://github.com/xaya/xaya_docs) will give you a high-level overview and familiarise you with various concepts and details. **This is highly recommended reading.** 
+Reading the [XAYA Specifications](https://github.com/xaya/xaya_docs) will give you a high-level overview and familiarise you with various concepts and details. **This is highly recommended reading and is considered reference material.** 
 
 Wallets are critically important. Read the [Wallets](XAYA%20Electron%20Help/Top.md#Wallets) section of the [XAYA Electron wallet help](XAYA%20Electron%20Help/) for a quick high-level overview if you're not already familiar.
 
@@ -24,12 +26,23 @@ Next, read about [XAYA RPC Methods](XAYA%20RPC%20Methods.md). You'll need to kno
 
 The [libxayagame Component Relationships](libxayagame%20Component%20Relationships.md) shows you the basic architecture. It details how your game logic and front end interact with XAYA. 
 
+## Getting Started with Coding
 
+Now that you've familiarised yourself with some basics for XAYA, it's time to get coding.
+
+Start with Hello World. It includes a fully functional example project and several videos. In this tutorial, you'll learn how to wire up a working XAYA game. This tutorial does not have any significant game logic, which makes it very easy to follow. 
+
+Next, read the [Mover Overview](Mover.md), then try one of the Mover tutorials. The [console Mover tutorial](MoverSharp) demonstrates simple game logic, but does not get into updating the front end. The [Mover in Unity tutorial](Unity%20Mover) goes over much of the same material as the console version, but adds in updating the front end. 
+
+## Getting Started with Developer Support
+
+If you have questions, visit the [XAYA Development forum](https://forum.xaya.io/forum/6-development/). You can ask questions and get answers there. 
 
 # Guides and Tutorials
 
 For game developers, this is the first place you should look to get started with XAYA game development. The sections below are loosely arranged in order. You can read them from top to bottom, but feel free to skip around. 
 
+- **[Prerequisites](#Prerequisites)**
 - **[Blockchain Basics](#Blockchain-Basics)**
 - **[XAYA Specifications](#XAYA-Specifications)**
 - **[XAYA RPC](#XAYA-RPC)**
@@ -85,9 +98,9 @@ The [XAYA RPC Methods](XAYA%20RPC%20Methods.md) document describes several of th
 
 ## RPC Windows C# Tutorial
 
-The [RPC Windows C# Tutorial](RPC%20Windows%20C%23%20Tutorial/XAYA%20RPC%20Tutorial.md) uses a 3rd party library to demonstrate using several XAYA RPC methods. A sample Windows Forms application is provided with comments to assist you.
+The [RPC Windows C# Tutorial](RPC%20Windows%20C%23%20Tutorial/README.md) uses a 3rd party library to demonstrate using several XAYA RPC methods. A sample Windows Forms application is provided with comments to assist you.
 
-> ![GO!](img/arrow-green-right-2a.png) [GOTO RPC Windows C# Tutorial](RPC%20Windows%20C%23%20Tutorial/XAYA%20RPC%20Tutorial.md)
+> ![GO!](img/arrow-green-right-2a.png) [GOTO RPC Windows C# Tutorial](RPC%20Windows%20C%23%20Tutorial/README.md)
 
 # libxayagame
 

@@ -1,11 +1,13 @@
 ## Interacting with the XAYA Wallet Through RPC in C#
 
-Sending and getting information to and from a XAYA wallet is relatively straight forward, but can involve a lot of coding. However, why reinvent the wheel? The following tutorial uses an extended fork of George Kimionis&#39; BitcoinLib library to include XAYA. You can download the code at the XAYA github repository.
+Sending and getting information to and from a XAYA wallet is relatively straight forward, but can involve a lot of coding. However, why reinvent the wheel? The following tutorial uses modified version of George Kimionis&#39; BitcoinLib library to include XAYA. 
 
 The sample application is a Windows Forms App. The code is well commented, so you can jump directly into the code. The solution has 2 projects:
 
-- BitcoinLib: This is the forked library updated for XAYA.
-- XAYABitcoinLib: This is a Winforms project where you can see BitcoinLib used to communicate with a XAYA Electron wallet.
+- BitcoinLib: This is a forked library modified for XAYA
+- XAYABitcoinLib: This is a Winforms project where you can see BitcoinLib used to communicate with a XAYA Electron wallet
+
+[Download the example app here](Code/XAYABitcoinLib.zip).
 
 NOTE: The project is configured to use Newtonsoft.Json v12. If you clean the solution and remove that DLL, you may need to manually add it back in. A zip with the DLL is included. Make certain to use the netstandard2.0 DLL as that is the framework that BitcoinLib targets.
 
@@ -73,11 +75,11 @@ With that, we have our bright and shiny new XAYAService object ready to use. For
 
 When you run the project, you&#39;ll then see the title bar text like this:
 
-![](XAYABitcoinLib%20title%20bar%20text.png)
+![](img/XAYABitcoinLib%20title%20bar%20text.png)
 
 The XAYAService object, xayaCoinService, contains many methods common to Bitcoin and other coins. It also contains several methods that are unique to XAYA. You can type &quot;xayaCoinService.&quot; to display the Visual Studio Intellisense:
 
-![](XAYAService%20intellisense.png)
+![](img/XAYAService%20intellisense.png)
 
 Some of the methods you&#39;ll need include:
 

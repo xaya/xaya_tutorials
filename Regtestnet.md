@@ -188,5 +188,5 @@ In this tutorial we looked at:
 There are other tutorials, but perhaps what would be most useful at this point is for you to create a regtestnet program that lets you mine new blocks in a controlled way. Using xaya-cli may be an option for you if you like using consoles. However, you may wish to create a program with a GUI. If so, you'll most likely want to use the RPC interface to issue commands directly to the daemon. There are 2 RPC tutorials to help you get started there:
 
 - [XAYA RPC Methods](XAYA%20RPC%20Methods.md)
-- [RPC Windows C# Tutorial](RPC%20Windows%20C%23%20Tutorial/XAYA%20RPC%20Tutorial.md)
+- [RPC Windows C# Tutorial](RPC%20Windows%20C%23%20Tutorial/README.md)
 
