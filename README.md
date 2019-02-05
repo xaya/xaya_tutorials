@@ -30,7 +30,7 @@ The [libxayagame Component Relationships](libxayagame%20Component%20Relationship
 
 Now that you've familiarised yourself with some basics for XAYA, it's time to get coding.
 
-Start with Hello World. It includes a fully functional example project and several videos. In this tutorial, you'll learn how to wire up a working XAYA game. This tutorial does not have any significant game logic, which makes it very easy to follow. 
+Start with [Hello World](Hello%20World!/). It includes a fully functional example project and several videos. In this tutorial, you'll learn how to wire up a working XAYA game. This tutorial does not have any significant game logic, which makes it very easy to follow. 
 
 Next, read the [Mover Overview](Mover.md), then try one of the Mover tutorials. The [console Mover tutorial](MoverSharp) demonstrates simple game logic, but does not get into updating the front end. The [Mover in Unity tutorial](Unity%20Mover) goes over much of the same material as the console version, but adds in updating the front end. 
 
