@@ -18,13 +18,23 @@ Before you get started, you should be somewhat familiar with what a blockchain i
 
 Reading the [XAYA Specifications](https://github.com/xaya/xaya_docs) will give you a high-level overview and familiarise you with various concepts and details. **This is highly recommended reading and is considered reference material.** 
 
+> ![GO!](img/arrow-green-right-2a.png) [GOTO XAYA Specifications](https://github.com/xaya/xaya_docs)
+
 Wallets are critically important. Read the [Wallets](XAYA%20Electron%20Help/Top.md#Wallets) section of the [XAYA Electron wallet help](XAYA%20Electron%20Help/) for a quick high-level overview if you're not already familiar.
+
+> ![GO!](img/arrow-green-right-2a.png) [Wallets](XAYA%20Electron%20Help/Top.md#Wallets)
 
 Some tutorials use the XAYA Command Line Interface (`xaya-cli`). [Read up on `xaya-cli` here](xaya-cli.md).
 
+> ![GO!](img/arrow-green-right-2a.png) [GOTO Getting Started with xaya-cli](xaya-cli.md)
+
 Next, read about [XAYA RPC Methods](XAYA%20RPC%20Methods.md). You'll need to know how to send RPC calls to the XAYA daemon. This will get you up to speed quickly. 
 
+> ![GO!](img/arrow-green-right-2a.png) [GOTO XAYA RPC Methods](XAYA%20RPC%20Methods.md)
+
 The [libxayagame Component Relationships](libxayagame%20Component%20Relationships.md) shows you the basic architecture. It details how your game logic and front end interact with XAYA. 
+
+> ![GO!](img/arrow-green-right-2a.png) [GOTO libxayagame Component Relationships](libxayagame%20Component%20Relationships.md)
 
 ## Getting Started with Coding
 
@@ -32,7 +42,13 @@ Now that you've familiarised yourself with some basics for XAYA, it's time to ge
 
 Start with [Hello World](Hello%20World!/). It includes a fully functional example project and several videos. In this tutorial, you'll learn how to wire up a working XAYA game. This tutorial does not have any significant game logic, which makes it very easy to follow. 
 
-Next, read the [Mover Overview](Mover.md), then try one of the Mover tutorials. The [console Mover tutorial](MoverSharp) demonstrates simple game logic, but does not get into updating the front end. The [Mover in Unity tutorial](Unity%20Mover) goes over much of the same material as the console version, but adds in updating the front end. 
+> ![GO!](img/arrow-green-right-2a.png) [GOTO Hello World!](Hello%20World!/) 
+
+Next, read the [Mover Overview](Mover.md), then try one of the Mover tutorials. The [console MoverSharp tutorial](MoverSharp) demonstrates simple game logic, but does not get into updating the front end. The [Mover in Unity tutorial](Unity%20Mover) goes over much of the same material as the console version, but adds in updating the front end. 
+
+> ![GO!](img/arrow-green-right-2a.png) [GOTO Mover Sample Game Overview](Mover.md) 
+> ![GO!](img/arrow-green-right-2a.png) [GOTO Mover Sharp - A C# Implementation](MoverSharp/)
+> ![GO!](img/arrow-green-right-2a.png) [GOTO Mover Sample Game in C# with Unity](Unity%20Mover/)
 
 ## Getting Started with Developer Support
 
@@ -82,7 +98,7 @@ In particular, important topics are:
 
 The specifications are required reading. Other documents will refer to specific sections of the specifications. 
 
-> ![GO!](img/arrow-green-right-2a.png) [GOTO Specifications](https://github.com/xaya/xaya_docs)
+> ![GO!](img/arrow-green-right-2a.png) [GOTO XAYA Specifications](https://github.com/xaya/xaya_docs)
 
 # XAYA RPC 
 
