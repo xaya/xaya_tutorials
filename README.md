@@ -70,6 +70,7 @@ For game developers, this is the first place you should look to get started with
 	+ [RPC Windows C# Tutorial](#RPC-Windows-C-Tutorial)
 - **[libxayagame](#libxayagame)**
 	+ [Component Relationships](#Component-Relationships)
+	+ [How to Wire Up libxayagame in C#](#How-to-Wire-Up-libxayagame-in-C)
 	+ [Hello World](#Hello-World!)
 	+ [Mover Sample Game Overview](#Mover-Sample-Game-Overview)
 	+ [Mover Sharp - A C# Implementation](#mover-sharp---a-c-implementation)
@@ -139,6 +140,12 @@ Code ninjas and rock stars may enjoy browsing through the code or [code document
 This tutorial provides a high-level overview of the component relationships and information flows when using libxayagame. While it aims to explain the Mover sample game, other scenarios are briefly outlined.
 
 > ![GO!](img/arrow-green-right-2a.png) [GOTO libxayagame Component Relationships](libxayagame%20Component%20Relationships.md)
+
+# How to Wire Up libxayagame in C#
+
+This very short tutorial explains how to add libxayagame to a project.
+
+> ![GO!](img/arrow-green-right-2a.png) [GOTO How to Wire Up libxayagame in C#](How%20to%20Wire%20Up%20libxayagame%20in%20C%23.md)
 
 ## Hello World!
 

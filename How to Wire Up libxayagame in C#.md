@@ -1,6 +1,6 @@
-# Getting Started in C#
+# How to Wire Up libxayagame in C#
 
-Before you get started, you'll need libxayagame. There are statically linked binaries available [here](). You'll also need XAYAWrapper. It wraps the C++ libxayagame for use with C#. You can download that [here]() (coming soon). You'll also need to make RPC calls. That can be done any way you wish, but we've forked BitcoinLib and modified it for XAYA. You can get that project [here]() (update coming soon).
+Before you get started, you'll need libxayagame. There are statically linked binaries available [here](https://github.com/xaya/xaya_tutorials/tree/master/XayaStateProcessor). You'll also need XAYAWrapper. It wraps the C++ libxayagame for use with C#. You can download that [here]() (coming soon). You'll also need to make RPC calls. That can be done any way you wish, but we've forked BitcoinLib and modified it for XAYA. You can get that project [here](https://github.com/xaya/xayaRPClib) (update coming soon). XAYAWrapper uses BitcoinLib and exposes it through `xayaGameService`, so you'll need that DLL as well. 
 
 The following shows how to wire up libxayagame.
 
@@ -9,6 +9,7 @@ The following shows how to wire up libxayagame.
 In your project:
 
 1. Add a reference to XAYAWrapper by either adding the DLL or adding the project and then adding a reference to the project.
+
 2. Add a `using` for XAYAWrapper.
 
 		using XAYAWrapper;
