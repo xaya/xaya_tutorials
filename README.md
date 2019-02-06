@@ -42,6 +42,10 @@ The [libxayagame Component Relationships](libxayagame%20Component%20Relationship
 
 Now that you've familiarised yourself with some basics for XAYA, it's time to get coding.
 
+The "How to Wire Up libxayagame in C#" is a minimalist tutorial that shows how to wire up XAYA very quickly. 
+
+> ![GO!](img/arrow-green-right-2a.png) [GOTO How to Wire Up libxayagame in C#](How%20to%20Wire%20Up%20libxayagame%20in%20C%23.md)
+
 Start with [Hello World](Hello%20World!/). It includes a fully functional example project and several videos. In this tutorial, you'll learn how to wire up a working XAYA game. This tutorial does not have any significant game logic, which makes it very easy to follow. 
 
 > ![GO!](img/arrow-green-right-2a.png) [GOTO Hello World!](Hello%20World!/) 
