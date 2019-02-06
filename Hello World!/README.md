@@ -81,9 +81,9 @@ You can implement better threading structures on your own.
 
 # Instantiate and Connect to XAYAWrapper
 
-[**VIDEO** Instantiate and Connect to XAYAWrapper](https://gaming.youtube.com/watch?v=BxDU1_kcT-E)
+[**VIDEO** Instantiate and Connect to XAYAWrapper](https://gaming.youtube.com/watch?v=Ge06qTLZ2nE)
 
-[![Instantiate and Connect to XAYAWrapper](img/Instantiate%20and%20Connect%20to%20XAYAWrapper.png)](https://gaming.youtube.com/watch?v=BxDU1_kcT-E)
+[![Instantiate and Connect to XAYAWrapper](img/Instantiate%20and%20Connect%20to%20XAYAWrapper.png)](https://gaming.youtube.com/watch?v=Ge06qTLZ2nE)
 
 Instantiating and Connecting to XAYAWrapper **must** be done in a thread. The connection is a blocking operation. 
 
