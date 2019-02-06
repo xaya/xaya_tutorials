@@ -47,9 +47,9 @@ Start with [Hello World](Hello%20World!/). It includes a fully functional exampl
 Next, read the [Mover Overview](Mover.md), then try one of the Mover tutorials. The [console MoverSharp tutorial](MoverSharp) demonstrates simple game logic, but does not get into updating the front end. The [Mover in Unity tutorial](Unity%20Mover) goes over much of the same material as the console version, but adds in updating the front end. 
 
 > ![GO!](img/arrow-green-right-2a.png) [GOTO Mover Sample Game Overview](Mover.md)
-
+>
 > ![GO!](img/arrow-green-right-2a.png) [GOTO Mover Sharp - A C# Implementation](MoverSharp/)
-
+>
 > ![GO!](img/arrow-green-right-2a.png) [GOTO Mover Sample Game in C# with Unity](Unity%20Mover/)
 
 ## Getting Started with Developer Support
