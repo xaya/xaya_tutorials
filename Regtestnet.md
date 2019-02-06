@@ -4,7 +4,7 @@ During development you'll need to interact with the XAYA blockchain. However, us
 
 Regtestnet is a better solution for developers looking to put their games and apps on the XAYA blockchain. It is a private network where no peers are needed and you can mine new blocks at will.
 
-## What is Regtestnet?
+# What is Regtestnet?
 
 Regtestnet is a private blockchain where no peers are needed. It is entirely separate from mainnet and testnet, and you can mine blocks whenever you wish.
 
@@ -26,11 +26,11 @@ As do the P2P ports:
 - Testnet = 18394
 - Regtestnet = 18495
 
-## Back Up  Your Wallets
+# Back Up  Your Wallets
 
 Before doing any kind of development, make sure that you've backed up your wallets. See the [XAYA forums](https://forum.xaya.io/topic/238-how-to-and-video-help/) for tutorials and videos about how to do that. Which ever interface you choose to use is entirely up to you. 
 
-## Xaya-cli vs. XAYA QT Console
+# Xaya-cli vs. XAYA QT Console
 
 The examples here use xaya-cli from a console (command prompt/terminal) instead of using the QT wallet's console. 
 
@@ -42,11 +42,13 @@ In the QT console would simply become:
 
 	getbalance
 
-One major advantage of using xaya-cli is that you can pipe output to a file. 
+One major advantage of using xaya-cli is that you can pipe output to a file. e.g.:
+
+	xaya-cli -regtest getbalance >mybalance.txt
 
 Also, should you wish, you can program against xaya-cli very easily, whereas remotely controlling a GUI application, such as the QT wallet, is very difficult. 
 
-## Firing Up Regtestnet
+# Firing Up Regtestnet
 
 To use regtestnet, you'll most likely want to work with the XAYA QT wallet and xaya-cli. If you haven't already, you can download that [here](https://github.com/xaya/xaya/releases).
 
@@ -90,7 +92,7 @@ That will return a set of information about peers. Check the `addr` field to see
 
 They should sync very quickly, however, you may wish to mine a few blocks. See below for how to do that.
 
-### Check Your CHI Balance
+# Check Your CHI Balance
 
 Back in your command prompt or terminal, check your balance with the `-regtest` flag and the `getbalance` command:
 
@@ -98,7 +100,7 @@ Back in your command prompt or terminal, check your balance with the `-regtest` 
 
 You should see your zero balance as "0.00000000", i.e. to 8 decimal places.
 
-### Create a CHI Address
+# Create a CHI Address
 
 Next, you'll need to create address so that you can mine regtestnet CHI into. The `getnewaddress` command takes 2 optional arguments. In this example, we only set the first one for the label. Enter the following command into your command line:
 
@@ -108,7 +110,7 @@ That will output an address for you, e.g. "ceeABTxXdFaeL4eJKrAHqEatXXb7mwk1tS". 
 
 ![A new regtestnet CHI address](img/New%20regtestnet%20address.png)
 
-### Mine Some CHI
+# Mine Some CHI
 
 When coins are mined, they are "immature" and cannot be spent until they become "mature" after 100 confirmation.
 
@@ -141,13 +143,13 @@ You can also check the Transactions tab and scroll to see that only 1 is fully c
 
 You can repeat the above `generatetoaddress` command and you'll see that your balance increases. However, as you mine more blocks, the number of immature coins will slowly decline because immature coins require 100 confirmations to mature and the block reward declines very rapidly compared to mainnet, e.g. by block 1200 the reward will be 0.19531250 CHI.
 
-### Mining at Will
+## Mining at Will
 
 As you can see from the above, you can mine new regtestnet blocks/CHI at will. However, unless you specifically mine new CHI, no more blocks will be mined. 
 
 Depending upon your requirements, you may wish to create a small program that lets you mine new blocks in a controlled way, e.g. 1 block at a time, or perhaps spurts of 10 or more blocks at once, or perhaps on a timer at specific intervals, e.g. every 30 seconds. 
 
-### Forcing Reorgs to Test Undo 
+## Forcing Reorgs to Test Undo 
 
 There are times when a blockchain undergoes a reorg. These situations are difficult to deal with, but that hard work is all done for you through the [libxayagame](https://github.com/xaya/libxayagame/) library. 
 
@@ -168,11 +170,11 @@ The `invalidateblock` and `reconsiderblock` methods take a blockhash as their pa
 	xaya-cli -regtest invalidateblock "12d102d12ddbe8fe0dabc03e9488efad481d87c0b084398307a7fb54592fb26c"
 	xaya-cli -regtest reconsiderblock "12d102d12ddbe8fe0dabc03e9488efad481d87c0b084398307a7fb54592fb26c"
 
-### Resetting Regtestnet
+## Resetting Regtestnet
 
 To reset regtestnet, simply rename or delete the regtest folder in the data directory. 
 
-## Summary
+# Summary
 
 In this tutorial we looked at:
 
@@ -183,7 +185,7 @@ In this tutorial we looked at:
 - How to mine new blocks and get regtestnet CHI
 - How to force reorgs to test undo data
 
-## Where to Go from Here?
+# Where to Go from Here?
 
 There are other tutorials, but perhaps what would be most useful at this point is for you to create a regtestnet program that lets you mine new blocks in a controlled way. Using xaya-cli may be an option for you if you like using consoles. However, you may wish to create a program with a GUI. If so, you'll most likely want to use the RPC interface to issue commands directly to the daemon. There are 2 RPC tutorials to help you get started there:
 
