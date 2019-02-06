@@ -29,11 +29,11 @@ The examples below use xaya-cli and a XAYA game wallet.
 
 Most likely, you will wish to use an RPC library inside of your game for RPC calls. 
 
-See [Interacting with the XAYA Wallet Through RPC in C#](https://github.com/xaya/xaya_tutorials/blob/master/RPC%20Windows%20C%23%20Tutorial/XAYA%20RPC%20Tutorial.md) for a sample application and tutorial of using the RPC methods through a 3rd party library. 
+See [Interacting with the XAYA Wallet Through RPC in C#](RPC%20Windows%20C%23%20Tutorial/README.md) for a sample application and tutorial of using the RPC methods through a 3rd party library. 
 
 ## Names
 
-Names are unique entries in the XAYA blockchain. They can be used for game accounts or to create games. See [Name and Value Restrictions](https://github.com/xaya/xaya_docs/blob/master/blockchain.md#name-and-value-restrictions-) for information on restrictions and limitations. 
+Names are unique entries in the XAYA blockchain. They can be used for game accounts or to create games. See [Name and Value Restrictions](blockchain.md#name-and-value-restrictions-) for information on restrictions and limitations. 
 
 All names exists in a [namespace](https://github.com/xaya/xaya_docs/blob/master/blockchain.md#name-and-value-restrictions-), e.g. `p/` is for player accounts and `g/` is for games. A namespace ends with the `/` character, and everything following that is the name. The following are examples of valid names:
 
