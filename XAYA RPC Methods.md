@@ -31,7 +31,7 @@ Most likely, you will wish to use an RPC library inside of your game for RPC cal
 
 See [Interacting with the XAYA Wallet Through RPC in C#](RPC%20Windows%20C%23%20Tutorial/README.md) for a sample application and tutorial of using the RPC methods through a 3rd party library. 
 
-## Names
+# Names
 
 Names are unique entries in the XAYA blockchain. They can be used for game accounts or to create games. See [Name and Value Restrictions](blockchain.md#name-and-value-restrictions-) for information on restrictions and limitations. 
 
@@ -65,6 +65,10 @@ Names have data associated with them on the XAYA blockchain:
 The order and appearance of those properties may vary slightly in how/if they are returned in different methods. 
 
 The value is where game moves are. See [`name_update`](#name_update) below for how to submit moves into the XAYA blockchain.
+
+# Commands
+
+The following are RPC commands that you can issue.
 
 ## name_list
 
