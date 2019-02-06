@@ -183,7 +183,7 @@ We'll need a few variables to connect to the wrapper.
 - `storageType`: This chooses between "memory", "sqlite", and "lmdb"
 - `FLAGS_xaya_rpc_url`: This is the URL in the form "http://user:password@IP-address:port"
 - `host_s`: This is the host address
-- `gamehostport_s`: This is the game host port. It's fixed at 8900 in libxayagame
+- `gamehostport_s`: This is the game host port. It's 8900 for Mover
 
 We could accept arguments from the command line, parse them, and then assign those values, but for clarity it&#39;s easier to hard code these values for the purpose of illustration.
 
@@ -191,7 +191,7 @@ The dPath is set to the same path as the example game&#39;s executable file.
 
 	static string dPath = AppDomain.CurrentDomain.BaseDirectory;
 
-We&#39;ll connect to the C++ wrapper on port 8900. This is defined in the wrapper, so this is not optional.
+We&#39;ll connect to libxayagame on port 8900. This can be any free port.
 
 	static string gamehostport_s = "8900";
 

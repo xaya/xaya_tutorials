@@ -93,7 +93,7 @@ To instantiate the wrapper, call it's constructor:
 
 	wrapper = new XayaWrapper(dataPath, // The path to the game's executable file. 
 		Properties.Settings.Default.Host, // The host, e.g. localhost or 127.0.0.1
-		"8900", // The game host port. Fixed at 8900 in libxayagame.
+		"8900", // The game host port. Can be any free port.
 		ref result, // An error or success message.
 		CallbackFunctions.initialCallbackResult, 
 		CallbackFunctions.forwardCallbackResult, 
@@ -103,7 +103,7 @@ To connect, call the Connect method:
 
 	result = wrapper.Connect(dataPath, // The path to the game's executable file. 
 		FLAGS_xaya_rpc_url, // The URL for RPC calls.
-		"8900",  // The game host port. Fixed at 8900 in libxayagame.
+		"8900",  // The game host port. Can be any free port.
 		"0", // Which network to use: Mainnet, Testnet, or Regtestnet.
 		"memory", // The storage type: memory, sqlite, or lmdb.
 		"helloworld", // The name of the game in the 'g/' namespace.
