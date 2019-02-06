@@ -16,6 +16,8 @@ Once you've got the prerequisite downloads, the following will provide you with 
 
 Before you get started, you should be somewhat familiar with what a blockchain is. If not, please read [Blockchain Basics](Blockchain%20General.md).
 
+> ![GO!](img/arrow-green-right-2a.png) [GOTO Blockchain Basics](Blockchain%20General.md)
+
 Reading the [XAYA Specifications](https://github.com/xaya/xaya_docs) will give you a high-level overview and familiarise you with various concepts and details. **This is highly recommended reading and is considered reference material.** 
 
 > ![GO!](img/arrow-green-right-2a.png) [GOTO XAYA Specifications](https://github.com/xaya/xaya_docs)
