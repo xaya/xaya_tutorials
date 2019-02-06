@@ -168,7 +168,7 @@ Moves can be sent arbitrarily in many ways. Here are some ways:
 - Sending to xayad
 - Etc.
 
-When procesing moves, you **must** guard against invalid moves with robust error checking. See the code for example error checks. 
+When processing moves, you **must** guard against invalid moves with robust error checking. See the code for example error checks. 
 
 In HelloXaya, we build the move in a string then send it:
 
@@ -177,7 +177,7 @@ In HelloXaya, we build the move in a string then send it:
 		hello, 
 		new object());
 
-# Game Logic
+<!-- # Game Logic
 
 As mentioned above, game logic is handled similar to the following:
 
@@ -189,7 +189,7 @@ As mentioned above, game logic is handled similar to the following:
 	- JSON classes
 	- Helper methods
 
-THIS IS A STUB. THIS PORTION OF THE HELLO WORLD TUTORIAL WILL FOLLOW.
+THIS IS A STUB. THIS PORTION OF THE HELLO WORLD TUTORIAL WILL FOLLOW. -->
 
 
 Done!

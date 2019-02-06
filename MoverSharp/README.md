@@ -401,7 +401,7 @@ If you remember from above in JSONClasses.cs, our `GameState` class merely conta
 	    public Dictionary<string, PlayerState> players;
 	}
 
-So for the players property of our `GameState`, if it&#39;s null, then we should initialise it.
+So for the `players` property of our `GameState`, if it&#39;s null, then we should initialise it.
 
 	if (state.players == null)
 	{

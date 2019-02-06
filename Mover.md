@@ -12,7 +12,7 @@ Depending on the complexity of your game, you may wish to use Mover a template f
 
 ## Mover is a Live MMOG and Practically Unhackable
 
-While Mover is very simple, it should be pointed out that it is a live game that anyone can write a client for, and it is a massively multiplayer online game. It can accomodate many thousands of players. 
+While Mover is very simple, it should be pointed out that it is a live game that anyone can write a client for, and it is a massively multiplayer online game. It can accommodate many thousands of players. 
 
 Undoubtably some people may _try_ to break Mover, but if you code your version of Mover properly, those attempts to break it will be meaningless. The only thing needed is decent error checking. 
 

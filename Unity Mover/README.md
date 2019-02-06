@@ -80,7 +80,7 @@ Visual Studio no longer ships with Class Diagram. To get it, type "class diagram
 
 [Unity Mover Code.zip](Unity%20Mover%20Code.zip) contains all the code for this tutorial. 
 
-This tutorial doesn't delve into explaning Unity elements. You should have a basic understanding of Unity already. If not, you will need to read the code, explore, and search online for information about Unity.
+This tutorial doesn't delve into explaining Unity elements. You should have a basic understanding of Unity already. If not, you will need to read the code, explore, and search online for information about Unity.
 
 # How Mover is Structured in Unity
 
@@ -576,7 +576,7 @@ The `ExecuteMove` method is:
 		new object()); 		
 	}
 
-It uses xayaService (from BitcoinLib) to send a `name_update` RPC to the XAYAWallet. The wallet then broadcasts the `name_update` to the XAYA network and a miner somewhere in the world then mines the transaction into the blockchain. Once that's done, XAYAWrapper (libxayagame) picks up all the moves for all players and and passes that data to the XAYAConnector, which then asynchronously updates member variables in MoveGUIAndGameController so that the front end can update itself for the new game state.
+It uses xayaService (from BitcoinLib) to send a `name_update` RPC to the XAYAWallet. The wallet then broadcasts the `name_update` to the XAYA network and a miner somewhere in the world then mines the transaction into the blockchain. Once that's done, XAYAWrapper (libxayagame) picks up all the moves for all players and passes that data to the XAYAConnector, which then asynchronously updates member variables in MoveGUIAndGameController so that the front end can update itself for the new game state.
 
 Here are a couple example moves:
 
@@ -773,7 +773,7 @@ If you remember from above in JSONClasses.cs, our `GameState` class merely conta
 	    public Dictionary<string, PlayerState> players;
 	}
 
-So for the players property of our `GameState`, if it&#39;s null, then we should initialise it.
+So for the `players` property of our `GameState`, if it&#39;s null, then we should initialise it.
 
 	if (state.players == null)
 	{

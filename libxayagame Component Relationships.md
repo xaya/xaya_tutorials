@@ -12,7 +12,7 @@ The daemon is responsible for querying the blockchain.
 
 The game state processor (GSP) is composed of libxayagame and the game logic. It is responsible for computing the current state of the game. 
 
-The libxayagame libary takes care of complex blockchain logic and provides an easy to implement interface for game developers.
+The libxayagame library takes care of complex blockchain logic and provides an easy to implement interface for game developers.
 
 Game logic is written by developers for their games. 
 
