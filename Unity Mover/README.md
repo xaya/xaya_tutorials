@@ -73,12 +73,12 @@ For this tutorial, you'll need several pieces of software:
 - Unity
 - Visual Studio
 - VS Class Diagram
-- [Unity Mover Code.zip](Unity%20Mover%20Code.zip)
+- [Mover Unity projects](https://github.com/xaya/xayalib_unity)
 - Knowledge of Unity
 
 Visual Studio no longer ships with Class Diagram. To get it, type "class diagram" into the Quick Launch in the upper-left corner of Visual Studio and search. It will return a link to install VS Class Diagram. 
 
-[Unity Mover Code.zip](Unity%20Mover%20Code.zip) contains all the code for this tutorial. 
+[The Mover Unity projects](https://github.com/xaya/xayalib_unity) contain all the code for this tutorial. 
 
 This tutorial doesn't delve into explaining Unity elements. You should have a basic understanding of Unity already. If not, you will need to read the code, explore, and search online for information about Unity.
 
@@ -689,7 +689,9 @@ If you recall from above, these callbacks are implementations of the callbacks i
 
 This is where the main game logic resides. 
 
-### initialCallbackResult
+***
+
+# initialCallbackResult
 
 The initialCallbackResult reads which chain we plan to use, then sets the height to start at, and the hash for that block in hexadecimal. It’s very straight forward.
 
@@ -722,13 +724,84 @@ https://explorer.xaya.io/block/0
 
 Its hash is “e5062d76e5f50c42f493826ac9920b63a8def2626fd70a5cec707ec47a4c4651”.
 
-### forwardCallbackResult and Processing Moves
+***
+
+# forwardCallbackResult and Processing Moves
+
+First, we must clarify some language used here. While the name of the game is "Mover", and players "move" in the game, when we talk about a moving or non-moving player, this has nothing to do with a player moving on the map in the Mover game. 
+
+**MOVING** (or "moving") means that the player has a set of move orders that are active.
+
+**NON-MOVING** (or "non-moving) means that the player does not currently have a set of move orders.
+
+A "move" or "move orders" are whatever instructions the player has told the game to do. These instructions/orders are sent to the XAYA blockchain in a XAYA name_update as a value. (See [A Quick Look at Moves](#A-Quick-Look-at-Moves).) We receive those orders as a "move" through the `blockData` parameter. 
+
+For example, the following:
+
+> Verify that the move is valid.
+>
+> This is how moves are processed.
+
+are equivalent to:
+
+> Verify that the player's orders are valid.
+>
+> This is how orders are processed.
+
+To be more specific, the `blockData` parameter returns `moves` which is an array of `move` data. Here's one example:
+
+	{
+	  "block": {
+		"hash": "dda7eccde4857742e5000bd66cf72154ce26c22876582654bc8b8d78dadbce8c",
+		"height": 558369,
+		"parent": "18f72c91c7b9223e9c7d0525216277e4016d748a2c81be4ba9d4a2b30eaed92d",
+		"rngseed": "b36747498ce183b9da32b3ab6e0d72f2a17aa06859c08cf1d1e91907cb09dddc",
+		"timestamp": 1549056526
+	  },
+	  "moves": [
+		{
+		  "move": {
+			"m": "Hello world!"
+		  },
+		  "name": "ALICE",
+		  "out": {
+			"CMBPmRos5QADg2T8kvkQhMaMV5WzpzfedR": 3443.7832612
+		  },
+		  "txid": "edd0d7a7662a1b5f8ded16e333f114eb5bea343a432e6c72dfdbdcfef6bf4d44"
+		}
+	  ],
+	  "reqtoken": "1fba0f4f9e76a65b1f09f3ea40a59af8"
+	}
+
+As such, when we say "moves" or "move", it is that data in `blockData` that we are referring to.
+
+# Moving On... (ok, bad pun)
 
 `forwardCallbackResult` runs whenever a new block is received. It processes the moves (or game logic) to create a new game state and creates undo data. Let&#39;s examine it in detail.
 
-Here&#39;s the method signature:
+In the callback there are general tasks that need to be done.
 
-	public static string forwardCallbackResult(string oldState, string blockData, string undoData, out string newData)
+1. [**Get data** that's passed in into variables](#get-data)
+2. [**Check errors** for the game state and players. Construct them if they're null. That only ever happens once](#check-errors)
+3. [**Update moves**, i.e. Loop over all **new moves for each player**](#update-moves)
+	1. [Verify the move is valid. If so, assign it in a variable](#verify-move-is-valid)
+	2. [Update the player state from the previous block data](#update-player-state)
+	3. [Create player undo data for all **MOVING** players](#Create-Player-Undo-for-Moving-Players)
+	4. [Update the player's move in the player state](#Update-New-Move-in-Player-State)
+4. [**Process moves**, i.e. Loop over **each player state**](#Process-Moves) 
+	1. [Check if the player is moving](#Check-Whether-Player-is-Moving)
+	2. [Process the move for the player](#Process-the-Move)
+	3. [Add player undo data for the player if they have just completed their moves, i.e. they are now stationary or non-moving players](#Add-Player-Undo-Data-for-Non-Moving-Players)
+5. [**Update the new game state and new undo data** then return them](#Update-New-Game-State-and-New-Undo-Data)
+
+# Get Data
+
+Here&#39;s the signature:
+
+	public static string forwardCallbackResult(string oldState, 
+		string blockData, 
+		string undoData, 
+		out string newData)
 
 - `oldState`: This string contains the game state as it currently is
 - `blockData`: This contains all the new moves that have come in from the blockchain
@@ -743,9 +816,11 @@ Similarly, we deserialise the block we received from the XAYA daemon as a `dynam
 
 	dynamic blockDataS = JsonConvert.DeserializeObject(blockData);
 
-We&#39;ll be creating some undo data to hedge against the possibility of encountering a fork/reorg, so we initialise a `Dictionary` for that with the `PlayerUndo` type.
+We&#39;ll be creating undo data to hedge against the possibility of encountering a fork/reorg, so we initialise a `Dictionary` for that with the `PlayerUndo` type.
 
 	Dictionary<string, PlayerUndo> undo = new Dictionary<string, PlayerUndo>();
+
+# Check Errors
 
 It&#39;s possible that there are no moves for us to process, so we check for that and if there are no new moves, we simply exit the method.
 
@@ -755,7 +830,7 @@ It&#39;s possible that there are no moves for us to process, so we check for tha
 	    return "";
 	}
 
-While we&#39;re developing our example game, it&#39;s nice to have some console feedback. This would be commented out or removed in our final release.
+While we&#39;re developing our example game, it&#39;s nice to have console feedback. This would be commented out or removed in our final release.
 
 	Console.WriteLine("Got new forward block at height: " + blockDataS["block"]["height"]);
 
@@ -792,12 +867,16 @@ Let&#39;s remind ourselves about the players property being a `PlayerState`. Aga
 
 That completes the basic setup and initialisation for us to process a move.
 
+# Update Moves
+
 The rest of our game logic consists of 2 loops:
 
-- A loop to process moves and create undo data
-- A loop to process moves and update the game state
+- A loop to get moves and create undo data for moving players
+- A loop to process moves and create undo data for non-moving players
 
-#### A Quick Look at Moves
+We then set our game state and undo data variables and return them.
+
+## A Quick Look at Moves
 
 Before proceeding, let&#39;s look at what a typical move will look like for any given name that wishes to create that move.
 
@@ -822,37 +901,13 @@ Moves are done through the `name_update` operation in the XAYA daemon. It&#39;s 
 
 This is obviously an invalid move for our Mover game. As such, it is critically important to ensure that you do proper error checking and exclude invalid moves.
 
-#### The First Loop
+## The First Loop
 
 Let&#39;s look into our first loop inside `forwardCallbackResult`.
 
 	foreach (var m in blockDataS["moves"])
 
-Here, `blockDataS` contains many moves that we will iterate over, storing each one as a `var` in `m`. The following is an example of what `blockDataS` could look like:
-
-	{
-	  "block": {
-	    "hash": "e494ed9494e3ef0a70ceb4ffd1484c3a4a77db3448b057c6a515740d405f4887",
-	    "height": 558194,
-	    "parent": "f5a532702d5e4b07d575af4a000ec158b620cccb09121c62c18d33ef3d3d77a8",
-	    "rngseed": "eb57a3c1552af09c8ef5dbcf1e90ee82034005f3b6acc7fb6bf2b27f239dec33",
-	    "timestamp": 1549051081
-	  },
-	  "moves": [
-	    {
-	      "move": {
-		"d": "u",
-		"n": 10
-	      },
-	      "name": "ALICE",
-	      "out": {
-		"Cb4u2jNJFBUJp915FZJvp9dKDcDbjhaLVQ": 123.456789
-	      },
-	      "txid": "cb1b8fae569ff6f6496c4088bcff49fb052f806e96d48dfba046fc58dd4593cc"
-	    }
-	  ],
-	  "reqtoken": "166a85c139ace087dcd4c3a9cd528918"
-	}
+Here, `blockDataS` contains many moves that we will iterate over, storing each one as a `var` in `m`.
 
 First, we extract the player&#39;s name from `m`.
 
@@ -867,6 +922,8 @@ All moves have a direction and a number of steps to take, so we initialise a cou
 	Direction dir = Direction.UP;
 	Int32 steps = 0;
 
+## Verify Move is Valid
+
 As stated above, error checking is critical. Our `ParseMove` method will determine if a move is valid or not, and will update values for the parameters we pass in as they are being passed by reference (ref). In particular, we&#39;ll be using the values for `dir` and `steps` later on.
 
 	if (!HelperFunctions.ParseMove(ref obj, ref dir, ref steps))
@@ -875,6 +932,8 @@ As stated above, error checking is critical. Our `ParseMove` method will determi
 	}
 
 If the move isn&#39;t valid, we `continue`, i.e. we stop where we are in the loop and start over with the next move (`m`) inside of our `blockDataS` object.
+
+## Update Player State
 
 We need a `PlayerState`, so we allocate memory for one.
 
@@ -895,6 +954,14 @@ If it exists, then we set our `PlayerState` object (`p`) to that name. If not, w
 	    p = new PlayerState();
 	    state.players.Add(name, p);
 	}
+
+At this point, the player has been added to the game state, but we've not yet processed the move.
+
+## Create Player Undo for Moving Players
+
+Here we create player undo data for **MOVING** players. 
+
+In the second loop, we'll add those players that have just completed their move, i.e. they are now **NON-MOVING** players. We can't add the non-moving players here because we process moves in the second loop. 
 
 We must create undo data for each player, so we initialise a new instance of `PlayerUndo`.
 
@@ -920,6 +987,8 @@ Otherwise, we update the `previous_dir` and `previous_steps_left` with the curre
 	    u.previous_steps_left = p.steps_left;
 	}
 
+## Update New Move in Player State
+
 Finally, we update our `PlayerState` (`p`) with the new direction and number of steps left. Recall from above that we obtained these values when we called the `HelperFunctions.ParseMove` method with `dir` and `steps` being passed in by reference. Refer to the `ParseMove` method for how this is done.
 
 	p.dir = dir;
@@ -927,23 +996,29 @@ Finally, we update our `PlayerState` (`p`) with the new direction and number of 
 
 That completes our first loop. To summarize what we did here:
 
-1. We initialised some variables
-2. We checked to see if we had a valid move (this updated some values for us)
+1. We initialised variables
+2. We checked to see if we had a valid move (this updated values for us)
 3. We determined if we had a new or existing player and updated as required
 4. We saved the `PlayerState` as undo data and stored it in our `undo` object
-5. We finally updated the move in our `PlayerState`
+5. We finally updated the move in our `PlayerState` (this did not process the move - see below for that)
 6. We looped back and did 1-5 for all **moves**
 
-#### The Second Loop
+# Process Moves
+
+Our second loop iterates over each player state to process the move that was added to the player state above, and to add undo data for players that are no longer moving.
+
+## The Second Loop
 
 The second loop iterates over all players. Here&#39;s the loop declaration:
 
 	foreach (var mi in state.players)
 
-For each player, we get the name and `PlayerState` into some variables.
+For each player, we get the name and `PlayerState` into variables.
 
 	string name = mi.Key;
 	PlayerState p = mi.Value;
+
+## Check Whether Player is Moving
 
 If the player isn&#39;t moving, then we stop and skip back to the beginning of the loop and start again with a new player.
 
@@ -959,6 +1034,8 @@ Similarly for steps, if they have 0 or fewer steps to go, we skip back to the to
 	    continue;
 	}
 
+## Process the Move
+
 Next, we initialise a couple integers for the player&#39;s move, then update those variables by passing them by reference to our `HelperFunctions.GetDirectionOffset` method, and update our `PlayerState` (`p`).
 
 	Int32 dx = 0, dy = 0;
@@ -971,6 +1048,10 @@ As we&#39;ve now &quot;used&quot; that move by updating the `PlayerState`, we mu
 	p.steps_left -= 1;
 
 If there are no steps left for that player, then we set undo data and do some cleanup.
+
+## Add Player Undo Data for Non-Moving Players
+
+In the first loop, we added undo data for **MOVING** players. Now we must add undo data for players that have just completed their move.
 
 For the undo data, we check whether the player already exists in our `undo` `Dictionary` and add the player by name. If not, we create a new `PlayerUndo` and then add that to our `undo` `Dictionary` with the player&#39;s name.
 
@@ -992,8 +1073,9 @@ To clean up, we set the `finished_dir` of the `PlayerUndo` object and set the Pl
 	
 	    u.finished_dir = p.dir;
 	    p.dir = Direction.NONE;
-	
 	}
+
+# Update New Game State and New Undo Data
 
 Finally, we set the `undoData` parameter and the `newData` (the new game state) parameter (that was passed by reference) and return `undoData`.
 
@@ -1001,16 +1083,22 @@ Finally, we set the `undoData` parameter and the `newData` (the new game state) 
 	newData = JsonConvert.SerializeObject(state);
 	return undoData;
 
+#Summary
+
 To quickly summarize `forwardCallbackResult`:
 
-1. We received some data and set up some variables, including a `GameState`
-2. We did some error checking and checked to see if we had any moves
-3. We processed all moves and populated our `GameState` with players
-4. We created some undo data in case we encounter a fork/reorg
-5. We updated our `GameState` with all the players&#39; moves
-6. We returned our `GameState` and undo data
+1. We **received data** and set up variables, including a `GameState`
+2. We **checked for errors** and new moves
+3. We **updated moves** for all players in our game state 
+4. We **created undo data** for moving players in case we encounter a fork/reorg
+5. We **processed all moves**
+6. We **added undo data** for non-moving players 
+7. We **updated our `GameState` and undo data** 
+8. We **returned** our `GameState` and undo data
 
-### backwardCallbackResult and Undoing a Game State Step
+***
+
+# backwardCallbackResult and Undoing a Game State Step
 
 `backwardCallbackResult` rolls back the game state by 1 block with the undo data from the previous block. It is similar to `forwardCallbackResult`, but we don&#39;t create any undo data because we&#39;re consuming some undo data.
 
@@ -1123,6 +1211,8 @@ Finally, we return the serialised `GameState` object so we can update the game s
 	return JsonConvert.SerializeObject(state);
 
 Your game will require more complex logic to undo a block, but the above should suffice to illustrate the general technique. 
+
+***
 
 # Update the Front End with a GameState
 
