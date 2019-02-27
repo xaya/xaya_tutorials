@@ -15,9 +15,9 @@ make -j2
 make install
 cd dist
 cp -r ./ /home/../mingw64/
-Cd ~/
-Curl -o /home/../mingw64/lib/pkgconfig/libglog.pc https://raw.githubusercontent.com/xaya/xaya_tutorials/master/build_files/libglog.pc
-Curl -o /home/../mingw64/lib/pkgconfig/lmdb.pc https://raw.githubusercontent.com/xaya/xaya_tutorials/master/build_files/lmdb.pc
+cd ~/
+curl -o /home/../mingw64/lib/pkgconfig/libglog.pc https://raw.githubusercontent.com/xaya/xaya_tutorials/master/build_files/libglog.pc
+curl -o /home/../mingw64/lib/pkgconfig/lmdb.pc https://raw.githubusercontent.com/xaya/xaya_tutorials/master/build_files/lmdb.pc
 git clone https://github.com/xaya/libxayagame.git
 cd libxayagame
 ./autogen.sh
