@@ -1,5 +1,5 @@
-libdir=C:/msys64/mingw64/lib
-includedir=C:/msys64/mingw64/include
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
 
 Name: lmdb
 Description: A C++ library for interacting with JSON
