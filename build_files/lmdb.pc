@@ -1,0 +1,9 @@
+libdir=C:/msys64/mingw64/lib
+includedir=C:/msys64/mingw64/include
+
+Name: lmdb
+Description: A C++ library for interacting with JSON
+Version: 1.8.4
+URL: https://github.com/open-source-parsers/jsoncpp
+Libs: -L${libdir} -llmdb
+Cflags: -I${includedir}
