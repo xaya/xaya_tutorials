@@ -6,8 +6,9 @@ make -j2
 make install
 cp ./src/argtable2.h /home/../mingw64/include/argtable2.h
 cd ..
-git clone https://github.com/xaya/libjson-rpc-cpp
+git clone https://github.com/domob1812/libjson-rpc-cpp
 cd libjson-rpc-cpp
+git checkout listen-locally-0.7.0
 mkdir win32-deps
 mkdir win32-deps/include
 cmake . -G"MSYS Makefiles" -DCMAKE_INSTALL_PREFIX=$MINGW_PREFIX -DREDIS_SERVER=NO -DREDIS_CLIENT=NO  -DCOMPILE_STUBGEN=YES -DCOMPILE_EXAMPLES=NO -DCOMPILE_TESTS=NO -DBUILD_STATIC_LIBS=YES -DHUNTER_ENABLED=YES
